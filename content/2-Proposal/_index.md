@@ -1,20 +1,21 @@
 ---
-title: "Proposal"
+title: "Pro### 2. Problem Statement
+
+**Current Problem**  
+The market already has many financial management applications, however most still require users to manually input data — a time-consuming task prone to errors that causes users to quickly give up. Existing applications only focus on expense statistics but don't truly help users automate the personal financial management process."
 date: "2025-09-09"
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
-
-# IoT Weather Platform for Lab Research
-
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+# Personal Finance Management App
 
 ### 1. Executive Summary
 
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+The Personal Finance Management App project aims to provide an intelligent, modern, and highly automated personal financial management platform. The application allows users to record income and expenses, create and manage multiple money jars for different purposes, create spending plans, receive smart alerts, and generate visual analytical reports.
+
+The application is built with a microservices architecture on .NET Aspire and FastAPI platform, deployed on AWS Cloud, ensuring flexibility, scalability, and data security. The development process follows the Agile/Scrum model (2 weeks/sprint), with MVP completion time within 2 months.
 
 ### 2. Problem Statement
 
@@ -22,106 +23,124 @@ The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City t
 
 Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
 
-### The Solution
+**Solution**  
+The solution uses AWS Cloud combined with microservices architecture to build an automated personal financial management platform, integrating AI in voice processing and bill recognition. The system is deployed on AWS ECS Fargate for backend services (.NET Aspire), FastAPI for AI processing, and Next.js for frontend. Compared to popular financial platforms like Money Lover or Misa Money Keeper, this application focuses on complete automation of financial data entry through detailed Vietnamese AI voice-to-text and bill scanning, helping reduce manual operations and errors. The system is suitable for individual users and small groups, and can be expanded when needed for enterprise scale or digital banking applications.
 
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+**Benefits and Return on Investment (ROI)**  
+The solution brings many practical benefits both technically and in business value:
 
-### Benefits and Return on Investment
-
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+- Data Entry Automation: Reduces over 70% manual operations through AI voice and bill recognition.
+- Increased Accuracy: Limits input errors, ensures financial data integrity (>90% accuracy).
+- Improved User Performance: Record and categorize transactions in just seconds, optimizing user experience.
+- Cost Savings: Low infrastructure costs thanks to AWS Free Tier utilization until 2026; only estimated ~$60 USD/month for AWS and ~$30 USD for AI compute.
+- Fast ROI: Expected payback in 6–12 months, thanks to time savings in data entry and increased operational efficiency.
+- Scalability & Integration: Microservices architecture on AWS allows easy addition of features (mobile app, advanced analytics, banking integration).
 
 ### 3. Solution Architecture
 
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+The system operates on a microservices model on AWS Cloud. Users interact through a web interface (Next.js) that sends requests to the API Gateway (.NET Aspire). The Gateway routes to appropriate services like User, Transaction, Budget, or AI Service (FastAPI). When users upload bills or record voice, data is temporarily stored on S3, AI processes it and returns results to the Transaction Service to create or suggest transactions. All data is stored in RDS PostgreSQL, events are transmitted via RabbitMQ/SQS, and the system is monitored through CloudWatch.
 
 ![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
 
 ![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
 
-### AWS Services Used
+**AWS Services Used**
 
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
-
-### Component Design
-
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+- **Amazon ECS (Fargate)**: Runs .NET Aspire microservices and FastAPI without server management.
+- **Amazon API Gateway**: Routes requests from frontend to backend, combined with Cognito authentication.
+- **Amazon RDS (PostgreSQL)**: Stores user data, transactions, and budgets.
+- **Amazon S3**: Stores bill files, voice recordings, and financial reports.
+- **Amazon SQS / RabbitMQ**: Transmits events between services (event-driven).
+- **Amazon CloudWatch**: Monitors logs, performance, and system alerts.
+- **Amazon Cognito**: Manages users and security authentication.
+- **Amazon Route 53**: Manages domain names and DNS.
+- **GitHub Actions**: Automates CI/CD deployment.
 
 ### 4. Technical Implementation
 
 **Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
+The project is divided into 3 main phases, focusing on building, optimizing, and deploying the personal financial management platform on AWS:
 
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+1. **Research and Architecture Design**: Research microservices models and design overall architecture on AWS (including ECS Fargate, RDS, S3, API Gateway, Cognito) — (Month 1).
+2. **Cost Calculation and Solution Adjustment**: Use AWS Pricing Calculator to estimate costs, optimize service selection to ensure low cost and easy deployment for beginners — (Month 1–2).
+3. **Development, Testing, Deployment**: Build frontend (Next.js), backend (.NET Aspire), and AI service (FastAPI); test microservices integration, then deploy entire system to AWS using ECS Fargate and set up monitoring via CloudWatch — (Month 2–3).
 
 **Technical Requirements**
 
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+- **Frontend**: **Next.js** web application hosted on **AWS Amplify** or ECS Fargate, communicating with backend through **API Gateway**.
+- **Backend**: Built with **.NET Aspire**, deployed on **ECS Fargate**, communicating with **RDS PostgreSQL** and **S3**.
+- **AI Service**: Built with **FastAPI**, processes bills and voice, connects to S3 and returns results via message queue (RabbitMQ or SQS).
+- **Database**: **Amazon RDS (PostgreSQL)** stores transactions, users, and budgets.
+- **Cloud Infrastructure**: Uses **AWS VPC** (multi-AZ), **Load Balancer**, **CloudWatch** for monitoring, and **CodePipeline / GitHub Actions** for CI/CD.
+- **Security**: Access control management with **Amazon Cognito** and **IAM Roles** for services.
 
 ### 5. Timeline & Milestones
 
-**Project Timeline**
-
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-  - Month 1: Study AWS and upgrade hardware.
+- **Pre-internship (Month 0)**: 1 month for planning.
+- **Internship (Month 1–3)**:
+  - Month 1: Learn AWS and upgrade programming skills.
   - Month 2: Design and adjust architecture.
-  - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+  - Month 3: Implement, test, and deploy.
+- **Post-deployment**: Research mobile development and deploy after month 4.
 
 ### 6. Budget Estimation
 
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+You can view costs on [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
+Or download the [budget estimation file](../attachments/budget_estimation.pdf).
 
-### Infrastructure Costs
+### **Infrastructure Costs**
 
-- AWS Services:
-  - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-  - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-  - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-  - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-  - Amazon API Gateway: $0.01/month (2,000 requests).
-  - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-  - AWS Glue Crawlers: $0.07/month (1 crawler).
-  - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+**Within Free Tier (First 12 months)**
 
-Total: $0.7/month, $8.40/12 months
+- **Amazon ECS (Fargate)**: $0.00/month (≤ 50 GB-hr CPU, 200 GB-hr RAM).
+- **Amazon API Gateway**: $0.00/month (≤ 1 million requests).
+- **Amazon RDS (PostgreSQL)**: $0.00/month (db.t3.micro 750 hours, 20 GB storage).
+- **Amazon S3**: $0.00/month (≤ 5 GB storage for bills and voice files).
+- **Amazon SQS**: $0.00/month (≤ 1 million messages).
+- **Amazon CloudWatch**: $0.00/month (≤ 10 custom metrics + 5 GB logs).
+- **Amazon Cognito**: $0.00/month (≤ 50,000 active users).
+- **Amazon Route 53**: $1.00/month (1 domain).
+- **GitHub Actions**: $0.00/month (≤ 2,000 free build minutes).
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+**Total**: **≈ $1.00/month**, equivalent to **$12.00/year** during Free Tier period.
+
+**After Free Tier expires (with 50–100 users)**
+
+- **Amazon ECS (Fargate)**: $18.00/month (3 small containers, running 24/7).
+- **Amazon API Gateway**: $3.50/month (≈ 2–3 million requests).
+- **Amazon RDS (PostgreSQL)**: $12.00/month (db.t3.micro, 20 GB).
+- **Amazon S3**: $2.50/month (50 GB, 10,000 requests).
+- **Amazon SQS / RabbitMQ**: $1.00/month (several million messages).
+- **Amazon CloudWatch**: $3.50/month (basic logs + metrics).
+- **Amazon Cognito**: $0.50/month (50–100 active users).
+- **Amazon Route 53**: $1.00/month (1 domain).
+- **GitHub Actions**: $2.00/month (exceeding free limits).
+
+**Total**: **≈ $44.00/month**, equivalent to **$528.00/year** after Free Tier expires.
 
 ### 7. Risk Assessment
 
-#### Risk Matrix
+**Risk Matrix**
 
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+- AI model misrecognition (voice/bill): Medium impact, medium probability.
+- AWS connection loss or regional service errors: High impact, low probability.
+- Exceeding AWS usage budget: Medium impact, low probability.
+- Data synchronization errors between microservices: Medium impact, medium probability.
+- User information leakage (Cognito/Database): High impact, low probability.
 
-#### Mitigation Strategies
+**Mitigation Strategies**
 
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+- **AI**: Improve OCR and voice-to-text models through additional training, regular testing with real data.
+- **AWS Region**: Set up multi-AZ deployment and regular RDS database backup.
+- **Cost**: Configure **AWS Budget Alert** and optimize ECS, S3 based on actual usage.
+- **Microservices**: Use **SQS/RabbitMQ** to ensure asynchronous processing and retry on errors.
+- **Security**: Data encryption (AES-256, HTTPS), IAM control following "Least Privilege" principle.
 
-#### Contingency Plans
+**Contingency Plans**
 
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+- If AWS encounters issues: Temporarily switch to local transaction data storage and sync after recovery.
+- Restore infrastructure using **AWS CloudFormation** or pre-saved **IaC (Infrastructure as Code)**.
+- Keep regular database copies (RDS snapshots) for data loss recovery.
 
 ### 8. Expected Outcomes
 
