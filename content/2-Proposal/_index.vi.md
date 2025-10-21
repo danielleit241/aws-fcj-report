@@ -12,7 +12,7 @@ pre: " <b> 2. </b> "
 
 Dự án Personal Finance Management App hướng đến việc cung cấp một nền tảng quản lý tài chính cá nhân thông minh, hiện đại và mang tính tự động hóa cao. Ứng dụng cho phép người dùng ghi nhận thu chi, tạo và quản lý nhiều hũ tiền (money jars) theo mục đích khác nhau, lập kế hoạch chi tiêu, nhận cảnh báo thông minh và tạo báo cáo phân tích trực quan.
 
-Ứng dụng được xây dựng với kiến trúc microservices trên nền tảng .NET Aspire và FastAPI, triển khai trên AWS Cloud, đảm bảo tính linh hoạt, khả năng mở rộng và an toàn dữ liệu. Quy trình phát triển tuân theo mô hình Agile/Scrum (2 tuần/sprint), với thời gian hoàn thành MVP trong 2 tháng.
+Ứng dụng được xây dựng với kiến trúc microservices trên nền tảng .NET và FastAPI, triển khai trên AWS Cloud, đảm bảo tính linh hoạt, khả năng mở rộng và an toàn dữ liệu. Quy trình phát triển tuân theo mô hình Agile/Scrum (2 tuần/sprint), với thời gian hoàn thành MVP trong 2 tháng.
 
 ### 2. Tuyên bố vấn đề
 
@@ -20,7 +20,7 @@ _Vấn đề hiện tại_
 Trên thị trường đã có rất nhiều ứng dụng quản lý tài chính, tuy nhiên phần lớn vẫn yêu cầu người dùng nhập liệu thủ công — một công việc tốn thời gian, dễ sai sót và khiến người dùng nhanh chóng bỏ cuộc. Các ứng dụng hiện có chỉ tập trung vào thống kê chi tiêu mà chưa thực sự giúp người dùng tự động hóa quy trình quản lý tài chính cá nhân.
 
 _Giải pháp_  
-Giải pháp sử dụng AWS Cloud kết hợp kiến trúc microservices để xây dựng một nền tảng quản lý tài chính cá nhân tự động hóa, tích hợp AI trong xử lý giọng nói và nhận diện hóa đơn. Hệ thống được triển khai trên AWS ECS Fargate cho các service backend (.NET Aspire), FastAPI cho xử lý AI, và Next.js cho frontend. So với các nền tảng tài chính phổ biến như Money Lover hay Misa Money Keeper, ứng dụng này tập trung vào tự động hóa hoàn toàn nhập liệu tài chính thông qua AI voice-to-text và bill scanning chi tiết tiếng Việt, giúp giảm thao tác thủ công và sai sót. Hệ thống phù hợp cho người dùng cá nhân và nhóm nhỏ, đồng thời có thể mở rộng khi cần cho quy mô doanh nghiệp hoặc ứng dụng ngân hàng số.
+Giải pháp sử dụng AWS Cloud kết hợp kiến trúc microservices để xây dựng một nền tảng quản lý tài chính cá nhân tự động hóa, tích hợp AI trong xử lý giọng nói và nhận diện hóa đơn. Hệ thống được triển khai trên AWS ECS Fargate cho các service backend (.NET), FastAPI cho xử lý AI, và Next.js cho frontend. So với các nền tảng tài chính phổ biến như Money Lover hay Misa Money Keeper, ứng dụng này tập trung vào tự động hóa hoàn toàn nhập liệu tài chính thông qua AI voice-to-text và bill scanning chi tiết tiếng Việt, giúp giảm thao tác thủ công và sai sót. Hệ thống phù hợp cho người dùng cá nhân và nhóm nhỏ, đồng thời có thể mở rộng khi cần cho quy mô doanh nghiệp hoặc ứng dụng ngân hàng số.
 
 _Lợi ích và hoàn vốn đầu tư (ROI)_  
 Giải pháp mang lại nhiều lợi ích thiết thực cả về mặt kỹ thuật và giá trị kinh doanh:
@@ -38,37 +38,40 @@ Hệ thống được triển khai theo mô hình **microservices** trên nền 
 
 ![IoT Weather Sofware Architecture](/images/2-Proposal/development_architecture.drawio.png)
 
-Người dùng truy cập ứng dụng web **Next.js** thông qua **Amazon CloudFront**, nội dung tĩnh được lưu trữ trong **Amazon S3**.  
+Người dùng truy cập ứng dụng web **Next.js** thông qua **Amazon CloudFront**, nội dung tĩnh được lưu trữ trong **Amazon S3** và phân phối qua **Amazon Route 53**.
+Lớp bảo mật đầu tiên được cung cấp bởi **AWS WAF** nhằm ngăn chặn các tấn công phổ biến như SQL Injection hoặc XSS.
+
 Khi người dùng đăng nhập, quá trình xác thực được xử lý bởi **Amazon Cognito**, cấp token truy cập để frontend gửi các yêu cầu API qua **Amazon API Gateway**.
+API Gateway định tuyến yêu cầu đến **Application Load Balancer (ALB)** thông qua **AWS PrivateLink**, sau đó chuyển tiếp đến **Amazon ECS (Fargate)** — nơi triển khai các container backend bao gồm:
 
-API Gateway định tuyến yêu cầu đến **Application Load Balancer (ALB)**, sau đó chuyển đến **Amazon ECS (Fargate)** — nơi triển khai các container backend bao gồm:
+- **Backend Service (.NET)**: Xử lý nghiệp vụ chính của hệ thống.
 
-- **Aspire Service (.NET Aspire)**: Xử lý nghiệp vụ chính như người dùng, giao dịch và ngân sách.
-- **FastAPI Service (AI Service)**: Xử lý hóa đơn, nhận dạng giọng nói và các tác vụ AI.
+- **AI Service (FastAPI)**: Xử lý hóa đơn, nhận dạng giọng nói và các tác vụ AI.
 
 Khi người dùng tải hóa đơn hoặc ghi âm, file tạm thời được lưu trong **Amazon S3**.  
-**AI Service** truy cập tệp từ S3 để xử lý và trả kết quả lại cho **Aspire Service** hoặc ghi metadata vào **MongoDB Cloud (Free Tier)**.  
-Dữ liệu nghiệp vụ chính như người dùng, giao dịch, và ngân sách được lưu trong **Amazon Aurora PostgreSQL (RDS)**.
+**AI Service** có thể truy cập tệp từ **Amazon S3** để thực hiện các xử lý dữ liệu, sau đó trả kết quả lại cho **Backend Service** thông qua message broker.
 
-Tất cả logs, metrics, và cảnh báo từ ECS, API Gateway, và ALB được gửi về **Amazon CloudWatch** để giám sát tập trung.  
-Hình ảnh container được lưu trong **Amazon ECR**, và quá trình triển khai được tự động hóa qua **GitHub Actions**.
+Hình ảnh container được lưu trữ trong **Amazon ECR**, và quá trình triển khai được tự động hóa qua **GitLab CI/CD Pipeline** — bao gồm các bước build image, push lên ECR, và cập nhật Task Definition trên ECS.
+
+Tất cả logs, metrics và cảnh báo từ ECS, API Gateway, và ALB được gửi về **Amazon CloudWatch** để giám sát tập trung, đồng thời **Amazon SNS** được cấu hình để gửi cảnh báo tự động khi có sự cố.
 
 ![IoT Weather Platform Architecture](/images/2-Proposal/cloud_architecture.drawio.png)
 
 _Dịch vụ AWS sử dụng_
 
+- _Amazon Route 53_: Quản lý DNS và tên miền truy cập.
+- _AWS WAF_: Bảo vệ hệ thống khỏi các tấn công web phổ biến.
 - _Amazon CloudFront_: Phân phối nội dung tĩnh toàn cầu và tăng tốc truy cập frontend.
-- _Amazon S3_: Lưu trữ website tĩnh, file hóa đơn, và tệp ghi âm.
+- _Amazon S3_: Lưu trữ website tĩnh và file người dùng (hóa đơn, ghi âm).
 - _Amazon Cognito_: Xác thực và quản lý người dùng.
 - _Amazon API Gateway_: Cổng vào của hệ thống, định tuyến request từ frontend đến backend.
+- _AWS PrivateLink_: Tạo kết nối riêng giữa API Gateway và ALB trong VPC để tăng cường bảo mật.
 - _Application Load Balancer (ALB)_: Cân bằng tải giữa các container backend trên ECS.
-- _Amazon ECS (Fargate)_: Chạy các microservices Aspire (.NET) và FastAPI (AI).
+- _Amazon ECS (Fargate)_: Chạy các microservices Backend và FastAPI (AI).
 - _Amazon ECR_: Kho lưu trữ image container cho ECS.
-- _Amazon Aurora PostgreSQL (RDS)_: Lưu trữ dữ liệu nghiệp vụ chính.
-- _MongoDB Cloud (Free 512MB)_: Lưu metadata AI và notification service.
 - _Amazon CloudWatch_: Giám sát logs, hiệu năng và cảnh báo hệ thống.
-- _Amazon Route 53_: Quản lý DNS và tên miền truy cập.
-- _GitHub Actions_: Tự động hóa CI/CD pipeline cho việc build và deploy container.
+- _Amazon SNS_: Gửi thông báo hoặc cảnh báo khi có sự cố.
+- _GitLab CI/CD_: Tự động hóa pipeline build, push và deploy container lên ECS.
 
 ---
 
@@ -79,37 +82,34 @@ Dự án được chia thành 3 giai đoạn chính, tập trung vào việc xâ
 
 1. _Nghiên cứu và vẽ kiến trúc_: Nghiên cứu các mô hình microservices và thiết kế kiến trúc tổng thể trên AWS (bao gồm CloudFront, ECS Fargate, RDS, S3, API Gateway, Cognito) — (Tháng 1).
 2. _Tính toán chi phí và điều chỉnh giải pháp_: Sử dụng AWS Pricing Calculator để ước tính chi phí, tối ưu lựa chọn dịch vụ nhằm đảm bảo chi phí thấp và dễ triển khai cho người mới học — (Tháng 1–2).
-3. _Phát triển, kiểm thử, triển khai_: Xây dựng frontend (Next.js), backend (.NET Aspire), và AI service (FastAPI); kiểm thử tích hợp microservices, sau đó triển khai toàn bộ hệ thống lên AWS bằng ECS Fargate và thiết lập giám sát qua CloudWatch — (Tháng 2–3).
+3. _Phát triển, kiểm thử, triển khai_: Xây dựng frontend (Next.js), backend (.NET), và AI service (FastAPI); kiểm thử tích hợp microservices, sau đó triển khai toàn bộ hệ thống lên AWS bằng ECS Fargate và thiết lập giám sát qua CloudWatch — (Tháng 2–3).
 
 _Yêu cầu kỹ thuật_
 
-- _Frontend_:  
-  Ứng dụng web **Next.js** được lưu trữ trên **Amazon S3** và phân phối qua **CloudFront**, giao tiếp với backend thông qua **API Gateway**.  
+- _Frontend_:
+  Ứng dụng web **Next.js** được lưu trữ trong **Amazon S3** và phân phối qua **CloudFront**, giao tiếp với backend thông qua **API Gateway**.
   Người dùng đăng nhập qua **Amazon Cognito**, nhận token để gọi API bảo mật.
 
-- _Backend_:  
-  Viết bằng **.NET Aspire**, triển khai trên **ECS Fargate**.  
-  Các service xử lý nghiệp vụ người dùng, giao dịch, ngân sách, kết nối với **RDS PostgreSQL** và **S3**.  
-  Container image lưu trong **ECR**, được cập nhật qua pipeline CI/CD từ **GitHub Actions**.
+- _Backend_:
+  Viết bằng **.NET** hoặc framework tương tự, triển khai trên **ECS Fargate**.
+  Các service xử lý nghiệp vụ người dùng, giao dịch và các yêu cầu từ frontend.
+  Container image được lưu trong **ECR**, được cập nhật qua pipeline CI/CD từ **GitLab**.
+  **ALB** được dùng để cân bằng tải giữa các container backend.
 
-- _AI Service_:  
-  Viết bằng **FastAPI**, xử lý hình ảnh hóa đơn và giọng nói, kết nối đến **S3** để đọc dữ liệu.  
-  Kết quả được lưu vào **MongoDB Cloud (Free Tier)** và gửi phản hồi cho **Aspire Service** qua API nội bộ hoặc hàng đợi sự kiện.
+- _AI Service_:
+  Viết bằng **FastAPI**, xử lý hình ảnh hóa đơn và giọng nói, kết nối đến **S3** để đọc dữ liệu.
+  Kết quả được trả về **Backend Service** thông qua API nội bộ.
 
-- _Database_:  
-  **Amazon Aurora PostgreSQL** lưu trữ dữ liệu chính (user, transaction, budget).  
-  **MongoDB Cloud** lưu metadata AI, notification và dữ liệu phi cấu trúc.  
-  Aurora chạy trong Private Subnet để đảm bảo bảo mật và chỉ cho phép truy cập từ ECS.
+* _Hạ tầng Cloud_:
+  Sử dụng **Amazon VPC** (multi-AZ), **Application Load Balancer**, và **CloudWatch** để giám sát.
+  Hình ảnh container được lưu trữ trên **ECR** và triển khai qua **ECS Fargate**.
+  CI/CD được thực hiện qua **GitLab CI/CD** để tự động hóa build và deploy.
 
-- _Hạ tầng Cloud_:  
-  Sử dụng **Amazon VPC** (multi-AZ), **Application Load Balancer**, và **CloudWatch** để giám sát.  
-  Hình ảnh container được lưu trữ trên **ECR** và triển khai qua **ECS Fargate**.  
-  CI/CD được thực hiện qua **GitHub Actions** để tự động hóa build và deploy.
-
-- _Bảo mật_:  
-  Quản lý quyền truy cập người dùng bằng **Amazon Cognito**.  
-  Sử dụng **IAM Roles** cho ECS, S3 và CloudWatch để giới hạn quyền truy cập.  
-  **Security Group** được cấu hình chặt chẽ giữa ECS, ALB và RDS để đảm bảo an toàn mạng.
+* _Bảo mật_:
+  Quản lý quyền truy cập người dùng bằng **Amazon Cognito**.
+  Sử dụng **IAM Roles** cho ECS, S3, CloudWatch, và API Gateway để giới hạn quyền truy cập.
+  **Security Group** được cấu hình chặt chẽ giữa ECS, ALB và các dịch vụ khác để đảm bảo an toàn mạng.
+  **AWS WAF** được cấu hình để bảo vệ tầng frontend khỏi các tấn công web phổ biến.
 
 ### 5. Lộ trình & Mốc triển khai
 
@@ -131,34 +131,31 @@ Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.p
 
 - _Amazon ECS (Fargate)_: 0,00 USD/tháng (≤ 50 GB-hr CPU, 200 GB-hr RAM).
 - _Amazon API Gateway_: 0,00 USD/tháng (≤ 1 triệu request).
-- _Amazon RDS (PostgreSQL)_: 0,00 USD/tháng (db.t3.micro 750 giờ, 20 GB lưu trữ).
-- _Amazon S3_: 0,00 USD/tháng (≤ 5 GB lưu trữ hóa đơn và file giọng nói).
-- _Amazon SQS_: 0,00 USD/tháng (≤ 1 triệu message).
+- _Amazon S3_: 0,00 USD/tháng (≤ 5 GB lưu trữ).
 - _Amazon CloudWatch_: 0,00 USD/tháng (≤ 10 custom metrics + 5 GB logs).
 - _Amazon Cognito_: 0,00 USD/tháng (≤ 50.000 người dùng hoạt động).
 - _Amazon ECR_: 0,00 USD/tháng (500 MB lưu trữ image).
 - _Amazon Route 53_: 1,00 USD/tháng (1 domain).
-- _MongoDB Atlas (Free Tier)_: 0,00 USD/tháng (M0 Sandbox – 512 MB RAM, Shared Cluster).
-- _GitHub Actions_: 0,00 USD/tháng (≤ 2.000 phút build miễn phí).
+- _GitLab CI/CD_: 0,00 USD/tháng (≤ 2.000 phút build miễn phí).
+- _AWS WAF_: 0,00 USD/tháng (Free Tier demo).
+- _Amazon SNS_: 0,00 USD/tháng (≤ 1.000 thông báo đầu tiên).
 
 _Tổng_: **≈ 1,00 USD/tháng**, tương đương **12,00 USD/năm** trong giai đoạn Free Tier.
-
 
 **_Sau khi hết Free Tier (với 50–100 người dùng)_**
 
 - _Amazon ECS (Fargate)_: 18,00 USD/tháng (3 container nhỏ chạy 24/7, ~0.25 vCPU, 0.5 GB RAM mỗi container).
 - _Amazon API Gateway_: 3,50 USD/tháng (≈ 2–3 triệu request).
-- _Amazon RDS (PostgreSQL)_: 12,00 USD/tháng (db.t3.micro, 20 GB lưu trữ).
 - _Amazon S3_: 2,50 USD/tháng (50 GB lưu trữ + 10.000 request).
-- _Amazon SQS / RabbitMQ_: 1,00 USD/tháng (vài triệu message).
 - _Amazon CloudWatch_: 3,50 USD/tháng (log + metric cơ bản).
 - _Amazon Cognito_: 0,50 USD/tháng (50–100 active user).
 - _Amazon ECR_: 0,50 USD/tháng (1 GB image lưu trữ).
-- _MongoDB Atlas (Free Tier hoặc M2 Shared Cluster)_: 9,00 USD/tháng (M2 – 2 GB RAM).
 - _Amazon Route 53_: 1,00 USD/tháng (1 domain).
-- _GitHub Actions_: 2,00 USD/tháng (vượt giới hạn free).
+- _AWS WAF_: 2,00 USD/tháng (1 WebACL).
+- _Amazon SNS_: 1,00 USD/tháng (vài nghìn thông báo).
+- _GitLab CI/CD_: 2,00 USD/tháng (vượt giới hạn free).
 
-_Tổng_: **≈ 53,50 USD/tháng**, tương đương **642,00 USD/năm** sau khi hết Free Tier.
+_Tổng_: **≈ 34,50 USD/tháng**, tương đương **414,00 USD/năm** sau khi hết Free Tier.
 
 ### 7. Đánh giá rủi ro
 

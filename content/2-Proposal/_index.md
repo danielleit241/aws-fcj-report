@@ -12,7 +12,7 @@ pre: " <b> 2. </b> "
 
 The Personal Finance Management App project aims to provide an intelligent, modern, and highly automated personal financial management platform. The application allows users to record income and expenses, create and manage multiple money jars for different purposes, create spending plans, receive smart alerts, and generate visual analytical reports.
 
-The application is built with a microservices architecture on .NET Aspire and FastAPI platform, deployed on AWS Cloud, ensuring flexibility, scalability, and data security. The development process follows the Agile/Scrum model (2 weeks/sprint), with MVP completion time within 2 months.
+The application is built with a microservices architecture on .NET and FastAPI platform, deployed on AWS Cloud, ensuring flexibility, scalability, and data security. The development process follows the Agile/Scrum model (2 weeks/sprint), with MVP completion time within 2 months.
 
 ### 2. Problem Statement
 
@@ -21,7 +21,7 @@ The application is built with a microservices architecture on .NET Aspire and Fa
 Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
 
 **Solution**  
-The solution uses AWS Cloud combined with microservices architecture to build an automated personal financial management platform, integrating AI in voice processing and bill recognition. The system is deployed on AWS ECS Fargate for backend services (.NET Aspire), FastAPI for AI processing, and Next.js for frontend. Compared to popular financial platforms like Money Lover or Misa Money Keeper, this application focuses on complete automation of financial data entry through detailed Vietnamese AI voice-to-text and bill scanning, helping reduce manual operations and errors. The system is suitable for individual users and small groups, and can be expanded when needed for enterprise scale or digital banking applications.
+The solution uses AWS Cloud combined with microservices architecture to build an automated personal financial management platform, integrating AI in voice processing and bill recognition. The system is deployed on AWS ECS Fargate for backend services (.NET), FastAPI for AI processing, and Next.js for frontend. Compared to popular financial platforms like Money Lover or Misa Money Keeper, this application focuses on complete automation of financial data entry through detailed Vietnamese AI voice-to-text and bill scanning, helping reduce manual operations and errors. The system is suitable for individual users and small groups, and can be expanded when needed for enterprise scale or digital banking applications.
 
 **Benefits and Return on Investment (ROI)**  
 The solution brings many practical benefits both technically and in business value:
@@ -39,37 +39,38 @@ The system is built on a **microservices architecture** hosted on **AWS Cloud**,
 
 ![IoT Weather Sofware Architecture](/images/2-Proposal/development_architecture.drawio.png)
 
-Users access the **Next.js** web application through **Amazon CloudFront**, with static content stored in **Amazon S3**.  
-Authentication is handled by **Amazon Cognito**, which issues access tokens for secure communication between the frontend and the backend through **Amazon API Gateway**.
+Users access the **Next.js** web application through **Amazon CloudFront**, with static content hosted in **Amazon S3** and routed via **Amazon Route 53**.
+The first layer of security is provided by **AWS WAF**, which protects the system from common web attacks such as SQL injection and XSS.
 
-The **API Gateway** routes requests to the **Application Load Balancer (ALB)**, which forwards traffic to **Amazon ECS (Fargate)** containers running backend services:
+When users log in, authentication is handled by **Amazon Cognito**, which issues access tokens used by the frontend to call APIs through **Amazon API Gateway**.
+The API Gateway routes requests to an **Application Load Balancer (ALB)** via **AWS PrivateLink**, and the ALB forwards them to **Amazon ECS (Fargate)** — where the backend containers are deployed, including:
 
-- **Aspire Service (.NET Aspire)**: Handles core business logic such as user, transaction, and budget management.
-- **FastAPI Service (AI Service)**: Processes invoices, voice inputs, and AI-based recommendations.
+- **Backend Service**: Handles the core business logic of the system.
+- **AI Service (FastAPI)**: Handles invoice processing, voice recognition, and other AI tasks.
 
-When a user uploads an invoice or voice file, it is temporarily stored in **Amazon S3**.  
-The **AI Service** fetches this file, processes it, and returns results to the **Aspire Service**, while additional metadata is stored in **MongoDB Cloud (Free Tier)**.  
-Structured business data (users, transactions, budgets) is stored in **Amazon Aurora PostgreSQL (RDS)**.
+The **AI Service** can access files from **Amazon S3** for data processing, then return the results to the **Backend Service** through internal APIs.
 
-All logs, metrics, and alerts from ECS, API Gateway, and ALB are centralized in **Amazon CloudWatch**.  
-Container images are stored in **Amazon ECR**, and deployments are automated via **GitHub Actions**.
+Container images are stored in **Amazon ECR**, and the deployment process is fully automated using **GitLab CI/CD pipelines** — including build, push to ECR, and ECS task definition updates.
+
+All logs, metrics, and alerts from ECS, API Gateway, and ALB are collected in **Amazon CloudWatch** for centralized monitoring, while **Amazon SNS** is configured to send automatic notifications when incidents occur.
 
 ![IoT Weather Platform Architecture](/images/2-Proposal/cloud_architecture.drawio.png)
 
 _AWS Services Used_
 
+- _Amazon Route 53_: Domain name and DNS management.
+- _AWS WAF_: Protects the system from common web attacks.
 - _Amazon CloudFront_: Global content delivery and frontend acceleration.
-- _Amazon S3_: Storage for static website assets, invoices, and voice files.
-- _Amazon Cognito_: Authentication and user management.
-- _Amazon API Gateway_: Entry point routing requests from frontend to backend.
-- _Application Load Balancer (ALB)_: Distributes traffic among backend containers.
-- _Amazon ECS (Fargate)_: Runs containerized microservices for .NET Aspire and FastAPI.
-- _Amazon ECR_: Stores container images for ECS deployment.
-- _Amazon Aurora PostgreSQL (RDS)_: Stores structured business data.
-- _MongoDB Cloud (Free 512MB)_: Stores AI and notification metadata.
-- _Amazon CloudWatch_: Centralized logging, metrics, and monitoring.
-- _Amazon Route 53_: DNS and domain management.
-- _GitHub Actions_: Automates CI/CD pipelines for build and deployment.
+- _Amazon S3_: Stores static website content and user files (invoices, audio files).
+- _Amazon Cognito_: User authentication and access management.
+- _Amazon API Gateway_: Entry point for frontend requests, routing traffic to backend services.
+- _AWS PrivateLink_: Provides secure, private connectivity between API Gateway and ALB within the VPC.
+- _Application Load Balancer (ALB)_: Distributes traffic across backend containers on ECS.
+- _Amazon ECS (Fargate)_: Runs containerized backend and FastAPI (AI) services.
+- _Amazon ECR_: Container image registry for ECS deployment.
+- _Amazon CloudWatch_: Centralized logging, monitoring, and alerting.
+- _Amazon SNS_: Sends alerts and notifications during incidents.
+- _GitLab CI/CD_: Automates the container build, push, and deploy pipeline to ECS.
 
 ---
 
@@ -80,37 +81,34 @@ The project is divided into three main phases, focusing on the design, optimizat
 
 1. _Research and Architecture Design_: Study microservices models and design the overall architecture on AWS (including CloudFront, ECS Fargate, RDS, S3, API Gateway, Cognito) — (January).
 2. _Cost Estimation and Optimization_: Use AWS Pricing Calculator to estimate cost and optimize service selection for affordability and ease of deployment — (January–February).
-3. _Development, Testing, and Deployment_: Build frontend (Next.js), backend (.NET Aspire), and AI service (FastAPI); perform microservice integration testing; deploy the system to AWS via ECS Fargate; and set up monitoring with CloudWatch — (February–March).
+3. _Development, Testing, and Deployment_: Build frontend (Next.js), backend (.NET), and AI service (FastAPI); perform microservice integration testing; deploy the system to AWS via ECS Fargate; and set up monitoring with CloudWatch — (February–March).
 
 _Technical Requirements_
 
-- _Frontend_:  
-  The **Next.js** web app is hosted on **Amazon S3** and distributed via **CloudFront**, communicating with backend APIs through **API Gateway**.  
-  User authentication and token issuance are handled by **Amazon Cognito**.
+- _Frontend_:
+  The **Next.js** web application is hosted on **Amazon S3** and distributed via **CloudFront**, communicating securely with the backend through **API Gateway**.
+  User authentication and session management are handled by **Amazon Cognito**, which provides tokens for secured API calls.
 
-- _Backend_:  
-  Built with **.NET Aspire**, deployed on **ECS Fargate**.  
-  Services handle user, transaction, and budget management, connecting to **RDS PostgreSQL** and **S3**.  
-  Container images are stored in **ECR** and deployed automatically using **GitHub Actions**.
+- _Backend_:
+  Developed in **.NET** (or a similar framework) and deployed on **ECS Fargate**.
+  Handles business operations, user interactions, and service orchestration.
+  Container images are stored in **ECR** and automatically deployed via **GitLab CI/CD**.
+  Load balancing between backend containers is managed by **ALB**.
 
-- _AI Service_:  
-  Developed with **FastAPI**, it processes invoice images and voice inputs by reading files from **S3**.  
-  Results are stored in **MongoDB Cloud (Free Tier)** and returned to the Aspire Service via API or message queue.
+- _AI Service_:
+  Developed in **FastAPI**, responsible for processing invoice images and voice inputs.
+  Accesses raw data from **S3**, performs AI inference, and returns results to the **Backend Service** via internal APIs.
 
-- _Database_:  
-  **Amazon Aurora PostgreSQL** stores structured data (users, transactions, budgets).  
-  **MongoDB Cloud** stores AI metadata, notifications, and unstructured data.  
-  Aurora runs in a private subnet to ensure database security and restricts access to ECS only.
+- _Cloud Infrastructure_:
+  Runs inside a **multi-AZ Amazon VPC**, using **Application Load Balancer** for traffic distribution and **CloudWatch** for observability.
+  Containers are stored in **ECR** and deployed through **ECS Fargate**.
+  The deployment pipeline is automated using **GitLab CI/CD**.
 
-- _Cloud Infrastructure_:  
-  Uses **Amazon VPC** (multi-AZ), **Application Load Balancer**, and **CloudWatch** for monitoring.  
-  Container images are hosted in **ECR** and deployed to **ECS Fargate**.  
-  **GitHub Actions** provides automated CI/CD workflows for build and deployment.
-
-- _Security_:  
-  User access is managed by **Amazon Cognito**.  
-  **IAM Roles** are used for ECS, S3, and CloudWatch to enforce least-privilege access.  
-  **Security Groups** are configured between ECS, ALB, and RDS for network security.
+- _Security_:
+  User authentication managed by **Amazon Cognito**.
+  Access permissions defined through **IAM Roles** for ECS, S3, CloudWatch, and API Gateway.
+  **Security Groups** are tightly configured between ECS, ALB, and other services.
+  **AWS WAF** provides web-layer protection against common exploits.
 
 ### 5. Timeline & Milestones
 
@@ -126,37 +124,35 @@ _Technical Requirements_
 <!-- You can view costs on [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)
 Or download the [budget estimation file](../attachments/budget_estimation.pdf). -->
 
-**_Within AWS Free Tier (First 12 Months)_**
+**_Within Free Tier (First 12 Months)_**
 
-- _Amazon ECS (Fargate)_: 0.00 USD/month (≤ 50 GB-hr CPU, 200 GB-hr RAM).
-- _Amazon API Gateway_: 0.00 USD/month (≤ 1 million requests).
-- _Amazon RDS (PostgreSQL)_: 0.00 USD/month (db.t3.micro 750 hours, 20 GB storage).
-- _Amazon S3_: 0.00 USD/month (≤ 5 GB for invoice and voice files).
-- _Amazon SQS_: 0.00 USD/month (≤ 1 million messages).
-- _Amazon CloudWatch_: 0.00 USD/month (≤ 10 custom metrics + 5 GB logs).
-- _Amazon Cognito_: 0.00 USD/month (≤ 50,000 active users).
-- _Amazon ECR_: 0.00 USD/month (≤ 500 MB image storage).
-- _Amazon Route 53_: 1.00 USD/month (1 domain).
-- _MongoDB Atlas (Free Tier)_: 0.00 USD/month (M0 Sandbox – 512 MB RAM, Shared Cluster).
-- _GitHub Actions_: 0.00 USD/month (≤ 2,000 free build minutes).
+- _Amazon ECS (Fargate)_: $0.00/month (≤ 50 GB-hr CPU, 200 GB-hr RAM).
+- _Amazon API Gateway_: $0.00/month (≤ 1M requests).
+- _Amazon S3_: $0.00/month (≤ 5 GB storage).
+- _Amazon CloudWatch_: $0.00/month (≤ 10 custom metrics + 5 GB logs).
+- _Amazon Cognito_: $0.00/month (≤ 50,000 MAUs).
+- _Amazon ECR_: $0.00/month (≤ 500 MB storage).
+- _Amazon Route 53_: $1.00/month (1 domain).
+- _GitLab CI/CD_: $0.00/month (≤ 2,000 free build minutes).
+- _AWS WAF_: $0.00/month (Free Tier demo).
+- _Amazon SNS_: $0.00/month (≤ 1,000 notifications).
 
-_Total_: **≈ 1.00 USD/month**, equivalent to **≈ 12.00 USD/year** during the Free Tier period.
+_Total_: **≈ $1.00/month**, equivalent to **≈ $12.00/year** during Free Tier.
 
-**_After Free Tier (Estimated for 50–100 Users)_**
+**_After Free Tier (50–100 active users)_**
 
-- _Amazon ECS (Fargate)_: 18.00 USD/month (3 small containers running 24/7).
-- _Amazon API Gateway_: 3.50 USD/month (≈ 2–3 million requests).
-- _Amazon RDS (PostgreSQL)_: 12.00 USD/month (db.t3.micro, 20 GB).
-- _Amazon S3_: 2.50 USD/month (50 GB storage, 10,000 requests).
-- _Amazon SQS / RabbitMQ_: 1.00 USD/month (a few million messages).
-- _Amazon CloudWatch_: 3.50 USD/month (basic logs and metrics).
-- _Amazon Cognito_: 0.50 USD/month (50–100 active users).
-- _Amazon ECR_: 0.50 USD/month (1 GB container image storage).
-- _MongoDB Atlas (M2 Shared Cluster)_: 9.00 USD/month (2 GB RAM).
-- _Amazon Route 53_: 1.00 USD/month (1 domain).
-- _GitHub Actions_: 2.00 USD/month (beyond free limit).
+- _Amazon ECS (Fargate)_: $18.00/month (3 small containers running 24/7, ~0.25 vCPU & 0.5 GB RAM each).
+- _Amazon API Gateway_: $3.50/month (≈ 2–3M requests).
+- _Amazon S3_: $2.50/month (50 GB storage + 10,000 requests).
+- _Amazon CloudWatch_: $3.50/month (basic logs & metrics).
+- _Amazon Cognito_: $0.50/month (50–100 active users).
+- _Amazon ECR_: $0.50/month (1 GB image storage).
+- _Amazon Route 53_: $1.00/month (1 domain).
+- _AWS WAF_: $2.00/month (1 WebACL).
+- _Amazon SNS_: $1.00/month (few thousand alerts).
+- _GitLab CI/CD_: $2.00/month (exceeding free build minutes).
 
-_Total_: **≈ 53.50 USD/month**, equivalent to **≈ 642.00 USD/year** after the Free Tier expires.
+_Total_: **≈ $34.50/month**, equivalent to **≈ $414.00/year** after Free Tier.
 
 ### 7. Risk Assessment
 
