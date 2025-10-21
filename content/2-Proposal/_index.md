@@ -178,14 +178,19 @@ _Total_: **≈ $34.50/month**, equivalent to **≈ $414.00/year** after Free Tie
 - Restore infrastructure using **AWS CloudFormation** or pre-saved **IaC (Infrastructure as Code)**.
 - Keep regular database copies (RDS snapshots) for data loss recovery.
 
-### 8. Expected Outcomes
+### 8. Expected results of the project
 
-#### Technical Improvements:
+- **Automated financial data entry:** The application helps users avoid manual entry, just take a photo of the invoice or record a voice for the system to automatically classify spending.
+- **Intuitive financial management:** Users can view spending charts, monthly reports, and receive savings suggestions based on consumer behavior.
+- **Minimal user experience:** Friendly web interface, modern design, optimized for mobile devices and suitable for people new to financial management.
+- **Stable, scalable system:** Microservices architecture makes it easy to add new features such as spending reminders, AI predictive analysis, or expand to a mobile app.
+- **Low operating costs:** Take advantage of Free Tier AWS and the serverless model to maintain the system at an average cost of < 50 USD/month.
+- **Improving development team skills:** Project members have practical access to DevOps processes, CI/CD implementation, and cloud-based application optimization.
 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
+### 9. Project limitations
 
-#### Long-term Value
-
-1-year data foundation for AI research.  
-Reusable for future projects.
+- **Vietnamese AI model is still limited:** The ability to recognize regional voices or handwritten invoices has not yet achieved high accuracy.
+- **No separate mobile application:** The MVP version only supports the web platform, there is no native mobile app.
+- **User limit:** The current architecture is only optimized for 50–100 active users; when expanding the scale, the infrastructure needs to be restructured.
+- **Internet connection dependent:** All processing and storage operations are via the cloud, cannot operate offline.
+- **Advanced security system has not been deployed:** Only stops at Cognito authentication and basic encryption, no MFA (Multi-Factor Authentication) or in-depth security logs.

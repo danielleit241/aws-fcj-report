@@ -6,123 +6,167 @@ chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Report: “AI-Driven Development Lifecycle: Reimagining Software Engineering”
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Understand how AI can automate and optimize stages of the Software Development Lifecycle (SDLC).
+- Embrace the philosophy of AI augmenting humans rather than replacing them in the software development process.
+- Observe how tools like Amazon Q and other AI assistants support developers from ideation and code generation to infrastructure deployment (IaC).
+- Learn about the emerging trend of “AI-first development,” where AI becomes a natural part of future dev workflows.
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Toan Huynh**
+- **My Nguyen**
 
-### Key Highlights
+### Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Challenges of programming with AI
 
-- Long product release cycles → Lost revenue/missed opportunities
-- Inefficient operations → Reduced productivity, higher costs
-- Non-compliance with security regulations → Security breaches, loss of reputation
+The introduction covered the limitations and challenges of applying AI to programming:
 
-#### Transitioning to modern application architecture – Microservices
+- AI still struggles with projects that require deep domain knowledge and complex business logic.
+- Developers can have limited control over generated code when prompts and scope are not well-defined.
+- The quality of generated code depends heavily on the prompt and context provided to the model.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+This motivates the AI-DLC approach: creating a structured process to help AI and humans collaborate more effectively.
 
-- **Queue Management**: Handle asynchronous tasks
-- **Caching Strategy**: Optimize performance
-- **Message Handling**: Flexible inter-service communication
+#### How AI is changing software development
 
-#### Domain-Driven Design (DDD)
+This section analyzed how AI is transforming the software industry:
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts
-- **Bookstore case study**: Demonstrates real-world DDD application
-- **Context mapping**: 7 patterns for integrating bounded contexts
+- AI assists code generation, technical documentation, API design, and automated testing.
+- Developers shift roles from “code writers” to “AI orchestrators” who guide, evaluate, and refine AI outputs.
+- Tools like Amazon Q, GitHub Copilot and ChatGPT for Developers become central parts of modern development workflows.
 
-#### Event-Driven Architecture
+#### 🔹 What is AI-DLC
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming
-- **Benefits**: Loose coupling, scalability, resilience
-- **Sync vs async comparison**: Understanding the trade-offs
+AI-Driven Development Lifecycle (AI-DLC) is an AI-augmented software development approach where each stage is designed to provide AI with specific context and goals to produce more accurate results.
 
-#### Compute Evolution
+🟧 Inception
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria for appropriate choice
+1. Build Context on Existing Code – feed AI the current codebase so it understands project structure.
+2. Elaborate Intent with User Stories – developers describe requirements via user stories to clarify goals.
+3. Plan with Units of Work – break work into small units the AI can execute and generate code for.
 
-#### Amazon Q Developer
+🟦 Construction
 
-- **SDLC automation**: From planning to maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+4. Domain Model (Component Model) – build domain models or architecture diagrams.
+5. Generate Code & Test – AI generates code and tests based on the plan.
+6. Add Architectural Components – add API layers, data layers, logging, and security components.
+7. Deploy with IaC & Tests – automate deployment using Infrastructure as Code and integration tests.
 
-### Key Takeaways
+_🔁 Each stage provides richer context for the next, helping AI produce increasingly accurate outputs._
 
-#### Design Mindset
+#### Core Concepts
 
-- **Business-first approach**: Always start from the business domain, not the technology
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams
-- **Bounded contexts**: Identifying and managing complexity in large systems
+1. Context Awareness – AI needs clear context about code, requirements, and domain to work well.
+2. Collaborative Generation – humans and AI collaborate: AI generates code, humans direct and verify outputs.
+3. Continuous Refinement – iterative cycles to refine outputs and improve quality.
 
-#### Technical Architecture
+#### Mob Elaboration
 
-- **Event storming technique**: Practical method for modeling business processes
-- Use **event-driven communication** instead of synchronous calls
-- **Integration patterns**: When to use sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless
+Mob Elaboration is a collaborative method for elaborating intents:
 
-#### Modernization Strategy
+- Multiple participants contribute user stories, questions, and additional context for the AI.
+- It helps AI gain deeper understanding of domain, goals, and complex logic.
+- This approach reduces the risk of misunderstandings—especially in large or cross-domain teams.
 
-- **Phased approach**: No rushing — follow a clear roadmap
-- **7Rs framework**: Multiple modernization paths depending on the application
-- **ROI measurement**: Cost reduction + business agility
+#### The 5-Stage Sequential Process of AI-DLC
 
-### Applying to Work
+AI-DLC runs through 5 phases:
 
-- **Apply DDD** to current projects: Event storming sessions with business teams
-- **Refactor microservices**: Use bounded contexts to define service boundaries
-- **Implement event-driven patterns**: Replace some sync calls with async messaging
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity
+1. Inception – understand requirements and analyze the system.
+2. Construction – create domain models and initial structure.
+3. Generation – automated code generation.
+4. Testing – automated unit and integration testing.
+5. Deployment – deploy applications with IaC and CI/CD pipelines.
 
-### Event Experience
+Each loop improves the AI's outputs through incremental learning and feedback.
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+#### Demo 1 – Interactive AI-DLC experience with Amazon Q
 
-#### Learning from highly skilled speakers
+The demo showcased AI-DLC in practice with a small project:
 
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.
+- Start from a simple idea and turn it into a user story describing business requirements.
+- AI helps split tasks into Units of Work and plans implementation details for each module.
+- Attendees interact with AI using questions, checkboxes, and logical conditions to clarify scope.
+- AI generates code, tests, project structure, and executes trial deployments.
+- The demo illustrated smooth collaboration between AI and humans: AI performs repetitive generation while humans steer and make decisions.
 
-#### Hands-on technical exposure
+#### Introducing Kiro
 
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.
+Philosophy of Kiro
 
-#### Leveraging modern tools
+The workshop introduced Kiro, an intelligent development environment built around the idea of “AI-native development” where AI is a core collaborator rather than just a tool.
 
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.
+Kiro’s philosophy emphasizes three points:
+
+1. Deep integration with the development process – AI participates in planning, context management, and impact analysis.
+2. Comprehensive project context – Kiro maintains ongoing awareness of project structure so AI can interact with the whole project rather than single files.
+3. Intelligent control & collaboration – developers guide AI via contextual commands so each change has clear intent and consistency.
+
+This makes Kiro more than a code generator: it is an ecosystem for collaborative human–AI development.
+
+Project structure in Kiro
+
+Unlike traditional text editors like VSCode or JetBrains, Kiro is an AI-aware workspace with structural awareness.
+
+Its project model includes:
+
+- Context Layer – stores context, domain models, and relationships among modules.
+- Task Layer – manages Units of Work tracked and executed by AI.
+- AI Agent Layer – agents handle specific tasks (code, tests, refactor, deploy) enabling a multi-agent collaborative model.
+- Human-in-the-Loop Control – developers can confirm, modify, or reject AI outputs at any stage.
+
+Kiro therefore becomes an ecosystem for coordinated human–AI development rather than just a code editor.
+
+#### Demo 2: Kiro in practice
+
+In the demonstration, the presenters showed how Kiro implements AI-DLC:
+
+1. User provides a basic business requirement like “build an event management system.”
+2. Kiro analyzes intent, creates a domain model, and splits work into user stories.
+3. AI generates modules, components, and corresponding test cases.
+4. Developers interact with a checkbox-based task control to approve each unit of work.
+5. Kiro finally deploys the completed system using IaC and automated tests.
+
+The demo proved AI-DLC is practical: AI, human operators, and processes integrate into a single coherent workflow.
+
+### Event experience
+
+Attending the workshop “AI DLC x Kiro: Reinventing Developer Experience with AI” was highly valuable, clarifying how AI can be deeply embedded into the developer experience and how Kiro’s design offers a fresh approach for developers.
+
+#### Insights from expert speakers
+
+- Speakers presented AI-DLC as a platform that automates many SDLC tasks and supports software development using AI.
+- The Kiro introduction gave a perspective on designing an AI-native text editor rather than adding AI plugins to legacy editors.
+- I was particularly impressed by Kiro’s philosophy: minimalism, high performance, user-focused experience, and modular extensibility.
+
+#### Practical technical takeaways
+
+- The demo showed how AI-DLC and Kiro can create, refactor, and optimize code efficiently.
+- A small starter project was created and managed within Kiro, demonstrating auto-refactoring, test generation and logic analysis.
+- Compared to editors like VSCode and Sublime, Kiro stands out for its AI-first architecture and lightweight plugin model that preserves performance.
+
+#### Modern tooling and potential applications
+
+- Experiencing AI-DLC on Kiro highlighted the potential to automate development workflows—especially code generation, documentation, and debugging.
+- I saw opportunities to build personal learning and productivity tools that provide smart suggestions and accelerate development.
+- Kiro’s modular design inspires approaches to building flexible, maintainable systems.
 
 #### Networking and discussions
 
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.
+- The workshop offered chances to connect with developers, AI researchers, and product designers, deepening my understanding of AI-augmented development.
+- Discussions helped me see AI as a creative collaborator, allowing developers to focus more on system logic and architecture.
 
-#### Lessons learned
+#### Key lessons
 
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.
+- AI-DLC combined with Kiro is a model for next-generation development tools—AI-first IDEs that deeply integrate AI into the workflow.
+- Kiro’s “less is more” philosophy shows that simplicity and performance can deliver a stronger developer experience than overly complex systems.
+- I learned that successful AI adoption depends not only on technology but also on the design philosophy and integration approach used in tooling.
 
-#### Some event photos
+#### Sample images from the event
 
-_Add your event photos here_
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+## ![Event images](/images/4-EventParticipated/event4-2-1.png)

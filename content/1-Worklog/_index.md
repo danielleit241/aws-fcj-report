@@ -16,7 +16,7 @@ Typically, and as a standard, a worklog is carried out over about 3 months (thro
 
 **Week 3:** [AWS Security & Database Services (IAM, Cognito, KMS, RDS, Aurora, Redshift, ElastiCache)](1.3-week3/)
 
-**Week 4:** [Doing task C...](1.4-week4/)
+**Week 4:** [AWS Data Analytics, NoSQL, and AI Lifecycle Exploration Week](1.4-week4/)
 
 **Week 5:** [Doing task D...](1.5-week5/)
 
