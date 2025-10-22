@@ -18,6 +18,8 @@ Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là
 
 &emsp;**Vai trò trong sự kiện:** Người tham dự
 
+---
+
 ### [Event 2](4.2-Event2/)
 
 &emsp;**Tên sự kiện:** Vòng đời phát triển theo hướng AI: Tái định hình kỹ thuật phần mềm
@@ -27,6 +29,8 @@ Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là
 &emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
 
 &emsp;**Vai trò trong sự kiện:** Người tham dự
+
+---
 
 ### [Event 2](4.3-Event3/)
 

@@ -30,6 +30,8 @@ During my internship, I participated in two events. Each one was a memorable exp
 
 &emsp;**Role:** Attendee
 
+---
+
 ### [Event 3](4.3-Event3/)
 
 &emsp;**Event Name:** DATA SCIENCE WORKSHOP ON AWS

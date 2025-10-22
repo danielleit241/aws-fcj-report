@@ -6,125 +6,65 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Unlocking the Full Potential of Amazon Connect
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+_By Puneet Badlani and Eliza Taylor – May 12, 2025; categories: [Amazon Connect](https://aws.amazon.com/blogs/contact-center/category/messaging/amazon-connect/), [Best Practices](https://aws.amazon.com/blogs/contact-center/category/post-types/best-practices/), [Foundational (100)](https://aws.amazon.com/blogs/contact-center/category/learning-levels/foundational-100/), [Thought Leadership](https://aws.amazon.com/blogs/contact-center/category/post-types/thought-leadership/)_
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, _“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”_, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+Consumers today have very high expectations—and your customers are no exception. Every business is racing to adopt the latest technology innovations that can improve service, reduce costs, and support strategic growth. Amazon Connect is one of those solutions—powered by AWS and AI, it’s a modern, scalable contact-center platform. However, cutting corners during implementation can undermine the benefits.
 
----
+Here we look at how change-management best practices can not only protect but accelerate your investment—risks to watch for, which metrics really matter, and how to maximize limited time and resources to deliver high-impact change.
 
-## Architecture Guidance
+## Don’t "Trip Up" on Stakeholders
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+"Stakeholders" are often misunderstood. Many organizations focus too much on either internal or external groups. For a customer-service technology and process transformation, it’s critical to focus on external stakeholders because they have direct impact.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+External stakeholders include customers, partners, and vendors—the people who contact your service center. Their ability to receive information, resolve issues, and feel heard matters greatly to program success and whether they’ll remain engaged with you long term.
 
-**The solution architecture is now as follows:**
+Internally, large programs require cross-organizational coordination. An executive sponsor can marshal resources and help ensure success. Beyond IT, operations and marketing, you’ll need finance, HR, and other teams involved. Not all stakeholders are equal—the level of engagement and oversight depends on role and influence.
 
-> _Figure 1. Overall architecture; colored boxes represent distinct services._
+## Understand What You Actually Need
 
----
+Amazon Connect is a powerful, customizable platform serving many use cases—from omnichannel contact, interaction automation, agent assist with generative AI, dynamic reporting, automated quality evaluation, and more.
 
-While the term _microservices_ has some inherent ambiguity, certain traits are common:
+But without a clear understanding of current processes, pain points, and business requirements, you risk scope drift and losing benefits. Do you need an intelligent IVR to reduce call volume and shorten transfers to agents? Do you need Connect integrated with a legacy CRM? Are SLAs slipping because of sudden call spikes or scheduling issues?
 
-- Small, autonomous, loosely coupled
-- Reusable, communicating through well-defined interfaces
-- Specialized to do one thing well
-- Often implemented in an **event-driven architecture**
+Identify these factors early and a deployment roadmap will emerge, backed by a clear business case. You’ll have a compelling story with metrics to prove ROI and clear goals for the teams. This is also a strength of AWS Partner CloudInteract—using AI to uncover insights and bring precision to improvement planning.
 
-When determining where to draw boundaries between microservices, consider:
+## Ensure Executive Sponsorship
 
-- **Intrinsic**: technology used, performance, reliability, scalability
-- **Extrinsic**: dependent functionality, rate of change, reusability
-- **Human**: team ownership, managing _cognitive load_
+A committed executive sponsor plays a vital role in driving momentum and raising organizational awareness for any transformation program. They need a convincing vision and by actively promoting the project they can help surface and address potential risks.
 
----
+This approach helps remove blockers early while fostering a collaborative environment where stakeholders feel encouraged to contribute. Executive presence and support also build trust and credibility—essential elements for a successful rollout.
 
-## Technology Choices and Communication Scope
+## Build Change Ambassadors
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+The biggest mistake in technology transformation is assuming you don’t need to "tell the story" about the change—that a few technical benefit emails and a single training session are enough.
 
----
+You need to run an internal communications campaign for the change. Investing in two-way channels (monitored email, lunch-and-learns, community forums, Q&A sessions after town halls) will both build goodwill and surface practitioner insights.
 
-## The Pub/Sub Hub
+Extend influence by recruiting and supporting champions—people who can spread the change. They’re often early adopters and testers. You can incentivize participation by including these activities in annual goals, which helps expand impact across affected groups.
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.
+## Train More Effectively with Fewer Resources
 
-- Each microservice depends only on the _hub_
-- Inter-microservice connections are limited to the contents of the published message
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous _push_
+As the program progresses, different groups will require different training. Initially, IT needs to learn the new environment and how to configure and manage it. Next, operations must train agents and supervisors for day-to-day use. Everything starts with a change impact assessment.
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+This assessment identifies which groups are most and most critically affected. If resources are limited and you can’t train everyone directly, focus on the business-breakers—the groups that are mission-critical. For other groups, substitute remote or self-paced learning.
 
----
+## Measure What Actually Matters
 
-## Core Microservice
+Don’t let metrics become slogans. Does reporting email-open rates actually show that employees understand the change? An opened email doesn’t equal awareness. A better measure might be the number of manager-led meetings run using the toolkit you provided.
 
-Provides foundational data and communication layer, including:
+The mistake is measuring only project metrics. You need to demonstrate long-term improvement: reduced transfer rates, handle-time reductions, CSAT, or time comparisons for manual tasks before (scheduling, performance review, or reporting).
 
-- **Amazon S3** bucket for data
-- **Amazon DynamoDB** for data catalog
-- **AWS Lambda** to write messages into the data lake and catalog
-- **Amazon SNS** topic as the _hub_
-- **Amazon S3** bucket for artifacts such as Lambda code
+Project-status reporting is important but temporary—the metrics that really matter are those from the business case. Start tracking them as early as possible, especially in phased rollouts, to quickly surface gaps in training and adoption.
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+## In Summary
 
----
+A few key factors make Amazon Connect implementations more effective and unlock full value. Plan ahead, bring the organization along, deploy carefully, and this AI-enabled contact-center solution will exceed expectations—from omnichannel and agent experience to automation and analytics.
 
-## Front Door Microservice
+Contact AWS and CloudInteract for additional help unlocking the full power of Amazon Connect:
 
-- Provides an API Gateway for external REST interaction
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**
-- Self-managed _deduplication_ mechanism using DynamoDB instead of SNS FIFO because:
-  1. SNS deduplication TTL is only 5 minutes
-  2. SNS FIFO requires SQS FIFO
-  3. Ability to proactively notify the sender that the message is a duplicate
+- AWS: https://pages.awscloud.com/GLOBAL-field-SP-Amazon-Connect-Contact-Us-reg.html
+- CloudInteract: https://resources.cloudinteract.io/apollo-making-every-contact-count
 
----
-
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute
-- Step Functions Express Workflow to convert ER7 → JSON
-- Two Lambdas:
-  1. Fix ER7 formatting (newline, carriage return)
-  2. Parsing logic
-- Result or error is pushed back into the pub/sub hub
-
----
-
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-
-Example _outputs_ in the core microservice:
-
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
-```
+(Loose translation: "unlock the superpowers of Amazon Connect")
