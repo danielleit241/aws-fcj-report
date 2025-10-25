@@ -16,13 +16,13 @@ Thông thường và cũng là tiêu chuẩn, một worklog được thực hi�
 
 **Tuần 3:** [Dịch vụ Bảo mật & Cơ sở dữ liệu trên AWS (IAM, Cognito, KMS, RDS, Aurora, Redshift, ElastiCache)](1.3-week3/)
 
-**Tuần 4:** [Làm công việc C...](1.4-week4/)
+**Tuần 4:** [Kỹ thuật dữ liệu AWS, Cơ sở dữ liệu NoSQL và Quy trình phát triển AI](1.4-week4/)
 
-**Tuần 5:** [Làm công việc D...](1.5-week5/)
+**Tuần 5:** [Dịch vụ Phân tích dữ liệu AWS, Cơ sở dữ liệu, Quy trình phát triển AI & Thực hành dịch thuật kỹ thuật](1.5-week5/)
 
-**Tuần 6:** [Làm công việc E...](1.6-week6/)
+**Tuần 6:** [Dịch vụ Phân tích dữ liệu AWS, Cơ sở dữ liệu, Quy trình phát triển AI & Thực hành dịch thuật kỹ thuật](1.6-week6/)
 
-**Tuần 7:** [Làm công việc G...](1.7-week7/)
+**Tuần 7:** [Ôn tập lại các dịch vụ AWS cơ bản và luyện tập các câu trắc nghiệm](1.7-week7/)
 
 **Tuần 8:** [Làm công việc H...](1.8-week8/)
 
