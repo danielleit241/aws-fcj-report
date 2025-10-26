@@ -121,8 +121,7 @@ _Technical Requirements_
 
 ### 6. Budget Estimation
 
-<!-- You can view costs on [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)
-Or download the [budget estimation file](../attachments/budget_estimation.pdf). -->
+You can view costs on [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=2f4e6708ef12a3310b2d3955aaf1d4563932d165).
 
 **_Within Free Tier (First 12 Months)_**
 

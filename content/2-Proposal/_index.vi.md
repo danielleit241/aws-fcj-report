@@ -122,8 +122,7 @@ _Yêu cầu kỹ thuật_
 
 ### 6. Ước tính ngân sách
 
-<!-- Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf). -->
+Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=2f4e6708ef12a3310b2d3955aaf1d4563932d165)
 
 ### _Chi phí hạ tầng_
 
