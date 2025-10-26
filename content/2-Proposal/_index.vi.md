@@ -128,33 +128,33 @@ Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/e
 
 **_Trong Free Tier (12 tháng đầu)_**
 
-- _Amazon ECS (Fargate)_: 0,00 USD/tháng (≤ 50 GB-hr CPU, 200 GB-hr RAM).
+- _Amazon ECS (Fargate)_: 0,00 USD/tháng (container micro chạy 24/7 vẫn nằm trong mức miễn phí CPU/RAM).
 - _Amazon API Gateway_: 0,00 USD/tháng (≤ 1 triệu request).
 - _Amazon S3_: 0,00 USD/tháng (≤ 5 GB lưu trữ).
 - _Amazon CloudWatch_: 0,00 USD/tháng (≤ 10 custom metrics + 5 GB logs).
 - _Amazon Cognito_: 0,00 USD/tháng (≤ 50.000 người dùng hoạt động).
-- _Amazon ECR_: 0,00 USD/tháng (500 MB lưu trữ image).
+- _Amazon ECR_: 0,00 USD/tháng (≤ 500 MB lưu trữ image).
 - _Amazon Route 53_: 1,00 USD/tháng (1 domain).
 - _GitLab CI/CD_: 0,00 USD/tháng (≤ 2.000 phút build miễn phí).
-- _AWS WAF_: 0,00 USD/tháng (Free Tier demo).
+- _AWS WAF_: 0,00 USD/tháng (dùng demo hoặc chưa cần kích hoạt production rule).
 - _Amazon SNS_: 0,00 USD/tháng (≤ 1.000 thông báo đầu tiên).
 
 _Tổng_: **≈ 1,00 USD/tháng**, tương đương **12,00 USD/năm** trong giai đoạn Free Tier.
 
 **_Sau khi hết Free Tier (với 50–100 người dùng)_**
 
-- _Amazon ECS (Fargate)_: 18,00 USD/tháng (3 container nhỏ chạy 24/7, ~0.25 vCPU, 0.5 GB RAM mỗi container).
-- _Amazon API Gateway_: 3,50 USD/tháng (≈ 2–3 triệu request).
-- _Amazon S3_: 2,50 USD/tháng (50 GB lưu trữ + 10.000 request).
-- _Amazon CloudWatch_: 3,50 USD/tháng (log + metric cơ bản).
-- _Amazon Cognito_: 0,50 USD/tháng (50–100 active user).
-- _Amazon ECR_: 0,50 USD/tháng (1 GB image lưu trữ).
-- _Amazon Route 53_: 1,00 USD/tháng (1 domain).
-- _AWS WAF_: 2,00 USD/tháng (1 WebACL).
-- _Amazon SNS_: 1,00 USD/tháng (vài nghìn thông báo).
-- _GitLab CI/CD_: 2,00 USD/tháng (vượt giới hạn free).
+- _Amazon ECS (Fargate)_: 8,00 USD/tháng
+- _Amazon API Gateway_: 2,00 USD/tháng
+- _Amazon S3_: 1,00 USD/tháng
+- _Amazon CloudWatch_: 2,00 USD/tháng
+- _Amazon Cognito_: 0,00 USD/tháng
+- _Amazon ECR_: 0,20 USD/tháng
+- _Amazon Route 53_: 1,00 USD/tháng
+- _AWS WAF_: 1,00 USD/tháng
+- _Amazon SNS_: 0,50 USD/tháng
+- _GitLab CI/CD_: 2,00 USD/tháng
 
-_Tổng_: **≈ 34,50 USD/tháng**, tương đương **414,00 USD/năm** sau khi hết Free Tier.
+_Tổng_: **≈ 17,70 USD/tháng**, tương đương **≈ 212,40 USD/năm** sau Free Tier.
 
 ### 7. Đánh giá rủi ro
 

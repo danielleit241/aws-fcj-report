@@ -123,35 +123,37 @@ _Technical Requirements_
 
 You can view costs on [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=2f4e6708ef12a3310b2d3955aaf1d4563932d165).
 
-**_Within Free Tier (First 12 Months)_**
+**_In Free Tier (first 12 months)_**
 
-- _Amazon ECS (Fargate)_: $0.00/month (≤ 50 GB-hr CPU, 200 GB-hr RAM).
-- _Amazon API Gateway_: $0.00/month (≤ 1M requests).
+- _Amazon ECS (Fargate)_: $0.00/month (micro containers running 24/7 are still within the free CPU/RAM tier).
+- _Amazon API Gateway_: $0.00/month (≤ 1 million requests).
 - _Amazon S3_: $0.00/month (≤ 5 GB storage).
 - _Amazon CloudWatch_: $0.00/month (≤ 10 custom metrics + 5 GB logs).
-- _Amazon Cognito_: $0.00/month (≤ 50,000 MAUs).
-- _Amazon ECR_: $0.00/month (≤ 500 MB storage).
+- _Amazon Cognito_: $0.00/month (≤ 50,000 active users).
+- _Amazon ECR_: $0.00/month (≤ 500 MB image storage).
 - _Amazon Route 53_: $1.00/month (1 domain).
 - _GitLab CI/CD_: $0.00/month (≤ 2,000 free build minutes).
-- _AWS WAF_: $0.00/month (Free Tier demo).
-- _Amazon SNS_: $0.00/month (≤ 1,000 notifications).
 
-_Total_: **≈ $1.00/month**, equivalent to **≈ $12.00/year** during Free Tier.
+- _AWS WAF_: $0.00/month (demo or production rule not yet activated).
 
-**_After Free Tier (50–100 active users)_**
+- _Amazon SNS_: $0.00/month (≤ first 1,000 notifications).
 
-- _Amazon ECS (Fargate)_: $18.00/month (3 small containers running 24/7, ~0.25 vCPU & 0.5 GB RAM each).
-- _Amazon API Gateway_: $3.50/month (≈ 2–3M requests).
-- _Amazon S3_: $2.50/month (50 GB storage + 10,000 requests).
-- _Amazon CloudWatch_: $3.50/month (basic logs & metrics).
-- _Amazon Cognito_: $0.50/month (50–100 active users).
-- _Amazon ECR_: $0.50/month (1 GB image storage).
-- _Amazon Route 53_: $1.00/month (1 domain).
-- _AWS WAF_: $2.00/month (1 WebACL).
-- _Amazon SNS_: $1.00/month (few thousand alerts).
-- _GitLab CI/CD_: $2.00/month (exceeding free build minutes).
+_Total_: **≈ $1.00/month**, equivalent to **$12.00/year** during the Free Tier period.
 
-_Total_: **≈ $34.50/month**, equivalent to **≈ $414.00/year** after Free Tier.
+**_After Free Tier (with 50–100 users)_**
+
+- _Amazon ECS (Fargate)_: $8.00/month
+- _Amazon API Gateway_: $2.00/month
+- _Amazon S3_: $1.00/month
+- _Amazon CloudWatch_: $2.00/month
+- _Amazon Cognito_: $0.00/month
+- _Amazon ECR_: $0.20/month
+- _Amazon Route 53_: $1.00/month
+- _AWS WAF_: $1.00/month
+- _Amazon SNS_: $0.50/month
+- _GitLab CI/CD_: $2.00/month
+
+_Total_: **≈ $17.70/month**, equivalent to **≈ 212.40 USD/year** after Free Tier.
 
 ### 7. Risk Assessment
 
