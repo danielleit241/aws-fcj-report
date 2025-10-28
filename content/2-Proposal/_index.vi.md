@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# Personal Finance Management App
+# Ứng dụng quản lý tài chính cá nhân
 
 ### 1. Tóm tắt điều hành
 
@@ -16,13 +16,16 @@ Dự án Personal Finance Management App hướng đến việc cung cấp một
 
 ### 2. Tuyên bố vấn đề
 
-_Vấn đề hiện tại_  
+#### Vấn đề hiện tại
+
 Trên thị trường đã có rất nhiều ứng dụng quản lý tài chính, tuy nhiên phần lớn vẫn yêu cầu người dùng nhập liệu thủ công — một công việc tốn thời gian, dễ sai sót và khiến người dùng nhanh chóng bỏ cuộc. Các ứng dụng hiện có chỉ tập trung vào thống kê chi tiêu mà chưa thực sự giúp người dùng tự động hóa quy trình quản lý tài chính cá nhân.
 
-_Giải pháp_  
+#### Giải pháp
+
 Giải pháp sử dụng AWS Cloud kết hợp kiến trúc microservices để xây dựng một nền tảng quản lý tài chính cá nhân tự động hóa, tích hợp AI trong xử lý giọng nói và nhận diện hóa đơn. Hệ thống được triển khai trên AWS ECS Fargate cho các service backend (.NET), FastAPI cho xử lý AI, và Next.js cho frontend. So với các nền tảng tài chính phổ biến như Money Lover hay Misa Money Keeper, ứng dụng này tập trung vào tự động hóa hoàn toàn nhập liệu tài chính thông qua AI voice-to-text và bill scanning chi tiết tiếng Việt, giúp giảm thao tác thủ công và sai sót. Hệ thống phù hợp cho người dùng cá nhân và nhóm nhỏ, đồng thời có thể mở rộng khi cần cho quy mô doanh nghiệp hoặc ứng dụng ngân hàng số.
 
-_Lợi ích và hoàn vốn đầu tư (ROI)_  
+#### Lợi ích và hoàn vốn đầu tư (ROI)
+
 Giải pháp mang lại nhiều lợi ích thiết thực cả về mặt kỹ thuật và giá trị kinh doanh:
 
 - Tự động hóa nhập liệu: Giảm hơn 70% thao tác thủ công nhờ AI nhận diện giọng nói và hóa đơn.
@@ -36,7 +39,7 @@ Giải pháp mang lại nhiều lợi ích thiết thực cả về mặt kỹ t
 
 Hệ thống được triển khai theo mô hình **microservices** trên nền tảng **AWS Cloud**, kết hợp các dịch vụ serverless, container, và cơ sở dữ liệu quản lý để đảm bảo hiệu năng và khả năng mở rộng.
 
-![IoT Weather Sofware Architecture](/images/2-Proposal/development_architecture.drawio.png)
+![Ứng dụng quản lý tài chính cá nhân Sofware Architecture](/images/2-Proposal/development_architecture.drawio.png)
 
 Người dùng truy cập ứng dụng web **Next.js** thông qua **Amazon CloudFront**, nội dung tĩnh được lưu trữ trong **Amazon S3** và phân phối qua **Amazon Route 53**.
 Lớp bảo mật đầu tiên được cung cấp bởi **AWS WAF** nhằm ngăn chặn các tấn công phổ biến như SQL Injection hoặc XSS.
@@ -55,7 +58,7 @@ Hình ảnh container được lưu trữ trong **Amazon ECR**, và quá trình 
 
 Tất cả logs, metrics và cảnh báo từ ECS, API Gateway, và ALB được gửi về **Amazon CloudWatch** để giám sát tập trung, đồng thời **Amazon SNS** được cấu hình để gửi cảnh báo tự động khi có sự cố.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/cloud_architecture.drawio.png)
+![Ứng dụng quản lý tài chính cá nhân Cloud Architecture](/images/2-Proposal/cloud_architecture.drawio.png)
 
 _Dịch vụ AWS sử dụng_
 
@@ -77,35 +80,30 @@ _Dịch vụ AWS sử dụng_
 
 ### 4. Triển khai kỹ thuật
 
-_Các giai đoạn triển khai_  
-Dự án được chia thành 3 giai đoạn chính, tập trung vào việc xây dựng, tối ưu và triển khai nền tảng quản lý tài chính cá nhân trên AWS:
+#### Các giai đoạn triển khai
 
 1. _Nghiên cứu và vẽ kiến trúc_: Nghiên cứu các mô hình microservices và thiết kế kiến trúc tổng thể trên AWS (bao gồm CloudFront, ECS Fargate, RDS, S3, API Gateway, Cognito) — (Tháng 1).
 2. _Tính toán chi phí và điều chỉnh giải pháp_: Sử dụng AWS Pricing Calculator để ước tính chi phí, tối ưu lựa chọn dịch vụ nhằm đảm bảo chi phí thấp và dễ triển khai cho người mới học — (Tháng 1–2).
 3. _Phát triển, kiểm thử, triển khai_: Xây dựng frontend (Next.js), backend (.NET), và AI service (FastAPI); kiểm thử tích hợp microservices, sau đó triển khai toàn bộ hệ thống lên AWS bằng ECS Fargate và thiết lập giám sát qua CloudWatch — (Tháng 2–3).
 
-_Yêu cầu kỹ thuật_
+#### Yêu cầu kỹ thuật
 
 - _Frontend_:
   Ứng dụng web **Next.js** được lưu trữ trong **Amazon S3** và phân phối qua **CloudFront**, giao tiếp với backend thông qua **API Gateway**.
   Người dùng đăng nhập qua **Amazon Cognito**, nhận token để gọi API bảo mật.
-
 - _Backend_:
   Viết bằng **.NET** hoặc framework tương tự, triển khai trên **ECS Fargate**.
   Các service xử lý nghiệp vụ người dùng, giao dịch và các yêu cầu từ frontend.
   Container image được lưu trong **ECR**, được cập nhật qua pipeline CI/CD từ **GitLab**.
   **ALB** được dùng để cân bằng tải giữa các container backend.
-
 - _AI Service_:
   Viết bằng **FastAPI**, xử lý hình ảnh hóa đơn và giọng nói, kết nối đến **S3** để đọc dữ liệu.
   Kết quả được trả về **Backend Service** thông qua API nội bộ.
-
-* _Hạ tầng Cloud_:
+- _Hạ tầng Cloud_:
   Sử dụng **Amazon VPC** (multi-AZ), **Application Load Balancer**, và **CloudWatch** để giám sát.
   Hình ảnh container được lưu trữ trên **ECR** và triển khai qua **ECS Fargate**.
   CI/CD được thực hiện qua **GitLab CI/CD** để tự động hóa build và deploy.
-
-* _Bảo mật_:
+- _Bảo mật_:
   Quản lý quyền truy cập người dùng bằng **Amazon Cognito**.
   Sử dụng **IAM Roles** cho ECS, S3, CloudWatch, và API Gateway để giới hạn quyền truy cập.
   **Security Group** được cấu hình chặt chẽ giữa ECS, ALB và các dịch vụ khác để đảm bảo an toàn mạng.
@@ -122,39 +120,21 @@ _Yêu cầu kỹ thuật_
 
 ### 6. Ước tính ngân sách
 
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=2f4e6708ef12a3310b2d3955aaf1d4563932d165)
+_Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=2f4e6708ef12a3310b2d3955aaf1d4563932d165)_
 
-### _Chi phí hạ tầng_
-
-**_Trong Free Tier (12 tháng đầu)_**
-
-- _Amazon ECS (Fargate)_: 0,00 USD/tháng (container micro chạy 24/7 vẫn nằm trong mức miễn phí CPU/RAM).
-- _Amazon API Gateway_: 0,00 USD/tháng (≤ 1 triệu request).
-- _Amazon S3_: 0,00 USD/tháng (≤ 5 GB lưu trữ).
-- _Amazon CloudWatch_: 0,00 USD/tháng (≤ 10 custom metrics + 5 GB logs).
-- _Amazon Cognito_: 0,00 USD/tháng (≤ 50.000 người dùng hoạt động).
-- _Amazon ECR_: 0,00 USD/tháng (≤ 500 MB lưu trữ image).
-- _Amazon Route 53_: 1,00 USD/tháng (1 domain).
-- _GitLab CI/CD_: 0,00 USD/tháng (≤ 2.000 phút build miễn phí).
-- _AWS WAF_: 0,00 USD/tháng (dùng demo hoặc chưa cần kích hoạt production rule).
-- _Amazon SNS_: 0,00 USD/tháng (≤ 1.000 thông báo đầu tiên).
-
-_Tổng_: **≈ 1,00 USD/tháng**, tương đương **12,00 USD/năm** trong giai đoạn Free Tier.
-
-**_Sau khi hết Free Tier (với 50–100 người dùng)_**
-
-- _Amazon ECS (Fargate)_: 8,00 USD/tháng
-- _Amazon API Gateway_: 2,00 USD/tháng
-- _Amazon S3_: 1,00 USD/tháng
-- _Amazon CloudWatch_: 2,00 USD/tháng
-- _Amazon Cognito_: 0,00 USD/tháng
-- _Amazon ECR_: 0,20 USD/tháng
-- _Amazon Route 53_: 1,00 USD/tháng
-- _AWS WAF_: 1,00 USD/tháng
-- _Amazon SNS_: 0,50 USD/tháng
-- _GitLab CI/CD_: 2,00 USD/tháng
-
-_Tổng_: **≈ 17,70 USD/tháng**, tương đương **≈ 212,40 USD/năm** sau Free Tier.
+| Dịch vụ              |                            Trong Free Tier |                        Sau khi hết Free Tier |
+| -------------------- | -----------------------------------------: | -------------------------------------------: |
+| Amazon ECS (Fargate) |                           0,00 USD / tháng |                             8,00 USD / tháng |
+| Amazon API Gateway   |                           0,00 USD / tháng |                             2,00 USD / tháng |
+| Amazon S3            |                           0,00 USD / tháng |                             1,00 USD / tháng |
+| Amazon CloudWatch    |                           0,00 USD / tháng |                             2,00 USD / tháng |
+| Amazon Cognito       |                           0,00 USD / tháng |                             0,00 USD / tháng |
+| Amazon ECR           |                           0,00 USD / tháng |                             0,20 USD / tháng |
+| Amazon Route 53      |                           1,00 USD / tháng |                             1,00 USD / tháng |
+| AWS WAF              |                           0,00 USD / tháng |                             1,00 USD / tháng |
+| Amazon SNS           |                           0,00 USD / tháng |                             0,50 USD / tháng |
+| GitLab CI/CD         |                           0,00 USD / tháng |                             2,00 USD / tháng |
+| **Tổng ước tính**    | **≈ 1,00 USD / tháng** (≈ 12,00 USD / năm) | **≈ 17,70 USD / tháng** (≈ 212,40 USD / năm) |
 
 ### 7. Đánh giá rủi ro
 

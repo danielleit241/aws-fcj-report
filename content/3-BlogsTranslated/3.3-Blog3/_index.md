@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# Unlocking the Full Potential of Amazon Connect
+# **Unlocking the Full Potential of Amazon Connect**
 
 _By Puneet Badlani and Eliza Taylor – May 12, 2025; categories: [Amazon Connect](https://aws.amazon.com/blogs/contact-center/category/messaging/amazon-connect/), [Best Practices](https://aws.amazon.com/blogs/contact-center/category/post-types/best-practices/), [Foundational (100)](https://aws.amazon.com/blogs/contact-center/category/learning-levels/foundational-100/), [Thought Leadership](https://aws.amazon.com/blogs/contact-center/category/post-types/thought-leadership/)_
 

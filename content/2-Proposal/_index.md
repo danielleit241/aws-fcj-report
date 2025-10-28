@@ -16,7 +16,7 @@ The application is built with a microservices architecture on .NET and FastAPI p
 
 ### 2. Problem Statement
 
-### What’s the Problem?
+#### What’s the Problem?
 
 Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
 
@@ -37,7 +37,7 @@ The solution brings many practical benefits both technically and in business val
 
 The system is built on a **microservices architecture** hosted on **AWS Cloud**, combining serverless components, containerized services, and managed databases for scalability and performance.
 
-![IoT Weather Sofware Architecture](/images/2-Proposal/development_architecture.drawio.png)
+![Personal Finance Management App Sofware Architecture](/images/2-Proposal/development_architecture.drawio.png)
 
 Users access the **Next.js** web application through **Amazon CloudFront**, with static content hosted in **Amazon S3** and routed via **Amazon Route 53**.
 The first layer of security is provided by **AWS WAF**, which protects the system from common web attacks such as SQL injection and XSS.
@@ -54,7 +54,7 @@ Container images are stored in **Amazon ECR**, and the deployment process is ful
 
 All logs, metrics, and alerts from ECS, API Gateway, and ALB are collected in **Amazon CloudWatch** for centralized monitoring, while **Amazon SNS** is configured to send automatic notifications when incidents occur.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/cloud_architecture.drawio.png)
+![Personal Finance Management App Cloud Architecture](/images/2-Proposal/cloud_architecture.drawio.png)
 
 _AWS Services Used_
 
@@ -72,12 +72,9 @@ _AWS Services Used_
 - _Amazon SNS_: Sends alerts and notifications during incidents.
 - _GitLab CI/CD_: Automates the container build, push, and deploy pipeline to ECS.
 
----
-
 ### 4. Technical Deployment
 
-_Implementation Phases_  
-The project is divided into three main phases, focusing on the design, optimization, and deployment of the personal finance management platform on AWS:
+_Implementation Phases_
 
 1. _Research and Architecture Design_: Study microservices models and design the overall architecture on AWS (including CloudFront, ECS Fargate, RDS, S3, API Gateway, Cognito) — (January).
 2. _Cost Estimation and Optimization_: Use AWS Pricing Calculator to estimate cost and optimize service selection for affordability and ease of deployment — (January–February).
@@ -88,22 +85,18 @@ _Technical Requirements_
 - _Frontend_:
   The **Next.js** web application is hosted on **Amazon S3** and distributed via **CloudFront**, communicating securely with the backend through **API Gateway**.
   User authentication and session management are handled by **Amazon Cognito**, which provides tokens for secured API calls.
-
 - _Backend_:
   Developed in **.NET** (or a similar framework) and deployed on **ECS Fargate**.
   Handles business operations, user interactions, and service orchestration.
   Container images are stored in **ECR** and automatically deployed via **GitLab CI/CD**.
   Load balancing between backend containers is managed by **ALB**.
-
 - _AI Service_:
   Developed in **FastAPI**, responsible for processing invoice images and voice inputs.
   Accesses raw data from **S3**, performs AI inference, and returns results to the **Backend Service** via internal APIs.
-
 - _Cloud Infrastructure_:
   Runs inside a **multi-AZ Amazon VPC**, using **Application Load Balancer** for traffic distribution and **CloudWatch** for observability.
   Containers are stored in **ECR** and deployed through **ECS Fargate**.
   The deployment pipeline is automated using **GitLab CI/CD**.
-
 - _Security_:
   User authentication managed by **Amazon Cognito**.
   Access permissions defined through **IAM Roles** for ECS, S3, CloudWatch, and API Gateway.
@@ -123,37 +116,19 @@ _Technical Requirements_
 
 You can view costs on [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=2f4e6708ef12a3310b2d3955aaf1d4563932d165).
 
-**_In Free Tier (first 12 months)_**
-
-- _Amazon ECS (Fargate)_: $0.00/month (micro containers running 24/7 are still within the free CPU/RAM tier).
-- _Amazon API Gateway_: $0.00/month (≤ 1 million requests).
-- _Amazon S3_: $0.00/month (≤ 5 GB storage).
-- _Amazon CloudWatch_: $0.00/month (≤ 10 custom metrics + 5 GB logs).
-- _Amazon Cognito_: $0.00/month (≤ 50,000 active users).
-- _Amazon ECR_: $0.00/month (≤ 500 MB image storage).
-- _Amazon Route 53_: $1.00/month (1 domain).
-- _GitLab CI/CD_: $0.00/month (≤ 2,000 free build minutes).
-
-- _AWS WAF_: $0.00/month (demo or production rule not yet activated).
-
-- _Amazon SNS_: $0.00/month (≤ first 1,000 notifications).
-
-_Total_: **≈ $1.00/month**, equivalent to **$12.00/year** during the Free Tier period.
-
-**_After Free Tier (with 50–100 users)_**
-
-- _Amazon ECS (Fargate)_: $8.00/month
-- _Amazon API Gateway_: $2.00/month
-- _Amazon S3_: $1.00/month
-- _Amazon CloudWatch_: $2.00/month
-- _Amazon Cognito_: $0.00/month
-- _Amazon ECR_: $0.20/month
-- _Amazon Route 53_: $1.00/month
-- _AWS WAF_: $1.00/month
-- _Amazon SNS_: $0.50/month
-- _GitLab CI/CD_: $2.00/month
-
-_Total_: **≈ $17.70/month**, equivalent to **≈ 212.40 USD/year** after Free Tier.
+| Service              |                          In Free Tier |                         After Free Tier |
+| -------------------- | ------------------------------------: | --------------------------------------: |
+| Amazon ECS (Fargate) |                         $0.00 / month |                           $8.00 / month |
+| Amazon API Gateway   |                         $0.00 / month |                           $2.00 / month |
+| Amazon S3            |                         $0.00 / month |                           $1.00 / month |
+| Amazon CloudWatch    |                         $0.00 / month |                           $2.00 / month |
+| Amazon Cognito       |                         $0.00 / month |                           $0.00 / month |
+| Amazon ECR           |                         $0.00 / month |                           $0.20 / month |
+| Amazon Route 53      |                         $1.00 / month |                           $1.00 / month |
+| AWS WAF              |                         $0.00 / month |                           $1.00 / month |
+| Amazon SNS           |                         $0.00 / month |                           $0.50 / month |
+| GitLab CI/CD         |                         $0.00 / month |                           $2.00 / month |
+| **Estimated Total**  | **≈ $1.00 / month** (≈ $12.00 / year) | **≈ $17.70 / month** (≈ $212.40 / year) |
 
 ### 7. Risk Assessment
 
