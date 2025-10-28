@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
-### Mục tiêu Tuần 6:
+### Mục tiêu tuần 6:
 
 - Củng cố kỹ năng thực hành với các dịch vụ dữ liệu và phân tích chính của AWS bao gồm Glue, Athena, QuickSight và kiến trúc DataLake trên S3.
 - Xây dựng kiến thức lý thuyết và thực hành về Amazon DynamoDB cho các khối lượng công việc NoSQL có thể mở rộng.

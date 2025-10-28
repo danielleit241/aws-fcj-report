@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
-### Mục tiêu Tuần 4:
+### Mục tiêu tuần 4:
 
 - Mục tiêu của tuần này là củng cố hiểu biết về các dịch vụ dữ liệu và AI của AWS — từ xây dựng kiến trúc **DataLake** có khả năng mở rộng đến làm việc với **cơ sở dữ liệu NoSQL serverless (DynamoDB)** và khám phá **quản lý vòng đời phát triển AI**.
 - Ngoài ra, tuần này còn nhằm nâng cao **kỹ năng dịch thuật kỹ thuật** và **kỹ năng giao tiếp** thông qua các lab thực hành, dịch blog và tham gia các sự kiện của AWS.

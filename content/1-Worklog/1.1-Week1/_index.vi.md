@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1.1. </b> "
 ---
 
-### Mục tiêu Tuần 1:
+### Mục tiêu tuần 1:
 
 - Hiểu các kiến thức cơ bản về **điện toán đám mây** và hạ tầng toàn cầu của AWS.
 - Học cách quản lý dịch vụ AWS thông qua **Management Console, CLI và SDK**.
