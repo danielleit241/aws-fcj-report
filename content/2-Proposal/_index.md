@@ -114,21 +114,25 @@ _Technical Requirements_
 
 ### 6. Budget Estimation
 
-You can view costs on [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=2f4e6708ef12a3310b2d3955aaf1d4563932d165).
+You can review the detailed cost estimation by downloading the following files:
+_📊 <a href="/files/2-Proposal/pricing.csv" download>CSV Pricing File</a>_
+_💾 <a href="/files/2-Proposal/pricing.json" download>JSON Pricing File</a>_
 
-| Service              |                          In Free Tier |                         After Free Tier |
-| -------------------- | ------------------------------------: | --------------------------------------: |
-| Amazon ECS (Fargate) |                         $0.00 / month |                           $8.00 / month |
-| Amazon API Gateway   |                         $0.00 / month |                           $2.00 / month |
-| Amazon S3            |                         $0.00 / month |                           $1.00 / month |
-| Amazon CloudWatch    |                         $0.00 / month |                           $2.00 / month |
-| Amazon Cognito       |                         $0.00 / month |                           $0.00 / month |
-| Amazon ECR           |                         $0.00 / month |                           $0.20 / month |
-| Amazon Route 53      |                         $1.00 / month |                           $1.00 / month |
-| AWS WAF              |                         $0.00 / month |                           $1.00 / month |
-| Amazon SNS           |                         $0.00 / month |                           $0.50 / month |
-| GitLab CI/CD         |                         $0.00 / month |                           $2.00 / month |
-| **Estimated Total**  | **≈ $1.00 / month** (≈ $12.00 / year) | **≈ $17.70 / month** (≈ $212.40 / year) |
+| Service                   |                            Monthly Cost |
+| ------------------------- | --------------------------------------: |
+| AWS Fargate (ECS)         |                          $17.30 / month |
+| Application Load Balancer |                          $18.98 / month |
+| Amazon API Gateway        |                           $2.50 / month |
+| Amazon Cognito            |                           $0.00 / month |
+| Amazon ECR                |                           $1.00 / month |
+| Amazon Route 53           |                           $0.54 / month |
+| AWS WAF                   |                           $7.20 / month |
+| Amazon CloudFront         |                           $2.00 / month |
+| AWS PrivateLink           |                          $10.49 / month |
+| Amazon S3                 |                           $0.34 / month |
+| **Estimated Total**       | **≈ $60.35 / month** (≈ $724.21 / year) |
+
+**Note:** The costs above are calculated based on AWS Pricing Calculator for the Asia Pacific (Singapore) region with assumptions for 100 monthly active users and basic resource requirements.
 
 ### 7. Risk Assessment
 

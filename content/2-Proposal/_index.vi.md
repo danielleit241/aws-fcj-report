@@ -120,21 +120,25 @@ _Dịch vụ AWS sử dụng_
 
 ### 6. Ước tính ngân sách
 
-_Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=2f4e6708ef12a3310b2d3955aaf1d4563932d165)_
+Bạn có thể xem chi tiết bảng dự toán chi phí bằng cách tải về các tệp sau:
+_📊 <a href="/files/2-Proposal/pricing.csv" download>Tệp định dạng CSV</a>_
+_💾 <a href="/files/2-Proposal/pricing.json" download>Tệp định dạng JSON</a>_
 
-| Dịch vụ              |                            Trong Free Tier |                        Sau khi hết Free Tier |
-| -------------------- | -----------------------------------------: | -------------------------------------------: |
-| Amazon ECS (Fargate) |                           0,00 USD / tháng |                             8,00 USD / tháng |
-| Amazon API Gateway   |                           0,00 USD / tháng |                             2,00 USD / tháng |
-| Amazon S3            |                           0,00 USD / tháng |                             1,00 USD / tháng |
-| Amazon CloudWatch    |                           0,00 USD / tháng |                             2,00 USD / tháng |
-| Amazon Cognito       |                           0,00 USD / tháng |                             0,00 USD / tháng |
-| Amazon ECR           |                           0,00 USD / tháng |                             0,20 USD / tháng |
-| Amazon Route 53      |                           1,00 USD / tháng |                             1,00 USD / tháng |
-| AWS WAF              |                           0,00 USD / tháng |                             1,00 USD / tháng |
-| Amazon SNS           |                           0,00 USD / tháng |                             0,50 USD / tháng |
-| GitLab CI/CD         |                           0,00 USD / tháng |                             2,00 USD / tháng |
-| **Tổng ước tính**    | **≈ 1,00 USD / tháng** (≈ 12,00 USD / năm) | **≈ 17,70 USD / tháng** (≈ 212,40 USD / năm) |
+| Dịch vụ                   |                                      Chi Phí |
+| ------------------------- | -------------------------------------------: |
+| AWS Fargate (ECS)         |                            17,30 USD / tháng |
+| Application Load Balancer |                            18,98 USD / tháng |
+| Amazon API Gateway        |                             2,50 USD / tháng |
+| Amazon Cognito            |                             0,00 USD / tháng |
+| Amazon ECR                |                             1,00 USD / tháng |
+| Amazon Route 53           |                             0,54 USD / tháng |
+| AWS WAF                   |                             7,20 USD / tháng |
+| Amazon CloudFront         |                             2,00 USD / tháng |
+| AWS PrivateLink           |                            10,49 USD / tháng |
+| Amazon S3                 |                             0,34 USD / tháng |
+| **Tổng ước tính**         | **≈ 60,35 USD / tháng** (≈ 724,21 USD / năm) |
+
+**Ghi chú:** Chi phí trên được tính toán dựa trên AWS Pricing Calculator cho khu vực Asia Pacific (Singapore) với giả định sử dụng cho 100 người dùng hoạt động hàng tháng và các tài nguyên cơ bản.
 
 ### 7. Đánh giá rủi ro
 
