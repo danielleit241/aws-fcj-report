@@ -83,8 +83,8 @@ _Dịch vụ AWS sử dụng_
 #### Các giai đoạn triển khai
 
 1. _Nghiên cứu và vẽ kiến trúc_: Nghiên cứu các mô hình microservices và thiết kế kiến trúc tổng thể trên AWS (bao gồm CloudFront, ECS Fargate, RDS, S3, API Gateway, Cognito) — (Tháng 1).
-2. _Tính toán chi phí và điều chỉnh giải pháp_: Sử dụng AWS Pricing Calculator để ước tính chi phí, tối ưu lựa chọn dịch vụ nhằm đảm bảo chi phí thấp và dễ triển khai cho người mới học — (Tháng 1–2).
-3. _Phát triển, kiểm thử, triển khai_: Xây dựng frontend (Next.js), backend (.NET), và AI service (FastAPI); kiểm thử tích hợp microservices, sau đó triển khai toàn bộ hệ thống lên AWS bằng ECS Fargate và thiết lập giám sát qua CloudWatch — (Tháng 2–3).
+2. _Tính toán chi phí và điều chỉnh giải pháp_: Sử dụng AWS Pricing Calculator để ước tính chi phí, tối ưu lựa chọn dịch vụ nhằm đảm bảo chi phí thấp và dễ triển khai cho người mới học — (Tháng 2–3).
+3. _Phát triển, kiểm thử, triển khai_: Xây dựng frontend (Next.js), backend (.NET), và AI service (FastAPI); kiểm thử tích hợp microservices, sau đó triển khai toàn bộ hệ thống lên AWS bằng ECS Fargate và thiết lập giám sát qua CloudWatch — (Tháng 3–4).
 
 #### Yêu cầu kỹ thuật
 
@@ -112,11 +112,11 @@ _Dịch vụ AWS sử dụng_
 ### 5. Lộ trình & Mốc triển khai
 
 - _Trước thực tập (Tháng 0)_: 1 tháng lên kế hoạch.
-- _Thực tập (Tháng 1–3)_:
+- _Thực tập (Tháng 1–4)_:
   - Tháng 1: Học AWS và nâng cấp kỹ năng lập trình.
   - Tháng 2: Thiết kế và điều chỉnh kiến trúc.
-  - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.
-- _Sau triển khai_: Nghiên cứu thêm về mobile và triển khai sau tháng thứ 4.
+  - Tháng 3-4: Triển khai, kiểm thử, đưa vào sử dụng.
+- _Sau triển khai_: Nghiên cứu thêm về mobile và triển khai sau tháng thứ 5.
 
 ### 6. Ước tính ngân sách
 
@@ -170,7 +170,6 @@ _Kế hoạch dự phòng_
 - **Quản lý tài chính trực quan:** Người dùng có thể xem biểu đồ chi tiêu, báo cáo tháng, và nhận gợi ý tiết kiệm dựa trên hành vi tiêu dùng.
 - **Trải nghiệm người dùng tối giản:** Giao diện web thân thiện, thiết kế hiện đại, tối ưu cho thiết bị di động và phù hợp với người mới quản lý tài chính.
 - **Hệ thống ổn định, dễ mở rộng:** Kiến trúc microservices giúp dễ dàng bổ sung tính năng mới như nhắc nhở chi tiêu, phân tích dự báo AI, hoặc mở rộng sang mobile app.
-- **Chi phí vận hành thấp:** Tận dụng Free Tier AWS và mô hình serverless để duy trì hệ thống với chi phí trung bình < 50 USD/tháng.
 - **Nâng cao kỹ năng nhóm phát triển:** Thành viên dự án tiếp cận thực tế với quy trình DevOps, triển khai CI/CD, và tối ưu ứng dụng trên nền tảng cloud.
 
 ### 9. Hạn chế của dự án
