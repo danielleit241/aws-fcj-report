@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4.6. </b> "
 ---
 
-# Bài thu hoạch “WORKSHOP KHOA HỌC DỮ LIỆU TRÊN AWS”
+# Bài thu hoạch “AWS Cloud Mastery Series #3”
 
 ### Mục Đích Của Sự Kiện
 

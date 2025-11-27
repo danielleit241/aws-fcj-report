@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4.5. </b> "
 ---
 
-# Report: “WORKSHOP: DATA SCIENCE ON AWS”
+# Report: “AWS Cloud Mastery Series #2”
 
 ### Event Objectives
 

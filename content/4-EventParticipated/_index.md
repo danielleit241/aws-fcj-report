@@ -58,9 +58,9 @@ During my internship, I participated in three events. Each one was a memorable e
 
 ### [Event 5](4.5-Event5/)
 
-&emsp;**Event Name:** DATA SCIENCE WORKSHOP ON AWS
+&emsp;**Event Name:** AWS Cloud Mastery Series #2
 
-&emsp;**Time:** 09:30, October 16, 2025
+&emsp;**Time:** 09:30, November 17, 2025
 
 &emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
 
@@ -70,9 +70,9 @@ During my internship, I participated in three events. Each one was a memorable e
 
 ### [Event 6](4.6-Event6/)
 
-&emsp;**Event Name:** DATA SCIENCE WORKSHOP ON AWS
+&emsp;**Event Name:** AWS Cloud Mastery Series #3
 
-&emsp;**Time:** 09:30, October 16, 2025
+&emsp;**Time:** 08:30, November 29, 2025
 
 &emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
 
