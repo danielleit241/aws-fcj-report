@@ -6,208 +6,108 @@ chapter: false
 pre: " <b> 4.4. </b> "
 ---
 
-# Bài thu hoạch “AWS Cloud Mastery Series #1”
+# Bài thu hoạch “AWS Cloud Mastery Series #1: GENERATIVE AI, RAG & AWS AGENTIC AI”
 
 ### Mục Đích Của Sự Kiện
 
-- Chia sẻ các dịch vụ AI trên AWS
-- Hướng dẫn triển khai mô hình AI thông qua Amazon SageMaker
-- Chia sẻ cách deploy mô hình AI và truy cập thông qua API
+- Nắm vững nghệ thuật **Prompt Engineering** để điều khiển mô hình hiệu quả.
+- Khám phá hệ sinh thái các dịch vụ AI có sẵn (Pretrained AI Services) trên AWS.
+- Hiểu chuyên sâu về quy trình xây dựng ứng dụng AI với **RAG (Retrieval-Augmented Generation)**.
+- Cập nhật xu hướng mới nhất về **Agentic AI** và cách đưa AI Agent từ bản thử nghiệm (POC) ra thực tế (Production) với **Amazon Bedrock AgentCore**.
+- Tiếp cận Framework **Pipecat** để xây dựng trợ lý ảo giao tiếp bằng giọng nói thời gian thực.
 
 ### Danh Sách Diễn Giả
 
-- **Văn Hoàng Kha** - Cloud Solutions Architec AWS User Group Leader
-- **Bạch Doãn Vương** - Cloud Develops Engineer AWS Community Builder
+- **Lâm Tuấn Kiệt** - Sr DevOps Engineer (FPT Software)
+- **Danh Hoàng Hiếu Nghi** - AI Engineer (Renova Cloud)
+- **Đinh Lê Hoàng Anh** - Cloud Engineer Trainee (First Cloud AI Journey)
 
 ### Nội Dung Nổi Bật
 
-#### **Giới thiệu & Tầm quan trọng của Cloud trong Data Science**
+#### **1. Prompt Engineering & Foundation Models (Nền Tảng Cốt Lõi)**
 
-- Trình bày vai trò của **điện toán đám mây (Cloud Computing)** trong việc hỗ trợ xử lý dữ liệu, huấn luyện và triển khai mô hình AI quy mô lớn.
-- So sánh **Cloud vs. On-premise**:
+Trước khi đi vào các dịch vụ phức tạp, sự kiện nhấn mạnh tầm quan trọng của việc hiểu và giao tiếp với các mô hình nền tảng (Foundation Models) thông qua Amazon Bedrock.
 
-  - Cloud: khả năng mở rộng linh hoạt, triển khai nhanh, tiết kiệm chi phí vận hành, dễ dàng tích hợp.
-  - On-premise: tốn kém chi phí đầu tư ban đầu, khó mở rộng, bảo trì phức tạp.
+- **Zero-shot / Few-shot Prompting:** Kỹ thuật đưa ra yêu cầu trực tiếp hoặc cung cấp ví dụ mẫu để định hướng câu trả lời.
+- **Chain of Thought (CoT):** Kỹ thuật yêu cầu mô hình "suy nghĩ từng bước" (Step-by-step), giúp giải quyết các bài toán logic phức tạp chính xác hơn.
 
-- Cloud (đặc biệt là **AWS**) mang lại nền tảng mạnh mẽ cho **Data Science pipeline** — từ thu thập, lưu trữ, xử lý dữ liệu, huấn luyện, cho đến triển khai mô hình AI.
+#### **2. Các Dịch Vụ AI Được Huấn Luyện Trước (AWS AI Services)**
 
-#### **Các Layer AI Trên AWS**
+Giới thiệu nhóm các API "mì ăn liền" giúp tích hợp tính năng thông minh mà không cần training model:
 
-AWS chia hệ sinh thái AI thành **3 tầng (layers)**, giúp người dùng lựa chọn mức độ quản lý phù hợp với năng lực và mục tiêu của mình:
+- **Xử lý hình ảnh/video:** Amazon Rekognition.
+- **Xử lý ngôn ngữ:** Amazon Translate, Comprehend, Textract (OCR).
+- **Âm thanh:** Amazon Polly (Text-to-Speech), Transcribe (Speech-to-Text).
 
-**1. AI Services (Fully Managed Layer)**
+#### **3. RAG - Retrieval Augmented Generation**
 
-> _Dành cho người dùng muốn ứng dụng AI mà không cần kiến thức chuyên sâu về Machine Learning._
+Quy trình giúp AI trả lời dựa trên dữ liệu doanh nghiệp, giảm ảo giác:
 
-- Các dịch vụ AI sẵn có, đã được huấn luyện bởi AWS.
-- Người dùng chỉ cần gọi API là có thể sử dụng ngay trong ứng dụng.
-- **Ví dụ:**
+- **Embeddings:** Sử dụng _Amazon Titan Text Embeddings V2_ để vector hóa văn bản, phục vụ tìm kiếm ngữ nghĩa.
+- **Knowledge Bases for Amazon Bedrock:** Quản lý trọn gói quy trình từ Chunking -> Vector Store -> Retrieval -> Generation.
 
-  - **Amazon Comprehend:** Phân tích ngôn ngữ tự nhiên (NLP)
-  - **Amazon Translate:** Dịch máy học đa ngôn ngữ
-  - **Amazon Textract:** Trích xuất dữ liệu từ tài liệu, hóa đơn
-  - **Amazon Rekognition:** Nhận diện hình ảnh và video
-  - **Amazon Polly:** Chuyển văn bản thành giọng nói
-  - **Amazon Bedrock:** Truy cập các mô hình nền tảng (Foundation Models) như Claude, Titan, Mistral...
+#### **4. Sự Tiến Hóa Lên Agentic AI (Kỷ Nguyên AI Tác Vụ)**
 
-👉 **Lợi ích:** Triển khai nhanh, không cần huấn luyện mô hình, chi phí linh hoạt theo nhu cầu sử dụng.
+Sự kiện giới thiệu bước tiến hóa tiếp theo của GenAI:
 
-**2. ML Services (Semi-managed Layer)**
+1.  **GenAI Assistants:** Tuân theo quy tắc, tự động hóa các tác vụ lặp lại.
+2.  **GenAI Agents:** Hướng tới mục tiêu cụ thể (Goal-oriented), xử lý chuỗi tác vụ rộng hơn.
+3.  **Agentic AI Systems:** Hệ thống đa tác vụ (Multi-agent), hoạt động hoàn toàn tự chủ (Fully autonomous) với sự giám sát tối thiểu của con người.
 
-> _Dành cho Data Scientist, ML Engineer muốn xây dựng, huấn luyện và triển khai mô hình ML một cách tùy chỉnh hơn._
+**Thách thức "Hố sâu ngăn cách" (The Prototype to Production Chasm):**
+Việc đưa Agent từ bản thử nghiệm (POC) ra thực tế gặp nhiều trở ngại lớn về:
 
-- **Amazon SageMaker** là trung tâm của tầng này: cung cấp bộ công cụ đầy đủ để **build – train – deploy** mô hình Machine Learning.
-- Các tính năng nổi bật:
+- **Performance & Scalability:** Hiệu năng và khả năng mở rộng.
+- **Security & Governance:** Bảo mật và quản trị dữ liệu.
+- **Complexity:** Khó khăn trong việc quản lý bộ nhớ (Memory), kiểm soát quyền truy cập và kiểm toán (Audit) các tương tác của Agent.
 
-  - **Data Wrangler:** Làm sạch và xử lý dữ liệu trực quan.
-  - **Feature Store:** Quản lý đặc trưng (features) dùng cho nhiều mô hình.
-  - **AutoML (SageMaker Autopilot):** Tự động huấn luyện mô hình.
-  - **Model Registry & Monitoring:** Theo dõi và quản lý mô hình sau khi deploy.
+#### **5. Amazon Bedrock AgentCore: Giải Pháp Đưa Agent Ra Thị Trường**
 
-👉 **Lợi ích:** Toàn quyền kiểm soát pipeline ML, có thể tùy chỉnh thuật toán, môi trường huấn luyện, và quy trình triển khai.
+Để giải quyết các thách thức trên, AWS giới thiệu **AgentCore** - nền tảng toàn diện để xây dựng và vận hành Agent:
 
-**3. AI Infrastructure (Self-managed Layer)**
+- **Các thành phần chính:**
+  - **Runtime & Memory:** Môi trường chạy và khả năng "ghi nhớ" lịch sử tương tác/học tập của Agent.
+  - **Identity & Gateway:** Quản lý định danh và cổng kết nối an toàn.
+  - **Code Interpreter:** Cho phép Agent tự viết và chạy code để xử lý dữ liệu phức tạp.
+  - **Observability:** Khả năng quan sát, theo dõi hoạt động của Agent.
+- **Lợi ích:** Giúp lập trình viên tập trung vào logic nghiệp vụ thay vì lo lắng về hạ tầng bảo mật hay cách lưu trữ ngữ cảnh hội thoại.
 
-> _Dành cho tổ chức hoặc chuyên gia muốn tự quản lý toàn bộ hạ tầng AI/ML để tối ưu chi phí hoặc hiệu năng._
+#### **6. Pipecat: Framework Cho AI Voice Thời Gian Thực**
 
-- Người dùng có thể xây dựng môi trường huấn luyện bằng cách kết hợp các dịch vụ hạ tầng cơ bản của AWS:
+Một framework mã nguồn mở (Open Source) thú vị được giới thiệu để xây dựng các trợ lý ảo đa phương thức (Multimodal):
 
-  - **Amazon EC2 / EC2 GPU Instances (P5, G6, Inferentia):** Huấn luyện mô hình tùy chỉnh quy mô lớn.
-  - **Amazon EKS / ECS:** Chạy các workload ML trong container hoặc Kubernetes.
-  - **AWS Lambda:** Xử lý dữ liệu hoặc inference nhỏ gọn, serverless.
-  - **Amazon S3 / EFS:** Lưu trữ dữ liệu và mô hình.
+- **Đặc điểm:** Tối ưu hóa cho các tác vụ thời gian thực (Real-time) và luồng hội thoại (Streaming).
+- **Cơ chế hoạt động (Pipeline):**
+  1.  **WebRTC Input:** Nhận tín hiệu âm thanh từ người dùng.
+  2.  **STT (Speech-to-Text):** Chuyển giọng nói thành văn bản.
+  3.  **LLM Processing:** Xử lý ngôn ngữ tự nhiên để sinh câu trả lời.
+  4.  **TTS (Text-to-Speech):** Chuyển văn bản thành giọng nói.
+  5.  **Output:** Phát lại âm thanh cho người dùng với độ trễ cực thấp.
 
-👉 **Lợi ích:** Linh hoạt tối đa, kiểm soát toàn bộ quá trình huấn luyện, nhưng yêu cầu kiến thức kỹ thuật cao hơn.
+### Trải nghiệm chi tiết trong Event
 
-#### Các Dịch Vụ AI Phổ Biến Của AWS Hỗ Trợ Sinh Viên Trong Quá Trình Train Model
+Tham gia buổi workshop giúp tôi mở rộng tầm mắt từ những khái niệm cơ bản đến những công nghệ tiên tiến nhất đang định hình tương lai của AI.
 
-**1. Amazon SageMaker**
+#### 1. Sự chuyển dịch từ "Hỏi - Đáp" sang "Hành động" (Agentic AI)
 
-- Môi trường phát triển tích hợp (SageMaker Studio) cho toàn bộ quy trình ML:
+Điều ấn tượng nhất với tôi là khái niệm **Agentic AI**. Trước đây tôi chỉ nghĩ AI dùng để chat hoặc tóm tắt văn bản. Nhưng qua phần giới thiệu về **AgentCore**, tôi thấy tương lai là các "nhân viên ảo" có thể tự lên kế hoạch, tự dùng công cụ (như trình duyệt web, viết code) để giải quyết công việc phức tạp mà không cần con người cầm tay chỉ việc.
 
-  - Chuẩn bị dữ liệu
-  - Huấn luyện mô hình
-  - Theo dõi kết quả
-  - Triển khai endpoint phục vụ API inference
+#### 2. Giải quyết bài toán "Production"
 
-- Hỗ trợ AutoML, GPU training, model monitoring và CI/CD cho mô hình AI.
+Tôi rất tâm đắc với phần chia sẻ về "Hố sâu ngăn cách" giữa POC và Production. Các công cụ như **Amazon Bedrock AgentCore** thực sự là chìa khóa để doanh nghiệp dám tin tưởng giao việc cho AI, nhờ vào các lớp bảo mật (Identity) và kiểm soát (Observability) chặt chẽ mà AWS cung cấp.
 
-**2. Amazon Comprehend**
+#### 3. Tiềm năng của Voice AI với Pipecat
 
-- Dịch vụ NLP giúp phân tích, hiểu và phân loại ngôn ngữ tự nhiên.
+Phần demo về **Pipecat** rất thú vị. Việc kết hợp WebRTC và các mô hình AI để tạo ra một cuộc hội thoại trôi chảy, độ trễ thấp mở ra vô vàn ứng dụng thực tế như: Tổng đài ảo thông minh, Trợ lý phỏng vấn, hay Giáo viên ngoại ngữ AI.
 
-- **Chức năng chính:**
+### Kết Luận
 
-  - Phân tích cảm xúc (Sentiment Analysis)
-  - Nhận dạng thực thể (Entity Recognition)
-  - Phân loại văn bản (Text Classification)
-  - Gắn nhãn dữ liệu tự động
-  - Phát hiện ngôn ngữ
+Buổi workshop **“Generative AI & Agentic AI on AWS”** là một bức tranh toàn cảnh giá trị:
 
-- **Trường hợp sử dụng thực tế:**
-
-  - Xử lý tài liệu thông minh
-  - Phân tích mail hàng loạt để phát hiện phản hồi tích cực/tiêu cực
-  - Phân tích cảm xúc và tâm lý khách hàng
-  - Hỗ trợ trung tâm liên lạc (Contact Center Analytics)
-  - Xác thực và trích xuất thông tin cá nhân
-
-**3. Amazon Translate**
-
-- Dịch vụ dịch máy học (Neural Machine Translation).
-- Hỗ trợ hơn 75 ngôn ngữ với độ chính xác cao và dễ tích hợp.
-- Ứng dụng:
-
-  - Làm website đa ngôn ngữ
-  - Dịch nội dung tự động trong ứng dụng
-  - Hỗ trợ chatbot và phân tích dữ liệu đa ngôn ngữ
-
-**4. Amazon Textract**
-
-- Tự động trích xuất văn bản và dữ liệu có cấu trúc từ hình ảnh, tài liệu, hoặc biểu mẫu.
-- Ứng dụng trong các quy trình như: số hóa hồ sơ, xử lý hóa đơn, tự động nhập dữ liệu vào hệ thống.
-
-#### Tổng Quan Data Science Pipeline Trên AWS
-
-1. **Thu thập & lưu trữ dữ liệu:** Amazon S3, AWS Data Exchange
-2. **Tiền xử lý dữ liệu:** AWS Glue, Lambda, Athena
-3. **Huấn luyện mô hình:** SageMaker (train, tune, evaluate)
-4. **Triển khai mô hình:** SageMaker Endpoint / Lambda + API Gateway
-5. **Giám sát & tối ưu:** CloudWatch, Model Monitor
-
-#### **Demo 1: Thiết kế Workflow AI Training bằng Giao Diện Kéo - Thả (No-Code/Low-Code)**
-
-- **Mục tiêu:** Giới thiệu cách xây dựng quy trình huấn luyện mô hình AI mà không cần viết nhiều code.
-- **Công cụ sử dụng:** Amazon SageMaker Studio / SageMaker Canvas
-- **Nội dung trình diễn:**
-
-  1. Chuẩn bị dataset và tải lên Amazon S3.
-  2. Dùng giao diện kéo-thả của SageMaker để:
-
-     - Chọn nguồn dữ liệu, thuật toán huấn luyện và tham số.
-     - Thiết kế toàn bộ pipeline gồm bước làm sạch dữ liệu, training, validation và deployment.
-
-  3. Quan sát trực quan tiến trình training và kết quả mô hình (accuracy, confusion matrix, metrics, v.v.).
-
-- **Thông điệp chính:** Sinh viên, nhà phát triển có thể nhanh chóng tạo workflow AI mà không cần viết code phức tạp — giúp rút ngắn thời gian nghiên cứu và thử nghiệm mô hình.
-
-#### **Demo 2: Triển khai AI Service và Truy Cập Qua API/Website**
-
-- **Mục tiêu:** Giới thiệu cách deploy mô hình AI để người dùng có thể truy cập và sử dụng thực tế.
-- **Công cụ sử dụng:** Amazon SageMaker Endpoint, API Gateway, và Lambda.
-- **Nội dung trình diễn:**
-
-  1. Deploy mô hình AI đã huấn luyện lên SageMaker Endpoint.
-  2. Tích hợp endpoint với API Gateway để tạo REST API công khai.
-  3. Tạo đường dẫn web hoặc API URL để người dùng có thể gửi yêu cầu (ví dụ: nhập câu văn để phân tích cảm xúc hoặc dịch ngôn ngữ).
-  4. Minh họa cách hiển thị kết quả trực quan (UI demo hoặc Postman/API test).
-
-- **Thông điệp chính:** Cho thấy cách AWS hỗ trợ triển khai mô hình AI từ giai đoạn nghiên cứu đến ứng dụng thực tế — dễ dàng chia sẻ, mở rộng, và thương mại hóa.
-
-#### Thảo Luận: Hiệu Năng & Chi Phí (Cloud vs. On-premise)
-
-| Tiêu chí                    | Cloud (AWS)                             | On-premise                     |
-| --------------------------- | --------------------------------------- | ------------------------------ |
-| **Khả năng mở rộng**        | Dễ dàng mở rộng tài nguyên theo nhu cầu | Giới hạn phần cứng cố định     |
-| **Chi phí**                 | Trả theo mức sử dụng (Pay-as-you-go)    | Chi phí đầu tư ban đầu cao     |
-| **Triển khai**              | Tự động, nhanh chóng                    | Thủ công, tốn thời gian        |
-| **Bảo trì**                 | AWS quản lý                             | Người dùng tự chịu trách nhiệm |
-| **Thích hợp cho sinh viên** | ✅ Có Free Tier, dễ học và thử nghiệm   | ❌ Khó tiếp cận, tốn kém       |
-
-#### Kết Luận
-
-- AWS cung cấp **hệ sinh thái AI toàn diện từ tầng hạ tầng đến tầng ứng dụng**, phù hợp với mọi đối tượng — từ sinh viên mới học AI đến doanh nghiệp triển khai quy mô lớn.
-
-### Trải nghiệm trong event
-
-Tham gia workshop **“AI Services on AWS for Data Science”** là một trải nghiệm rất bổ ích, giúp tôi hiểu rõ hơn về **vai trò của Cloud trong Data Science** và cách AWS hỗ trợ huấn luyện, triển khai, và truy cập mô hình AI.
-
-#### Học hỏi từ các diễn giả có chuyên môn cao
-
-- Diễn giả giới thiệu **tầm quan trọng của Cloud** trong xử lý dữ liệu và huấn luyện mô hình.
-- Hiểu rõ **3 layer AI trên AWS**: AI-managed services, ML services (SageMaker), và AI frameworks.
-
-#### Trải nghiệm kỹ thuật thực tế
-
-- **Demo 1:** Thiết kế workflow AI bằng cách **kéo thả trong SageMaker Canvas** để train model mà không cần code.
-- **Demo 2:** **Triển khai mô hình AI** thành service có thể truy cập qua **API hoặc liên kết** thực tế.
-
-#### Ứng dụng công cụ hiện đại
-
-- Tìm hiểu các dịch vụ AI nổi bật: **Amazon Comprehend**, **Translate**, và **Textract**.
-- Hiểu cách các dịch vụ này hỗ trợ **NLP, dịch tự động**, và **trích xuất dữ liệu thông minh** trong nhiều ngữ cảnh.
-
-#### Kết nối và trao đổi
-
-- Giao lưu với chuyên gia và sinh viên cùng quan tâm đến **AI & Cloud**.
-- Trao đổi về **chi phí, hiệu năng (Cloud vs On-premise)** và cách tối ưu sử dụng SageMaker.
-
-#### Bài học rút ra
-
-- Cloud là **nền tảng trọng yếu** trong quy trình Data Science hiện đại.
-- AWS cung cấp đầy đủ công cụ cho mọi cấp độ AI — từ không code đến tự triển khai.
-- Hiểu rõ hơn **cách đưa mô hình AI vào sản phẩm thực tế** qua các dịch vụ AWS.
+- **Hiện tại:** Chúng ta có **RAG** và **Prompt Engineering** để làm việc hiệu quả với dữ liệu.
+- **Tương lai:** Chúng ta đang bước vào kỷ nguyên **Agentic AI**, nơi các hệ thống tự chủ (Autonomous Agents) sẽ thay đổi cách vận hành doanh nghiệp.
+- **Công cụ:** Với hệ sinh thái AWS (Bedrock, AgentCore) và các Framework (Pipecat, LangChain), rào cản kỹ thuật đang dần được xóa bỏ để các kỹ sư có thể hiện thực hóa những ý tưởng đột phá.
 
 #### Một số hình ảnh khi tham gia sự kiện
 
-![](/images/4-EventParticipated/event4-3-1.png)
+<!-- ![](/images/4-EventParticipated/event4-3-1.png) -->
