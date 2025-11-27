@@ -19,7 +19,7 @@ pre: " <b> 4.4. </b> "
 ### Danh Sách Diễn Giả
 
 - **Lâm Tuấn Kiệt** - Sr DevOps Engineer (FPT Software)
-- **Danh Hoàng Hiếu Nghi** - AI Engineer (Renova Cloud)
+- **Danh Hoàng Hiếu Nghị** - AI Engineer (Renova Cloud)
 - **Đinh Lê Hoàng Anh** - Cloud Engineer Trainee (First Cloud AI Journey)
 
 ### Nội Dung Nổi Bật
