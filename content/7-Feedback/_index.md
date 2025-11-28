@@ -6,40 +6,27 @@ chapter: false
 pre: " <b> 7. </b> "
 ---
 
-> Here, you can freely share your personal opinions about your experience participating in the First Cloud Journey program. This will help the FCJ team improve any shortcomings based on the following aspects:
-
 ### Overall Evaluation
 
 **1. Working Environment**  
-The working environment is very friendly and open. FCJ members are always willing to help whenever I encounter difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus better. However, I think it would be nice to have more social gatherings or team bonding activities to strengthen relationships.
+The working environment is professional; members of the FCJ community are very friendly and open. In particular, the FCJ seniors as well as fellow FCJ members in my cohort were always ready to support and answer questions when my team and I faced difficulties in designing and using AWS services. Because of that help, I realized my mistakes earlier. Instead of having to pay a large amount of money [for cloud costs], that assistance helped me gain more knowledge with the only trade-off being the questions asked. The workspace is neat and comfortable, and the learning spirit of my peers motivated me to be more focused and determined with the goals I had set.
+
+However, I think that next time, if possible, there should be a fixed schedule so that team members can come to the office more easily instead of competing [for slots] as is currently the case. This would allow everyone in the group to access and exchange ideas directly more easily, as some members did not have time to get to know each other outside and could only interact online initially.
 
 **2. Support from Mentor / Team Admin**  
-The mentor provides very detailed guidance, explains clearly when I don’t understand, and always encourages me to ask questions. The admin team supports administrative tasks, provides necessary documents, and creates favorable conditions for me to work effectively. I especially appreciate that the mentor allows me to try and solve problems myself instead of just giving the answer.
+The Mentors are extremely dedicated and conscientious; not only is the quality high, but the number of Mentors is also significant, and they are ready to support us extensively. Regardless of the time—sometimes even at 2-3 AM—they still provided feedback so we could make edits in time for the deadline. Not stopping at support, they also shared useful knowledge accumulated through their work experience, which are invaluable lessons that FCJ brought to me. What I like about them is that they spark curiosity regarding the mistakes I made during the learning and working process. Instead of giving the answer, they guided me to official documentation so I could find the answer myself and deeply ingrain those mistakes so as not to repeat them next time.
 
 **3. Relevance of Work to Academic Major**  
-The tasks I was assigned align well with the knowledge I learned at university, while also introducing me to new areas I had never encountered before. This allowed me to both strengthen my foundational knowledge and gain practical skills.
+The work I performed was like the missing puzzle piece from my studies at university. Developing products locally is different from developing a product that is more user-oriented, which requires handling more issues, especially regarding security as well as software consistency. Doing harder and more advanced tasks in my field of study has helped me no longer feel "afraid" of working with them. Thanks to this, I both consolidated my programming knowledge and learned DevOps skills and other soft skills such as teamwork, communication, etc., which has helped me develop significantly in the present and even for the future.\
 
 **4. Learning & Skill Development Opportunities**  
-During the internship, I learned many new skills such as using project management tools, teamwork skills, and professional communication in a corporate environment. The mentor also shared valuable real-world experiences that helped me better plan my career path.
+During the internship, I learned many new skills, not only regarding my major but also other soft skills. I got to work with new people, with people not from the same major, thereby gaining different perspectives of each major as well as skills through sharing among group members. I attended many cool events hosted by seniors with extensive experience in large corporations, learning how they apply AI to work as well as other advanced programming skills, helping me better orient the career I am pursuing.
 
 **5. Company Culture & Team Spirit**  
-The company culture is very positive: everyone respects each other, works seriously but still keeps things enjoyable. When there are urgent projects, everyone works together and supports one another regardless of their position. This made me feel like a real part of the team, even as an intern.
-
-**6. Internship Policies / Benefits**  
-The company provides an internship allowance and offers flexible working hours when needed. In addition, having the opportunity to join internal training sessions is a big plus.
+The company culture is very positive; everyone supports each other enthusiastically with a primary spirit of learning and sharing knowledge. During work, everyone is extremely focused, but there are also times that are extremely fun. When deadlines approach, everyone strives together, supporting each other regardless of position; those who are finished help those who are not, and those who know help those who don't. As long as there is a problem, everyone will support solving that problem as quickly and effectively as possible. This helped me easily integrate with everyone, even just in the role of an intern.
 
 ---
 
 ### Additional Questions
 
-- What did you find **most satisfying** during your internship?
-- What do you think the company **should improve** for future interns?
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?
-
----
-
-### Suggestions & Expectations
-
-- Do you have any suggestions to improve the internship experience?
-- Would you like to continue this program in the future?
-- Any other comments (free sharing):
+The thing I am most satisfied with during the internship period is the spirit of the FCJers, a spirit ready to share everything within their knowledge, leaving no one behind. Such a spirit helped me partly understand that FCJ is not just a program, but an entire community eager to learn, ready to share new knowledge with interns—not just me, but many others who have not yet had access to it.
