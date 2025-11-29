@@ -6,34 +6,34 @@ chapter: false
 pre: " <b> 5.3.2 </b> "
 ---
 
-#### Mục tiêu
+#### Goal
 
-Trước khi AI có thể trả lời, dữ liệu phải được nạp vào kho lưu trữ vector (Vector Store). Chúng ta sẽ thực hiện quy trình kiểm tra "Trước và Sau" để thấy rõ dữ liệu được Bedrock tự động mã hóa và lưu trữ vào OpenSearch như thế nào.
+Before the AI can answer, data must be ingested into the vector storage (Vector Store). We will perform a "Before and After" check to clearly see how Bedrock automatically encodes and stores data into OpenSearch.
 
-#### Các bước thực hiện
+#### Implementation Steps
 
-**Bước 1: Kiểm tra Vector Store (Trạng thái Rỗng)**
+**Step 1: Check Vector Store (Empty State)**
 
-Chúng ta sẽ truy cập trực tiếp vào Amazon OpenSearch Serverless để xác nhận rằng chưa có dữ liệu nào tồn tại.
+We will directly access Amazon OpenSearch Serverless to confirm that no data exists yet.
 
-1.  Tại thanh tìm kiếm AWS Console, gõ `OpenSearch` và chọn dịch vụ **Amazon OpenSearch Service**.
-2.  Tại menu bên trái, mục **Serverless**, chọn **Collections**.
-3.  Click vào tên Collection vừa được Bedrock tự động tạo (thường có tên dạng `bedrock-knowledge-base-...`).
+1.  In the AWS Console search bar, type `OpenSearch` and select **Amazon OpenSearch Service**.
+2.  In the left menu, under **Serverless**, select **Collections**.
+3.  Click on the Collection name newly created by Bedrock (usually named like `bedrock-knowledge-base-...`).
 
-> ![Ảnh minh họa danh sách Collections trong OpenSearch](link_anh_opensearch_collections)
+> ![Image illustrating Collections list in OpenSearch](link_anh_opensearch_collections)
 
-4.  Tại trang chi tiết Collection, nhấn nút **Open Dashboard** (nằm ở góc trên bên phải màn hình).
-    - _Lưu ý:_ Nếu được hỏi đăng nhập, hãy sử dụng thông tin đăng nhập AWS hiện tại.
+4.  On the Collection details page, click the **Open Dashboard** button (located at the top right of the screen).
+    - _Note:_ If asked to log in, use your current AWS credentials.
 
-> ![Ảnh minh họa nút Open Dashboard trong trang chi tiết Collection](link_anh_open_dashboard_btn)
+> ![Image illustrating Open Dashboard button on Collection details page](link_anh_open_dashboard_btn)
 
-5.  Trong giao diện OpenSearch Dashboard:
-    - Click biểu tượng **Menu (3 gạch ngang)** ở góc trên cùng bên trái.
-    - Chọn **Dev Tools** (thường nằm ở dưới cùng danh sách menu).
+5.  In the OpenSearch Dashboard interface:
+    - Click the **Menu (3 horizontal lines)** icon in the top left corner.
+    - Select **Dev Tools** (usually located at the bottom of the menu list).
 
-> ![Ảnh minh họa menu chọn Dev Tools trong Dashboard](link_anh_menu_devtools)
+> ![Image illustrating Dev Tools selection menu in Dashboard](link_anh_menu_devtools)
 
-6.  Tại khung **Console** (bên trái), nhập lệnh sau để kiểm tra dữ liệu:
+6.  In the **Console** pane (on the left), enter the following command to check data:
     ```
     GET _search
     {
@@ -42,34 +42,34 @@ Chúng ta sẽ truy cập trực tiếp vào Amazon OpenSearch Serverless để 
       }
     }
     ```
-7.  Click nút **Play (Run)** (hình tam giác nhỏ bên cạnh dòng lệnh).
-8.  **Kết quả:** Quan sát khung bên phải, phần `hits` -> `total` -> `value` là **0**.
+7.  Click the **Play (Run)** button (small triangle next to the command line).
+8.  **Result:** Observe the right pane, `hits` -> `total` -> `value` is **0**.
 
-> ![Ảnh minh họa kết quả Dev Tools trả về giá trị 0](link_anh_devtools_empty)
+> ![Image illustrating Dev Tools result returning 0 value](link_anh_devtools_empty)
 
-**Bước 2: Đồng bộ dữ liệu**
+**Step 2: Sync Data**
 
-Bây giờ chúng ta sẽ kích hoạt Bedrock để đọc file từ S3 và đổ vào OpenSearch.
+Now we will trigger Bedrock to read files from S3 and load them into OpenSearch.
 
-1.  Quay lại tab **Amazon Bedrock** trên trình duyệt.
-2.  Chọn mục **Knowledge bases** ở menu trái và click vào tên KB bạn vừa tạo.
-3.  Kéo xuống phần **Data source**, đánh dấu chọn (tick) vào ô tròn cạnh tên data source (`s3-datasource`).
-4.  Click nút **Sync** (Màu cam).
+1.  Return to the **Amazon Bedrock** tab on the browser.
+2.  Select **Knowledge bases** in the left menu and click on the KB name you just created.
+3.  Scroll down to the **Data source** section, check the box (tick) next to the data source name (`s3-datasource`).
+4.  Click the **Sync** button (Orange).
 
-> ![Ảnh minh họa chọn Data Source và nhấn nút Sync](link_anh_click_sync_btn)
+> ![Image illustrating selecting Data Source and clicking Sync button](link_anh_click_sync_btn)
 
-5.  **Chờ đợi:**
-    - Quá trình này sẽ mất từ **5 - 10 phút** tùy thuộc vào dung lượng tài liệu mẫu.
-    - Hãy đợi đến khi cột **Sync status** chuyển từ `Syncing` sang `Available`.
+5.  **Wait:**
+    - This process will take **5 - 10 minutes** depending on the sample document size.
+    - Wait until the **Sync status** column changes from `Syncing` to `Available`.
 
-> ![Ảnh minh họa trạng thái Sync thành công Available](link_anh_sync_status_available)
+> ![Image illustrating successful Sync status Available](link_anh_sync_status_available)
 
-**3: Kiểm tra lại Vector Store (Có dữ liệu)**
+**Step 3: Re-check Vector Store (Populated)**
 
-Sau khi Bedrock báo Sync xong, chúng ta quay lại kho chứa để kiểm chứng dữ liệu đã được nạp thành công.
+After Bedrock reports Sync completion, we return to the repository to verify the data has been successfully ingested.
 
-1.  Chuyển sang tab **OpenSearch Dashboard** (vẫn đang mở ở Bước 1).
-2.  Tại **Dev Tools**, nhấn nút **Play (Run)** một lần nữa với lệnh cũ:
+1.  Switch to the **OpenSearch Dashboard** tab (still open from Step 1).
+2.  In **Dev Tools**, click the **Play (Run)** button again with the old command:
     ```
     GET _search
     {
@@ -78,10 +78,10 @@ Sau khi Bedrock báo Sync xong, chúng ta quay lại kho chứa để kiểm ch�
       }
     }
     ```
-3.  **Kết quả:**
-    - Phần `hits` -> `total` -> `value` sẽ lớn hơn **0** (ví dụ: 10, 20... tùy số lượng đoạn văn bản).
-    - Bạn sẽ thấy chi tiết các vector (dãy số) và nội dung văn bản (text) được lưu trong mục `_source`.
+3.  **Result:**
+    - The `hits` -> `total` -> `value` section will be greater than **0** (e.g., 10, 20... depending on the number of text chunks).
+    - You will see details of the vectors (number arrays) and text content stored in the `_source` field.
 
-> ![Ảnh minh họa kết quả Dev Tools hiển thị dữ liệu đã được sync](link_anh_devtools_populated)
+> ![Image illustrating Dev Tools result showing synced data](link_anh_devtools_populated)
 
-**Chúc mừng!** Bạn đã hoàn thành việc xây dựng "bộ não" cho AI. Dữ liệu đã được mã hóa và nằm an toàn trong Vector Database, sẵn sàng để truy xuất.
+**Congratulations!** You have completed building the "brain" for the AI. The data has been encoded and sits safely in the Vector Database, ready for retrieval.

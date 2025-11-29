@@ -6,94 +6,99 @@ chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
-When you create an interface or gateway endpoint, you can attach an endpoint policy to it that controls access to the service to which you are connecting. A VPC endpoint policy is an IAM resource policy that you attach to an endpoint. If you do not attach a policy when you create an endpoint, AWS attaches a default policy for you that allows full access to the service through the endpoint.
+#### Goal
 
-You can create a policy that restricts access to specific S3 buckets only. This is useful if you only want certain S3 Buckets to be accessible through the endpoint.
+Many people think that working with Cloud is just about dry command-line screens. In this section, we will prove the opposite.
 
-In this section you will create a VPC endpoint policy that restricts access to the S3 bucket specified in the VPC endpoint policy.
+You will turn a few lines of Python code into a professional **Chatbot Web Interface (GUI)**, friendly to end-users (similar to the ChatGPT interface) in just a few minutes.
 
-![endpoint diagram](/images/5-Workshop/5.5-Policy/s3-bucket-policy.png)
+We will use:
 
-#### Connect to an EC2 instance and verify connectivity to S3
+- **Backend:** AWS CloudShell.
+- **Frontend:** Streamlit.
+- **AI Model:** **Claude 3.5 Sonnet**.
 
-1. Start a new AWS Session Manager session on the instance named Test-Gateway-Endpoint. From the session, verify that you can list the contents of the bucket you created in Part 1: Access S3 from VPC:
+#### Implementation Steps
 
+**Step 1: Start CloudShell**
+
+1.  On the top menu bar of the AWS Console, click the **CloudShell** icon `>_`.
+2.  Wait for the terminal to start.
+
+> ![Image illustrating CloudShell icon location on the menu bar](link_anh_cloudshell_icon)
+
+**Step 2: Install libraries and prepare code**
+
+1. Install libraries: `pip install streamlit boto3`
+1. Create file: `nano app.py`
+1. Paste the following code (Remember to replace your `KB_ID`):
+
+```python
+import streamlit as st
+import boto3
+
+# --- CONFIGURATION ---
+# TODO: Replace the ID below with your Knowledge Base ID
+KB_ID = "REPLACE_WITH_YOUR_ID"
+MODEL_ARN = "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-5-sonnet-20240620-v1:0"
+
+# Initialize Client to connect to AWS
+client = boto3.client(service_name='bedrock-agent-runtime', region_name='ap-southeast-1')
+
+st.set_page_config(page_title="Enterprise AI Assistant")
+st.title("🤖 Chat with Private Documents")
+
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat history on screen
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Handle user input
+if prompt := st.chat_input("Ask something about your documents..."):
+    # 1. Display user question
+    st.chat_message("user").markdown(prompt)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    # 2. Call AI to process
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        message_placeholder.markdown("⏳ Reading documents...")
+
+        try:
+            # Call Bedrock's RetrieveAndGenerate API
+            response = client.retrieve_and_generate(
+                input={'text': prompt},
+                retrieveAndGenerateConfiguration={
+                    'type': 'KNOWLEDGE_BASE',
+                    'knowledgeBaseConfiguration': {
+                        'knowledgeBaseId': KB_ID,
+                        'modelArn': MODEL_ARN
+                    }
+                }
+            )
+
+            # Get the returned result
+            answer = response['output']['text']
+
+            # (Optional) Display
 ```
-aws s3 ls s3://\<your-bucket-name\>
-```
 
-![test](/images/5-Workshop/5.5-Policy/test1.png)
+**Step 3: Update Knowledge Base ID:**:
 
-The bucket contents include the two 1 GB files uploaded in earlier.
+1. Move the cursor to the line `KB_ID = "...".`
+2. Delete the old content and enter your ID (Get it from the Bedrock Console).
+3. Save file (Ctrl+O -> Enter) and Exit (Ctrl+X).
 
-2. Create a new S3 bucket; follow the naming pattern you used in Part 1, but add a '-2' to the name. Leave other fields as default and click create
+**Step 4: Open Web Interface**
 
-![create bucket](/images/5-Workshop/5.5-Policy/create-bucket.png)
+This is the step to switch from the console screen to the web interface.
 
-Successfully create bucket
-
-![Success](/images/5-Workshop/5.5-Policy/create-bucket-success.png)
-
-3. Navigate to: Services > VPC > Endpoints, then select the Gateway VPC endpoint you created earlier. Click the Policy tab. Click Edit policy.
-
-![policy](/images/5-Workshop/5.5-Policy/policy1.png)
-
-The default policy allows access to all S3 Buckets through the VPC endpoint.
-
-4. In Edit Policy console, copy & Paste the following policy, then replace yourbucketname-2 with your 2nd bucket name. This policy will allow access through the VPC endpoint to your new bucket, but not any other bucket in Amazon S3. Click Save to apply the policy.
-
-```
-{
-  "Id": "Policy1631305502445",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "Stmt1631305501021",
-      "Action": "s3:*",
-      "Effect": "Allow",
-      "Resource": [
-      				"arn:aws:s3:::yourbucketname-2",
-       				"arn:aws:s3:::yourbucketname-2/*"
-       ],
-      "Principal": "*"
-    }
-  ]
-}
-```
-
-![custom policy](/images/5-Workshop/5.5-Policy/policy2.png)
-
-Successfully customize policy
-
-![success](/static/images/5-Workshop/5.5-Policy/success.png)
-
-5. From your session on the Test-Gateway-Endpoint instance, test access to the S3 bucket you created in Part 1: Access S3 from VPC
-
-```
-aws s3 ls s3://<yourbucketname>
-```
-
-This command will return an error because access to this bucket is not permitted by your new VPC endpoint policy:
-
-![error](/static/images/5-Workshop/5.5-Policy/error.png)
-
-6. Return to your home directory on your EC2 instance `cd~`
-
-- Create a file `fallocate -l 1G test-bucket2.xyz `
-- Copy file to 2nd bucket `aws s3 cp test-bucket2.xyz s3://<your-2nd-bucket-name>`
-
-![success](/static/images/5-Workshop/5.5-Policy/test2.png)
-
-This operation succeeds because it is permitted by the VPC endpoint policy.
-
-![success](/static/images/5-Workshop/5.5-Policy/test2-success.png)
-
-- Then we test access to the first bucket by copy the file to 1st bucket `aws s3 cp test-bucket2.xyz s3://<your-1st-bucket-name>`
-
-![fail](/static/images/5-Workshop/5.5-Policy/test2-fail.png)
-
-This command will return an error because access to this bucket is not permitted by your new VPC endpoint policy.
-
-#### Part 3 Summary:
-
-In this section, you created a VPC endpoint policy for Amazon S3, and used the AWS CLI to test the policy. AWS CLI actions targeted to your original S3 bucket failed because you applied a policy that only allowed access to the second bucket you created. AWS CLI actions targeted for your second bucket succeeded because the policy allowed them. These policies can be useful in situations where you need to control access to resources through VPC endpoints.
+1. At the command line, run the server: `streamlit run app.py --server.port 8080`
+2. Look at the top right corner of the CloudShell frame, select the Actions button (square icon).
+3. Select Preview Web App.
+4. Enter port `8080`.
+5. Click Preview.

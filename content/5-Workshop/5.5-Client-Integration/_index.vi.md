@@ -8,8 +8,6 @@ pre: " <b> 5.5 </b> "
 
 #### Mục tiêu
 
-Nhiều người nghĩ rằng làm việc với Cloud chỉ toàn là màn hình dòng lệnh khô khan. Trong phần này, chúng ta sẽ chứng minh điều ngược lại.
-
 Bạn sẽ biến dòng code Python thành một **Giao diện Web Chatbot (GUI)** chuyên nghiệp, thân thiện với người dùng cuối (tương tự như giao diện ChatGPT) chỉ trong vài phút.
 
 Chúng ta sử dụng:
@@ -100,7 +98,7 @@ if prompt := st.chat_input("Hỏi gì đó về tài liệu của bạn..."):
 
 **Bước 3: Cập nhật Knowledge Base ID**:
 
-1. Di chuyển con trỏ đến dòng KB_ID = "...".
+1. Di chuyển con trỏ đến dòng `KB_ID = "..."`.
 2. Xóa nội dung cũ và điền ID của bạn vào (Lấy trong Bedrock Console).
 3. Lưu file (Ctrl+O -> Enter) và Thoát (Ctrl+X).
 
@@ -108,9 +106,8 @@ if prompt := st.chat_input("Hỏi gì đó về tài liệu của bạn..."):
 
 Đây là bước chuyển từ màn hình console sang giao diện web.
 
-1. Tại dòng lệnh, chạy server:
-   `streamlit run app.py --server.port 8080`
+1. Tại dòng lệnh, chạy server: `streamlit run app.py --server.port 8080`
 2. Nhìn lên góc phải khung CloudShell, chọn nút Actions (biểu tượng hình vuông).
 3. Chọn Preview Web App.
-4. Nhập port 8080
+4. Nhập port `8080`
 5. Nhấn Preview.

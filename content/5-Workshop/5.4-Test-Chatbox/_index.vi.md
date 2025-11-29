@@ -6,70 +6,70 @@ chapter: false
 pre: " <b> 5.4. </b> "
 ---
 
-#### Mục tiêu
+#### Goal
 
-Sau khi đã nạp dữ liệu thành công vào Vector Store, đây là lúc chúng ta kiểm chứng thành quả. Trong phần này, bạn sẽ đóng vai người dùng cuối, đặt câu hỏi cho Chatbot ngay trên giao diện AWS Console để xem hệ thống RAG hoạt động như thế nào.
+After successfully ingesting data into the Vector Store, it is time to verify the results. In this section, you will act as an end-user, asking the Chatbot questions directly within the AWS Console interface to observe how the RAG system operates.
 
-Chúng ta sẽ tập trung vào 2 yếu tố:
+We will focus on 2 factors:
 
-1.  **Độ chính xác:** AI có trả lời đúng dựa trên tài liệu không?
-2.  **Tính minh bạch:** AI có trích dẫn được nguồn gốc (Citation) của thông tin không?
+1.  **Accuracy:** Does the AI answer correctly based on the documents?
+2.  **Transparency:** Can the AI cite the source (Citation) of the information?
 
-#### 2. Các bước thực hiện
+#### Implementation Steps
 
-**Bước 1: Cấu hình cửa sổ kiểm thử**
+**Step 1: Configure the test window**
 
-Để bắt đầu chat, chúng ta cần chọn Mô hình nền tảng (Foundation Model) sẽ đóng vai trò là "người trả lời".
+To start chatting, we need to select a Foundation Model that will act as the "responder".
 
-1.  Tại giao diện chi tiết Knowledge Base của bạn, nhìn sang khung bên phải màn hình có tiêu đề **Test knowledge base**.
-2.  Click nút **Select model**.
+1.  In your Knowledge Base details interface, look at the right panel titled **Test knowledge base**.
+2.  Click the **Select model** button.
 
-> ![Ảnh minh họa nút Select Model trên khung Test bên phải](link_anh_test_select_model_btn)
+> ![Image illustrating Select Model button on the right Test panel](link_anh_test_select_model_btn)
 
-3.  Trong bảng chọn hiện ra:
-    - **Category:** Chọn `Anthropic`.
-    - **Model:** Chọn `Claude 3 Sonnet` (hoặc _Claude 3.5 Sonnet_ / _Haiku_ tùy vào model bạn đã kích hoạt).
-    - **Throughput:** Giữ nguyên `On-demand`.
+3.  In the selection panel that appears:
+    - **Category:** Select `Anthropic`.
+    - **Model:** Select `Claude 3 Sonnet` (or _Claude 3.5 Sonnet_ / _Haiku_ depending on the model you enabled).
+    - **Throughput:** Keep `On-demand`.
 4.  Click **Apply**.
 
-> ![Ảnh minh họa bảng cấu hình chọn Model Claude 3](link_anh_test_config_model)
+> ![Image illustrating Claude 3 Model selection configuration panel](link_anh_test_config_model)
 
-**Bước 2: Thực hiện hội thoại (Chat)**
+**Step 2: Conduct conversation (Chat)**
 
-Bây giờ, hãy thử đặt một câu hỏi liên quan đến nội dung tài liệu bạn đã tải lên.
+Now, try asking a question related to the document content you uploaded.
 
-1.  Tại ô nhập liệu (Message input), gõ câu hỏi của bạn.
-    - _Ví dụ:_ Nếu bạn upload tài liệu "Quy trình nghỉ phép", hãy hỏi: _"Tôi cần làm gì để xin nghỉ phép 3 ngày?"_.
+1.  In the input box (Message input), type your question.
+    - _Example:_ If you uploaded the "Leave Procedure" document, ask: _"What do I need to do to request 3 days of leave?"_.
 2.  Click **Run**.
-3.  **Quan sát kết quả:**
-    - AI sẽ suy nghĩ trong vài giây (đang tra cứu Vector Store).
-    - Sau đó, nó sẽ trả lời bằng ngôn ngữ tự nhiên, tóm tắt thông tin tìm được.
+3.  **Observe the result:**
+    - The AI will think for a few seconds (querying the Vector Store).
+    - Then, it will answer in natural language, summarizing the found information.
 
-> ![Ảnh minh họa câu hỏi và câu trả lời của AI trong khung chat](link_anh_test_chat_response)
+> ![Image illustrating AI question and answer in chat interface](link_anh_test_chat_response)
 
-**Bước 3: Kiểm chứng nguồn dữ liệu**
+**Step 3: Verify data source**
 
-Đây là tính năng quan trọng nhất của RAG giúp phân biệt với ChatGPT thông thường: khả năng chứng minh nguồn gốc thông tin.
+This is the most important feature of RAG that distinguishes it from standard ChatGPT: the ability to prove the source of information.
 
-1.  Trong câu trả lời của AI, hãy chú ý đến các số nhỏ (footnote) hoặc dòng chữ **Show source details**.
-2.  Click vào các số đó hoặc nút chi tiết.
-3.  Một cửa sổ **Source details** sẽ hiện ra, hiển thị:
-    - **Source chunk:** Đoạn văn bản gốc chính xác mà AI đã tìm thấy trong tài liệu.
-    - **Score:** Điểm số tương đồng (độ liên quan).
-    - **S3 Location:** Đường dẫn đến file gốc.
+1.  In the AI's response, pay attention to the small numbers (footnotes) or the text **Show source details**.
+2.  Click on those numbers or the details button.
+3.  A **Source details** window will appear, displaying:
+    - **Source chunk:** The exact original text segment that the AI found in the document.
+    - **Score:** Similarity score (relevance).
+    - **S3 Location:** Path to the original file.
 
-> ![Ảnh minh họa cửa sổ Source Details hiển thị đoạn văn bản gốc](link_anh_test_citations)
+> ![Image illustrating Source Details window showing original text segment](link_anh_test_citations)
 
-_Việc nhìn thấy đoạn văn bản gốc này chứng minh rằng AI không "bịa đặt" (hallucinate) mà thực sự đang đọc tài liệu của bạn._
+_Seeing this original text segment proves that the AI is not "hallucinating" but is actually reading your documents._
 
-**Bước 4: Thử nghiệm với câu hỏi không liên quan (Optional)**
+**Step 4: Test with irrelevant questions (Optional)**
 
-Để xem hệ thống phản ứng thế nào khi không tìm thấy thông tin.
+To see how the system reacts when information is not found.
 
-1.  Hỏi một câu hoàn toàn không liên quan đến tài liệu.
-    - _Ví dụ:_ _"Ai là người đầu tiên đặt chân lên mặt trăng?"_ (Trong khi tài liệu của bạn là về Tài chính).
-2.  **Kết quả mong đợi:**
-    - AI có thể trả lời dựa trên kiến thức chung của nó (nếu không bị giới hạn).
-    - HOẶC AI sẽ trả lời _"Sorry, I am unable to answer your question based on the retrieved data"_ (Xin lỗi, tôi không tìm thấy thông tin trong dữ liệu được cung cấp) - Đây là hành vi lý tưởng của ứng dụng RAG doanh nghiệp.
+1.  Ask a question completely unrelated to the documents.
+    - _Example:_ _"Who was the first person to set foot on the moon?"_ (While your documents are about Finance).
+2.  **Expected Result:**
+    - The AI might answer based on its general knowledge (if not restricted).
+    - OR the AI will answer _"Sorry, I am unable to answer your question based on the retrieved data"_ - This is the ideal behavior for an enterprise RAG application.
 
-> ![Ảnh minh họa phản hồi khi hỏi câu hỏi ngoài lề](link_anh_test_negative_case)
+> ![Image illustrating response when asking off-topic questions](link_anh_test_negative_case)
