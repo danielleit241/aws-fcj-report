@@ -6,90 +6,111 @@ chapter: false
 pre: " <b> 5.5 </b> "
 ---
 
-Khi bạn tạo một Interface Endpoint hoặc cổng, bạn có thể đính kèm một chính sách điểm cuối để kiểm soát quyền truy cập vào dịch vụ mà bạn đang kết nối. Chính sách VPC Endpoint là chính sách tài nguyên IAM mà bạn đính kèm vào điểm cuối. Nếu bạn không đính kèm chính sách khi tạo điểm cuối, thì AWS sẽ đính kèm chính sách mặc định cho bạn để cho phép toàn quyền truy cập vào dịch vụ thông qua điểm cuối.
+#### Mục tiêu
 
-Bạn có thể tạo chính sách chỉ hạn chế quyền truy cập vào các S3 bucket cụ thể. Điều này hữu ích nếu bạn chỉ muốn một số Bộ chứa S3 nhất định có thể truy cập được thông qua điểm cuối.
+Nhiều người nghĩ rằng làm việc với Cloud chỉ toàn là màn hình dòng lệnh khô khan. Trong phần này, chúng ta sẽ chứng minh điều ngược lại.
 
-Trong phần này, bạn sẽ tạo chính sách VPC Endpoint hạn chế quyền truy cập vào S3 bucket được chỉ định trong chính sách VPC Endpoint.
+Bạn sẽ biến dòng code Python thành một **Giao diện Web Chatbot (GUI)** chuyên nghiệp, thân thiện với người dùng cuối (tương tự như giao diện ChatGPT) chỉ trong vài phút.
 
-![endpoint diagram](/images/5-Workshop/5.5-Policy/s3-bucket-policy.png)
+Chúng ta sử dụng:
 
-#### Kết nối tới EC2 và xác minh kết nối tới S3.
+- **Backend:** AWS CloudShell.
+- **Frontend:** Streamlit.
+- **AI Model:** **Claude 3.5 Sonnet**.
 
-1. Bắt đầu một phiên AWS Session Manager mới trên máy chủ có tên là Test-Gateway-Endpoint. Từ phiên này, xác minh rằng bạn có thể liệt kê nội dung của bucket mà bạn đã tạo trong Phần 1: Truy cập S3 từ VPC.
+#### Các bước thực hiện
 
+**Bước 1: Khởi động CloudShell**
+
+1.  Tại thanh menu trên cùng của AWS Console, click vào biểu tượng **CloudShell** `>_`.
+2.  Đợi terminal khởi động.
+
+> ![Ảnh minh họa vị trí nút CloudShell trên thanh menu](link_anh_cloudshell_icon)
+
+**Bước 2: Cài đặt thư viện và chuẩn bị code**
+
+1. Cài đặt thư viện `pip install streamlit boto3`
+1. Tạo file: `nano app.py`
+1. Dán đoạn code sau (Nhớ thay `KB_ID` của bạn):
+
+```python
+import streamlit as st
+import boto3
+
+# --- CẤU HÌNH ---
+# TODO: Thay thế ID bên dưới bằng Knowledge Base ID của bạn
+KB_ID = "THAY_ID_CUA_BAN_VAO_DAY"
+MODEL_ARN = "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-5-sonnet-20240620-v1:0"
+
+# Khởi tạo Client kết nối AWS
+client = boto3.client(service_name='bedrock-agent-runtime', region_name='ap-southeast-1')
+
+st.set_page_config(page_title="Trợ lý AI Doanh Nghiệp")
+st.title("🤖 Chat với Tài Liệu Riêng")
+
+# Khởi tạo lịch sử chat
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Hiển thị lịch sử chat lên màn hình
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Xử lý khi người dùng nhập câu hỏi
+if prompt := st.chat_input("Hỏi gì đó về tài liệu của bạn..."):
+    # 1. Hiển thị câu hỏi người dùng
+    st.chat_message("user").markdown(prompt)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    # 2. Gọi AI xử lý
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        message_placeholder.markdown("⏳ Đang đọc tài liệu...")
+
+        try:
+            # Gọi API RetrieveAndGenerate của Bedrock
+            response = client.retrieve_and_generate(
+                input={'text': prompt},
+                retrieveAndGenerateConfiguration={
+                    'type': 'KNOWLEDGE_BASE',
+                    'knowledgeBaseConfiguration': {
+                        'knowledgeBaseId': KB_ID,
+                        'modelArn': MODEL_ARN
+                    }
+                }
+            )
+
+            # Lấy kết quả trả về
+            answer = response['output']['text']
+
+            # (Optional) Hiển thị nguồn trích dẫn
+            citations = response['citations'][0]['retrievedReferences']
+            if citations:
+                doc_uri = citations[0]['location']['s3Location']['uri']
+                doc_name = doc_uri.split('/')[-1]
+                answer += f"\n\n---\n📚 *Nguồn tham khảo: {doc_name}*"
+
+            message_placeholder.markdown(answer)
+            st.session_state.messages.append({"role": "assistant", "content": answer})
+
+        except Exception as e:
+            st.error(f"Lỗi: {str(e)}")
 ```
-aws s3 ls s3://<your-bucket-name>
-```
 
-![test](/images/5-Workshop/5.5-Policy/test1.png)
+**Bước 3: Cập nhật Knowledge Base ID**:
 
-Nội dung của bucket bao gồm hai tệp có dung lượng 1GB đã được tải lên trước đó.
+1. Di chuyển con trỏ đến dòng KB_ID = "...".
+2. Xóa nội dung cũ và điền ID của bạn vào (Lấy trong Bedrock Console).
+3. Lưu file (Ctrl+O -> Enter) và Thoát (Ctrl+X).
 
-2. Tạo một bucket S3 mới; tuân thủ mẫu đặt tên mà bạn đã sử dụng trong Phần 1, nhưng thêm '-2' vào tên. Để các trường khác là mặc định và nhấp vào **Create**.
+**Bước 4: Mở giao diện Web**
 
-![create bucket](/images/5-Workshop/5.5-Policy/create-bucket.png)
+Đây là bước chuyển từ màn hình console sang giao diện web.
 
-3. Tạo bucket thành công.
-
-![Success](/images/5-Workshop/5.5-Policy/create-bucket-success.png)
-
-Policy mặc định cho phép truy cập vào tất cả các S3 Buckets thông qua VPC endpoint.
-
-4. Trong giao diện **Edit Policy**, sao chép và dán theo policy sau, thay thế yourbucketname-2 với tên bucket thứ hai của bạn. Policy này sẽ cho phép truy cập đến bucket mới thông qua VPC endpoint, nhưng không cho phép truy cập đến các bucket còn lại. Chọn **Save** để kích hoạt policy.
-
-```
-{
-  "Id": "Policy1631305502445",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "Stmt1631305501021",
-      "Action": "s3:*",
-      "Effect": "Allow",
-      "Resource": [
-      				"arn:aws:s3:::yourbucketname-2",
-       				"arn:aws:s3:::yourbucketname-2/*"
-       ],
-      "Principal": "*"
-    }
-  ]
-}
-```
-
-![custom policy](/images/5-Workshop/5.5-Policy/policy2.png)
-
-Cấu hình policy thành công.
-
-![success](/images/5-Workshop/5.5-Policy/success.png)
-
-5. Từ session của bạn trên Test-Gateway-Endpoint instance, kiểm tra truy cập đến S3 bucket bạn tạo ở bước đầu
-
-```
-aws s3 ls s3://<yourbucketname>
-```
-
-Câu lệnh trả về lỗi bởi vì truy cập vào S3 bucket không có quyền trong VPC endpoint policy.
-
-![error](/images/5-Workshop/5.5-Policy/error.png)
-
-6. Trở lại home directory của bạn trên EC2 instance `cd~`
-
-- Tạo file `fallocate -l 1G test-bucket2.xyz `
-- Sao chép file lên bucket thứ 2 `aws s3 cp test-bucket2.xyz s3://<your-2nd-bucket-name>`
-
-![success](/images/5-Workshop/5.5-Policy/test2.png)
-
-Thao tác này được cho phép bởi VPC endpoint policy.
-
-![success](/images/5-Workshop/5.5-Policy/test2-success.png)
-
-Sau đó chúng ta kiểm tra truy cập vào S3 bucket đầu tiên
-
-`aws s3 cp test-bucket2.xyz s3://<your-1st-bucket-name>`
-
-![fail](/images/5-Workshop/5.5-Policy/test2-fail.png)
-
-Câu lệnh xảy ra lỗi bởi vì bucket không có quyền truy cập bởi VPC endpoint policy.
-
-Trong phần này, bạn đã tạo chính sách VPC Endpoint cho Amazon S3 và sử dụng AWS CLI để kiểm tra chính sách. Các hoạt động AWS CLI liên quan đến bucket S3 ban đầu của bạn thất bại vì bạn áp dụng một chính sách chỉ cho phép truy cập đến bucket thứ hai mà bạn đã tạo. Các hoạt động AWS CLI nhắm vào bucket thứ hai của bạn thành công vì chính sách cho phép chúng. Những chính sách này có thể hữu ích trong các tình huống khi bạn cần kiểm soát quyền truy cập vào tài nguyên thông qua VPC Endpoint.
+1. Tại dòng lệnh, chạy server:
+   `streamlit run app.py --server.port 8080`
+2. Nhìn lên góc phải khung CloudShell, chọn nút Actions (biểu tượng hình vuông).
+3. Chọn Preview Web App.
+4. Nhập port 8080
+5. Nhấn Preview.

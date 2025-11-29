@@ -26,4 +26,5 @@ You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoi
 3. [Create and Configure Knowledge Base](5.3-Knowledge-Base/)
 4. [Test the RAG Chatbot](5.4-Test-Chatbot/)
 5. [Client Application Integration (Optional)](5.5-Client-Integration/)
-6. [Clean Up Resources](5.6-Cleanup/)
+6. [Data update](5.6-Update-Data/)
+7. [Clean Up Resources](5.7-Cleanup/)

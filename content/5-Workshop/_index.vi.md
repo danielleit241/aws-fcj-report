@@ -39,4 +39,5 @@ Kết thúc workshop, bạn sẽ có một hệ thống Chatbot hoạt động t
 3. [Tạo và cấu hình Knowledge Base](5.3-Knowledge-Base/)
 4. [Kiểm thử Chatbot (RAG)](5.4-Test-Chatbot/)
 5. [Tích hợp ứng dụng Client (Tùy chọn)](5.5-Client-Integration/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+6. [Cập nhật dữ liệu](5.6-Cleanup/)
+7. [Dọn dẹp tài nguyên](5.7-Cleanup/)

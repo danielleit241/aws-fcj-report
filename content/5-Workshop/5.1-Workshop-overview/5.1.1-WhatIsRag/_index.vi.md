@@ -1,12 +1,12 @@
 ---
-title: "Giải thích khái niệm RAG"
+title: "Giải thích RAG"
 date: "2025-09-09"
 weight: 1
 chapter: false
 pre: " <b> 5.1.1 </b> "
 ---
 
-#### 1. Định nghĩa ngắn gọn
+#### Định nghĩa ngắn gọn
 
 **RAG (viết tắt của Retrieval-Augmented Generation)** là một kỹ thuật hoặc kiến trúc phần mềm trong lĩnh vực Trí tuệ nhân tạo (AI), được thiết kế để tối ưu hóa đầu ra của một Mô hình Ngôn ngữ Lớn (LLM).
 
@@ -17,7 +17,7 @@ Về mặt bản chất, RAG là sự kết hợp giữa hai cơ chế:
 
 Mục tiêu của RAG là cung cấp cho LLM thêm ngữ cảnh (context) chính xác, cập nhật và cụ thể, giúp mô hình vượt qua giới hạn của dữ liệu huấn luyện tĩnh (static training data).
 
-#### 2. Vì sao cần RAG?
+#### Vì sao cần RAG?
 
 Các mô hình LLM truyền thống thường gặp 3 vấn đề lớn mà RAG có thể giải quyết:
 
@@ -25,7 +25,7 @@ Các mô hình LLM truyền thống thường gặp 3 vấn đề lớn mà RAG 
 - **Sở hữu dữ liệu (Proprietary Data)**: Cho phép AI trả lời các câu hỏi về dữ liệu riêng tư của doanh nghiệp (tài liệu nội bộ, code base, thông tin khách hàng) mà mô hình gốc không hề biết.
 - **Tính xác thực (Grounding)**: Giảm thiểu "ảo giác" (Hallucination - AI bịa thông tin) bằng cách buộc AI phải trích dẫn hoặc dựa trên đoạn văn bản thực tế được tìm thấy.
 
-#### 3. Kiến trúc hoạt động (3 Bước)
+#### Kiến trúc hoạt động
 
 Quy trình xử lý một câu hỏi của RAG diễn ra như sau:
 

@@ -8,7 +8,7 @@ pre: " <b> 5.1.2 </b> "
 
 Kiến trúc giải pháp được xây dựng dựa trên sự phối hợp của 4 thành phần dịch vụ chính sau đây:
 
-#### 1. Knowledge Bases for Amazon Bedrock
+#### Knowledge Bases for Amazon Bedrock
 
 Đây là một khả năng được quản lý toàn diện (fully managed capability) giúp kết nối các Mô hình Nền tảng (Foundation Models) với nguồn dữ liệu nội bộ của doanh nghiệp.
 
@@ -16,7 +16,7 @@ Kiến trúc giải pháp được xây dựng dựa trên sự phối hợp c�
 - **Kết nối ngữ cảnh:** Giúp các ứng dụng AI trả lời câu hỏi dựa trên dữ liệu riêng tư thay vì chỉ dựa vào dữ liệu huấn luyện chung chung.
 - **Không cần quản lý hạ tầng:** Loại bỏ nhu cầu tự xây dựng và duy trì các đường ống dữ liệu (data pipelines) phức tạp.
 
-#### 2. Amazon Simple Storage Service (Amazon S3)
+#### Amazon Simple Storage Service (Amazon S3)
 
 Là dịch vụ lưu trữ đối tượng (object storage) với khả năng mở rộng, độ bền dữ liệu 99,999999999% (11 số 9) và bảo mật hàng đầu.
 
@@ -24,7 +24,7 @@ Là dịch vụ lưu trữ đối tượng (object storage) với khả năng m�
 - **Lưu trữ tài liệu:** Chứa các tệp phi cấu trúc như PDF, Word, hoặc Text mà doanh nghiệp muốn AI học.
 - **Đồng bộ hóa:** Knowledge Base sẽ định kỳ quét bucket S3 này để đồng bộ hóa và cập nhật kiến thức mới nhất.
 
-#### 3. Amazon OpenSearch Serverless
+#### Amazon OpenSearch Serverless
 
 Là tùy chọn triển khai không máy chủ (serverless) của Amazon OpenSearch Service, giúp chạy khối lượng công việc tìm kiếm và phân tích mà không cần quản lý cụm (cluster).
 
@@ -32,7 +32,7 @@ Là tùy chọn triển khai không máy chủ (serverless) của Amazon OpenSea
 - **Tìm kiếm ngữ nghĩa (Semantic Search):** Thực hiện thuật toán tìm kiếm tương đồng (similarity search/k-NN) để xác định các đoạn văn bản có ý nghĩa gần nhất với câu hỏi của người dùng.
 - **Tự động mở rộng:** Tự động điều chỉnh tài nguyên tính toán và lưu trữ dựa trên nhu cầu thực tế.
 
-#### 4. Amazon Bedrock Foundation Models (FMs)
+#### Amazon Bedrock Foundation Models (FMs)
 
 Cung cấp quyền truy cập vào các mô hình AI hàng đầu thông qua API thống nhất. Trong kiến trúc này, chúng ta sử dụng hai loại mô hình với vai trò riêng biệt:
 

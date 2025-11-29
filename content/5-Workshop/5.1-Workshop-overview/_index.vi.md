@@ -19,3 +19,8 @@ Mục tiêu chính là thiết lập một quy trình xử lý dữ liệu hoàn
 > 💡 **Điểm nổi bật:** Giải pháp này giúp bạn **không cần quản lý bất kỳ hạ tầng máy chủ nào**, tối ưu hóa chi phí và thời gian vận hành.
 
 ![overview](/images/5-Workshop/5.1-Workshop-overview/overview_diagram.png)
+
+#### Nội dung
+
+1. [Giải thích RAG](5.1.1-WhatIsRag/)
+2. [Giới thiệu các dịch vụ](5.1.2-Services/)
