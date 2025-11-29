@@ -1,5 +1,5 @@
 ---
-title: "Truy cập S3 từ VPC"
+title: "Tạo và cấu hình Knowledge Base"
 date: "2025-09-09"
 weight: 3
 chapter: false

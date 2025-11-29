@@ -1,5 +1,5 @@
 ---
-title: "VPC Endpoint Policies"
+title: "Tích hợp ứng dụng Client (Tùy chọn)"
 date: "2025-09-09"
 weight: 5
 chapter: false

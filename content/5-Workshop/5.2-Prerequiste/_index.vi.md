@@ -1,5 +1,5 @@
 ---
-title: "Các bước chuẩn bị"
+title: "Chuẩn bị môi trường"
 date: "2025-09-09"
 weight: 2
 chapter: false

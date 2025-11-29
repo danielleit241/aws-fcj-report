@@ -1,5 +1,5 @@
 ---
-title: "VPC Endpoint Policies"
+title: "Client Application Integration (Optional)"
 date: "2025-09-09"
 weight: 5
 chapter: false

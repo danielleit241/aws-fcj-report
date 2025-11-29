@@ -1,5 +1,5 @@
 ---
-title: "Access S3 from VPC"
+title: "Create and Configure Knowledge Base"
 date: "2025-09-09"
 weight: 3
 chapter: false
