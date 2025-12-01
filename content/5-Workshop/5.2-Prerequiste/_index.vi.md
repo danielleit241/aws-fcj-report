@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 5.2. </b> "
 ---
 
-#### 1. Mục tiêu
+#### Mục tiêu
 
 Trước khi bắt tay vào xây dựng ứng dụng, chúng ta cần thiết lập một nền tảng vững chắc. Giống như việc chuẩn bị nguyên liệu trước khi nấu ăn, phần này đảm bảo rằng tài khoản AWS của bạn đã sẵn sàng với đầy đủ quyền hạn và dữ liệu cần thiết.
 
@@ -16,7 +16,7 @@ Trong phần này, chúng ta sẽ hoàn thành 3 mục tiêu khởi tạo quan t
 2.  **Kích hoạt Model (Model Access):** Kiểm tra và đảm bảo tài khoản có quyền gọi model **Anthropic Claude 3** – "bộ não" ngôn ngữ chính của hệ thống.
 3.  **Chuẩn bị Dữ liệu (Data Setup):** Khởi tạo kho lưu trữ (S3 Bucket) và tải lên tài liệu nguồn để phục vụ cho quá trình nạp kiến thức (Ingestion) sau này.
 
-#### 2. Các thành phần chính
+#### Các thành phần chính
 
 Trong phần chuẩn bị này, chúng ta sẽ tương tác với các thành phần sau:
 
@@ -24,7 +24,7 @@ Trong phần chuẩn bị này, chúng ta sẽ tương tác với các thành ph
 - **Amazon Bedrock (Model Access & Playground):** Nơi quản lý quyền truy cập các mô hình nền tảng (Foundation Models) và công cụ chat để kiểm tra nhanh khả năng phản hồi của AI.
 - **Amazon S3 (Simple Storage Service):** Dịch vụ lưu trữ đối tượng, nơi chúng ta sẽ tạo Bucket để chứa các file tài liệu gốc (PDF, Word, Text).
 
-#### 3. Các bước triển khai
+#### Các bước triển khai
 
 1. [Kiểm tra truy cập Model](5.2.1-Model-Access/)
 2. [Chuẩn bị dữ liệu nguồn](5.2.2-Prepare-Data/)

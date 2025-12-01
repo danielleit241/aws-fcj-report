@@ -1,30 +1,30 @@
 ---
-title: "Tạo và cấu hình Knowledge Base"
+title: "Tạo và Cấu hình Knowledge Base"
 date: "2025-09-09"
 weight: 3
 chapter: false
 pre: " <b> 5.3. </b> "
 ---
 
-#### Objectives
+#### Mục tiêu
 
-After completing the environment and data preparation, the next step is to set up the core component of the RAG architecture. In this section, we will initialize the **Knowledge Base**, acting as an intelligent intermediary mechanism that connects unstructured data sources with the reasoning capabilities of foundation models.
+Sau khi hoàn thành việc chuẩn bị môi trường và dữ liệu, bước tiếp theo là thiết lập thành phần cốt lõi của kiến trúc RAG. Trong phần này, chúng ta sẽ khởi tạo **Knowledge Base**, đóng vai trò là cơ chế trung gian thông minh kết nối các nguồn dữ liệu phi cấu trúc với khả năng suy luận của các foundation models.
 
-We will accomplish 3 key technical objectives:
+Chúng ta sẽ thực hiện 3 mục tiêu kỹ thuật chính:
 
-1.  **Establish an Automated Pipeline:** Configure the Knowledge Base to automate the entire RAG data processing workflow (including extraction, text chunking, and vector creation) to eliminate manual processing tasks.
-2.  **Initialize Vector Store:** Deploy a collection on **Amazon OpenSearch Serverless** to store semantic vectors, serving accurate and efficient information retrieval.
-3.  **Data Synchronization (Data Ingestion):** Perform the initial data ingestion process, converting static documents from S3 into searchable vectors within the system.
+1.  **Thiết lập Pipeline Tự động:** Cấu hình Knowledge Base để tự động hóa toàn bộ quy trình xử lý dữ liệu RAG (bao gồm trích xuất, phân đoạn văn bản và tạo vector) nhằm loại bỏ các tác vụ xử lý thủ công.
+2.  **Khởi tạo Vector Store:** Triển khai một collection trên **Amazon OpenSearch Serverless** để lưu trữ các vector ngữ nghĩa, phục vụ việc truy xuất thông tin chính xác và hiệu quả.
+3.  **Đồng bộ hóa Dữ liệu (Data Ingestion):** Thực hiện quy trình nhập dữ liệu ban đầu, chuyển đổi các tài liệu tĩnh từ S3 thành các vector có thể tìm kiếm trong hệ thống.
 
-#### Key Components
+#### Các Thành phần Chính
 
-During this configuration process, we will interact with and connect the following services:
+Trong quá trình cấu hình này, chúng ta sẽ tương tác và kết nối các dịch vụ sau:
 
-- **Knowledge Bases for Amazon Bedrock:** A managed service acting as the orchestrator of data flow, connecting information sources, and executing semantic queries.
-- **Amazon Titan Embeddings G1 - Text v2:** A specialized model for converting text data into numerical vectors (Embeddings) with high accuracy and multi-language support.
-- **Amazon OpenSearch Serverless:** A fully managed vector database responsible for storage and executing similarity search algorithms (k-NN).
+- **Knowledge Bases for Amazon Bedrock:** Dịch vụ được quản lý đóng vai trò là bộ điều phối luồng dữ liệu, kết nối các nguồn thông tin và thực thi các truy vấn ngữ nghĩa.
+- **Amazon Titan Embeddings G1 - Text v2:** Mô hình chuyên dụng để chuyển đổi dữ liệu văn bản thành các vector số (Embeddings) với độ chính xác cao và hỗ trợ đa ngôn ngữ.
+- **Amazon OpenSearch Serverless:** Cơ sở dữ liệu vector được quản lý hoàn toàn, chịu trách nhiệm lưu trữ và thực thi các thuật toán tìm kiếm tương đồng (k-NN).
 
-#### Implementation Steps
+#### Các Bước Thực hiện
 
-1. [Initialize Knowledge Base](5.3.1-Create-KB/)
-2. [Check Vector Store and Sync Data](5.3.2-Sync-Data/)
+1. [Khởi tạo Knowledge Base](5.3.1-Create-KB/)
+2. [Kiểm tra Vector Store và Đồng bộ Dữ liệu](5.3.2-Sync-Data/)

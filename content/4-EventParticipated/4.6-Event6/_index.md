@@ -8,206 +8,141 @@ pre: " <b> 4.6. </b> "
 
 # Report: “AWS Cloud Mastery Series #3”
 
-### Event Objectives
+### Event Purpose
 
-- Share AWS AI services
-- Demonstrate deploying AI models using Amazon SageMaker
-- Show how to deploy models and access them via APIs
+This series was not just about individual services but a journey in **System Thinking**, helping to transition from traditional infrastructure management to a **Cloud-Native Security** model. The core objectives included:
 
-### Speakers
+- **Community Connection:** Spreading the spirit of learning and skill development through AWS Cloud Clubs.
+- **Governance Foundation:** Managing scale with hundreds of AWS accounts while ensuring compliance.
+- **Defense in Depth:** Combining Identity, Network, and Data protection to eliminate Single Points of Failure.
+- **Automated Response:** Removing human latency from the incident response process.
 
-- **Van Hoang Kha** - Cloud Solutions Architect, AWS User Group Leader
-- **Bach Doan Vuong** - Cloud Developer Engineer, AWS Community Builder
+### Speakers List
 
-### Highlights
+The event gathered top experts from the AWS community, including AWS Community Builders, Cloud Engineers, and core members of the First Cloud Journey program:
 
-#### **Introduction & the importance of Cloud in Data Science**
+- **AWS Cloud Clubs Representatives:** Captains from HCMUTE, SGU, PTIT, HUFLIT (Le Vu Xuan An, Tran Duc Anh, Tran Doan Cong Ly, Danh Hoang Hieu Nghi).
+- **Identity & Governance:** Huynh Hoang Long, Dinh Le Hoang Anh (AWS Community Builders).
+- **Detection & Monitoring:** Tran Duc Anh, Nguyen Tuan Thinh, Nguyen Do Thanh Dat.
+- **Network Security:** Kha Van (Cloud Security Engineer | AWS Community Builder).
+- **Data Protection:** Thinh Lam, Viet Nguyen.
+- **Incident Response:** Mendel Grabski (Long) - ex Head of Security & DevOps, Tinh Truong - Platform Engineer.
 
-- Discussed the role of cloud computing in supporting data processing, training, and deploying AI models at scale.
-- Cloud vs. On-premise:
+### Detailed Content
 
-  - Cloud: flexible scalability, rapid deployment, lower operating costs, easy integration.
-  - On-premise: high upfront investment, harder to scale, complex maintenance.
+#### **PART 1: KICK-OFF - AWS CLOUD CLUBS & OPPORTUNITIES**
 
-- Cloud (especially **AWS**) provides a strong foundation for the Data Science pipeline — from collection, storage, and processing to training and deploying AI models.
+The journey began with the introduction of AWS Cloud Clubs, a place to nurture future Cloud talents.
 
-#### **AI Layers on AWS**
+**1. Vision:**
 
-AWS organizes the AI ecosystem into **three layers**, helping users choose the right level of management based on skills and goals:
+- Empower students to explore and grow cloud computing skills.
+- Develop technical leadership and build global connections.
 
-**1. AI Services (Fully Managed Layer)**
+**2. Core Benefits:**
 
-> _For users who want to apply AI without deep Machine Learning knowledge._
+- **Build Skills:** Learn through hands-on projects, access AWS exam vouchers and Udemy accounts.
+- **Build Community:** Connect with AWS experts and industry speakers.
+- **Build Opportunities:** Enhance personal portfolios, receive AWS credits, and get career support.
 
-- Fully managed AI services that have been pre-trained by AWS.
-- Users can call APIs to use them directly in applications.
-- Examples:
+**3. The Badging Journey:**
 
-  - **Amazon Comprehend:** Natural language processing (NLP)
-  - **Amazon Translate:** Neural machine translation
-  - **Amazon Textract:** Extract data from documents and invoices
-  - **Amazon Rekognition:** Image and video recognition
-  - **Amazon Polly:** Text-to-speech
-  - **Amazon Bedrock:** Access to foundation models (e.g., Claude, Titan, Mistral)
+- Gamified development roadmap for Core Team members and Captains.
+- Levels ranging from **Bronze, Silver, Gold, Platinum** to **Diamond**.
+- **Rewards:** AWS Credits ($200+), Certification Vouchers, Exclusive Swag kits, and pre-approval for Student Community Day.
 
-👉 Benefits: Fast deployment, no model training needed, cost scales with usage.
+#### **PART 2: IDENTITY & GOVERNANCE FOUNDATION**
 
-**2. ML Services (Semi-managed Layer)**
+Security in the Cloud starts with controlling "Who can do what".
 
-> _For Data Scientists and ML Engineers who want to build, train, and deploy ML models with more customization._
+**1. Modern IAM Mindset:**
 
-- **Amazon SageMaker** is at the center of this layer: it provides tools to build, train, and deploy ML models.
-- Key features:
+- **Identity First:** In the Cloud environment, Identity is the new firewall.
+- **Credential Spectrum:** Absolute shift from **Long-term Credentials** (Permanent Access Keys - high risk) to **Short-term Credentials** (STS tokens - secure, auto-expire).
+- **Least Privilege:** Apply minimum necessary permissions. Avoid using `*` in Policies unless absolutely necessary.
 
-  - **Data Wrangler:** Visual data cleaning and processing.
-  - **Feature Store:** Manage features across models.
-  - **AutoML (SageMaker Autopilot):** Automated model training.
-  - **Model Registry & Monitoring:** Track and manage models after deployment.
+**2. Governance at Scale with AWS Organizations:**
 
-👉 Benefits: Full control over the ML pipeline, customizable algorithms, training environments, and deployment workflows.
+- **Hierarchical Structure:** Divide the organization into Organizational Units (OUs) like _Security, Shared Services, Workloads (Prod/Dev)_ to isolate risks.
+- **Service Control Policies (SCPs):** This is the "Constitution" of the organization. SCPs establish **Guardrails** that block dangerous actions (e.g., prohibiting CloudTrail disablement, restricting Regions) that even Admin accounts cannot bypass.
 
-**3. AI Infrastructure (Self-managed Layer)**
+#### **PART 3: VISIBILITY & DETECTION**
 
-> _For organizations or experts who want to fully manage AI/ML infrastructure to optimize cost or performance._
+You cannot protect what you cannot see.
 
-- Users can build training environments using core AWS infrastructure services:
+**1. Amazon GuardDuty - Intelligent Scout:**
 
-  - **Amazon EC2 / GPU Instances (P5, G6, Inferentia):** Train large custom models.
-  - **Amazon EKS / ECS:** Run ML workloads in containers or Kubernetes.
-  - **AWS Lambda:** Small-scale data processing or serverless inference.
-  - **Amazon S3 / EFS:** Store data and models.
+- Uses Machine Learning to detect anomalies from 3 foundational data sources: **CloudTrail** (management events), **VPC Flow Logs** (network traffic), and **DNS Logs** (domain queries).
+- **Runtime Monitoring:** Advanced feature that looks "deep" inside the operating system (via a lightweight Agent) to detect strange processes, file modifications, or privilege escalation behaviors.
 
-👉 Benefits: Maximum flexibility and control, but requires higher technical expertise.
+**2. AWS Security Hub - Command Center:**
 
-#### Popular AWS AI Services to Support Students During Model Training
+- Solves the "alert fatigue" problem using **ASFF (AWS Security Finding Format)**. It normalizes alerts from GuardDuty, Inspector, and Macie into a single JSON language.
+- Acts as a **Cloud Security Posture Management (CSPM)** tool, automatically checking if the system complies with CIS, PCI-DSS standards.
 
-**1. Amazon SageMaker**
+#### **PART 4: NETWORK SECURITY**
 
-- Integrated development environment (SageMaker Studio) for the full ML lifecycle:
+Building a "Digital Fortress" with a defense-in-depth strategy from the edge to the core.
 
-  - Data preparation
-  - Model training
-  - Result tracking
-  - Deploying endpoints for API inference
+**1. Fundamental Controls (VPC Fundamentals):**
 
-- Supports AutoML, GPU training, model monitoring, and CI/CD for AI models.
+- **Security Groups (Stateful):** Apply **Micro-segmentation**. Instead of whitelisting IP addresses (which change easily), use **Security Group Referencing** (e.g., SG-DB only allows traffic from SG-App).
+- **NACLs (Stateless):** Act as a coarse filtering layer at the Subnet boundary, used to block blacklisted IPs or untrusted subnets.
 
-**2. Amazon Comprehend**
+**2. Advanced Defense (Advanced Filtering):**
 
-- NLP service to analyze, understand, and classify natural language.
+- **DNS Firewall (Route 53 Resolver):** Blocks connections to Command & Control (C2) servers right at the domain resolution step. This is a crucial choke point against malware (like the Mélofée case study).
+- **AWS Network Firewall:** Next-gen firewall with Deep Packet Inspection (DPI) capabilities.
+  - **Stateless Engine:** Fast filtering based on 5-tuple (IP/Port).
+  - **Stateful Engine:** Uses **Suricata-compatible** rules for Intrusion Prevention (IPS) and Domain filtering (FQDN) for Egress traffic.
 
-- Main capabilities:
+**3. Modern Network Architecture:**
 
-  - Sentiment analysis
-  - Entity recognition
-  - Text classification
-  - Automated labeling
-  - Language detection
+- Uses **AWS Transit Gateway** with Native Network Firewall integration to simplify the network model, removing the complexity of routing through an "Inspection VPC".
+- Applies **Active Threat Defense**: Automatically syncs malicious IP lists from GuardDuty to Network Firewall for immediate blocking without manual intervention.
 
-- Use cases:
+#### **PART 5: DATA PROTECTION**
 
-  - Intelligent document processing
-  - Bulk email analysis to detect positive/negative responses
-  - Customer sentiment and behavioral analysis
-  - Contact center analytics
-  - Information extraction and validation
+Data is the ultimate asset that must be protected by encryption.
 
-**3. Amazon Translate**
+**1. Envelope Encryption:**
 
-- Neural machine translation service.
-- Supports over 75 languages with high accuracy and easy integration.
-- Applications:
+- Understanding the AWS KMS mechanism: **Master Key** (resides in HSM) encrypts the **Data Key**, and the **Data Key** is what encrypts the actual data. This mechanism ensures high performance and absolute security.
 
-  - Multilingual websites
-  - Automatic content translation in apps
-  - Multilingual chatbot support and analytics
+**2. Secrets Management:**
 
-**4. Amazon Textract**
+- **Problem:** Hardcoding passwords in source code is a basic but common error.
+- **Solution:** Use **AWS Secrets Manager** for storage and, more importantly, **Automatic Rotation** of Database passwords using Lambda. Applications always retrieve the latest password via API.
 
-- Automatically extract text and structured data from images, documents, and forms.
-- Used for processes like record digitization, invoice processing, and automatic data entry.
+**3. Infrastructure Encryption:**
 
-#### AWS Data Science Pipeline Overview
+- Uses **AWS Nitro System**: Encryption tasks are offloaded to specialized hardware (Nitro Cards), enabling data encryption without compromising the host server's CPU performance (Zero Performance Impact).
 
-1. Data collection & storage: Amazon S3, AWS Data Exchange
-2. Data preprocessing: AWS Glue, Lambda, Athena
-3. Model training: SageMaker (train, tune, evaluate)
-4. Model deployment: SageMaker Endpoint / Lambda + API Gateway
-5. Monitoring & optimization: CloudWatch, Model Monitor
+#### **PART 6: INCIDENT RESPONSE**
 
-#### **Demo 1: Designing an AI Training Workflow with a Drag-and-Drop Interface (No-Code/Low-Code)**
+When defense layers are breached, the response process determines the extent of the damage.
 
-- **Goal:** Show how to build an AI training pipeline without heavy coding.
-- **Tools:** Amazon SageMaker Studio / SageMaker Canvas
-- **Demo steps:**
+**1. Prevention Strategy (Sleep Better):**
 
-  1. Prepare the dataset and upload it to Amazon S3.
-  2. Use SageMaker's drag-and-drop interface to:
+- **Golden Rules:** Eliminate long-lived SSH/Keys, Block Public S3 access, Default to Private Subnets.
+- **Infrastructure as Code (IaC):** Mandate all infrastructure changes via Code (Terraform/CDK) and approval processes (PR Review), completely eliminating manual changes (ClickOps) that cause configuration drift.
 
-     - Choose data sources, training algorithms, and parameters.
-     - Design a pipeline including data cleaning, training, validation, and deployment steps.
+**2. Standard 5-Step Process:**
 
-  3. Visually monitor training progress and model results (accuracy, confusion matrix, metrics, etc.).
+- **Preparation:** Have tools and Playbooks ready.
+- **Detection:** Rely on CloudTrail and GuardDuty.
+- **Containment:** "Jail" infected resources by changing Security Groups or revoking IAM permissions.
+- **Eradication & Recovery:** Remove malware, restore from clean backups.
+- **Post-Incident:** Learn lessons.
 
-- **Key message:** Students and developers can quickly create AI workflows without complex code, speeding up research and experimentation.
+**3. Automation is King:**
 
-#### **Demo 2: Deploying an AI Service and Accessing It Via API/Website**
+- Humans cannot race against machine speed. Hands-on labs demonstrated the necessity of using **EventBridge + Lambda** to automatically isolate compromised EC2 instances or auto-remediate public S3 buckets in seconds.
 
-- **Goal:** Demonstrate how to deploy an AI model so users can access it in practice.
-- **Tools:** Amazon SageMaker Endpoint, API Gateway, and Lambda.
-- **Demo steps:**
+### Conclusion
 
-  1. Deploy the trained model to a SageMaker Endpoint.
-  2. Integrate the endpoint with API Gateway to create a public REST API.
-  3. Provide a web route or API URL for users to send requests (e.g., submit text for sentiment analysis or translation).
-  4. Show how to present results visually (UI demo or Postman/API test).
+The **"Cloud Security & Operations Mastery"** series has provided a comprehensive overview of building secure systems on AWS through key pillars:
 
-- **Key message:** Demonstrates how AWS supports moving AI from research to production — easy to share, scale, and commercialize.
-
-#### Discussion: Performance & Cost (Cloud vs. On-premise)
-
-| Criteria                  | Cloud (AWS)                           | On-premise                  |
-| ------------------------- | ------------------------------------- | --------------------------- |
-| **Scalability**           | Easily scale resources as needed      | Limited by fixed hardware   |
-| **Cost**                  | Pay-as-you-go                         | High upfront investment     |
-| **Deployment**            | Automated, fast                       | Manual, time-consuming      |
-| **Maintenance**           | Managed by AWS                        | User is responsible         |
-| **Suitable for students** | ✅ Free Tier available, easy to learn | ❌ Harder to access, costly |
-
-#### Conclusion
-
-- AWS provides a comprehensive AI ecosystem from infrastructure to application layers, suitable for everyone — from students learning AI to enterprises deploying at scale.
-
-### Event Experience
-
-Attending the workshop “AI Services on AWS for Data Science” was very valuable. It helped me better understand the role of cloud in Data Science and how AWS supports training, deploying, and accessing AI models.
-
-#### Key takeaways from expert speakers
-
-- Speakers emphasized the importance of cloud in data processing and model training.
-- Gained a clear understanding of the three AI layers on AWS: AI-managed services, ML services (SageMaker), and AI frameworks.
-
-#### Hands-on technical experience
-
-- **Demo 1:** Designed an AI workflow using SageMaker Canvas drag-and-drop to train models without code.
-- **Demo 2:** Deployed an AI model as a service accessible via API or link.
-
-#### Using modern tools
-
-- Learned about key AI services: **Amazon Comprehend**, **Translate**, and **Textract**.
-- Understood how these services support NLP, machine translation, and intelligent data extraction.
-
-#### Networking and discussion
-
-- Interacted with experts and fellow students interested in AI & Cloud.
-- Discussed cost, performance (Cloud vs On-premise), and how to optimize SageMaker usage.
-
-#### Lessons learned
-
-- Cloud is a foundational platform for modern Data Science workflows.
-- AWS provides tools for every AI skill level — from no-code to fully managed deployments.
-- Gained clearer knowledge of how to bring AI models into real products using AWS services.
-
-#### Some photos from the event
-
-## ![](/images/4-EventParticipated/event4-3-1.png)
+- **Governance & Identity:** The foundation of every security system starts with strict user management and organizational policies.
+- **Network & Monitoring:** Establishing defense-in-depth layers and comprehensive visibility to detect potential threats.
+- **Data & Response:** Protecting digital assets with encryption and readying automated incident response processes to ensure service continuity.

@@ -6,70 +6,87 @@ chapter: false
 pre: " <b> 5.3.1 </b> "
 ---
 
-#### Goal
+#### Mục tiêu
 
-We will use the Amazon Bedrock Wizard to set up the entire RAG architecture. This process will connect the S3 data source, the Embedding model, and automatically initialize the Vector storage (OpenSearch Serverless).
+Chúng ta sẽ sử dụng Amazon Bedrock Wizard để thiết lập toàn bộ kiến trúc RAG. Quá trình này sẽ kết nối nguồn dữ liệu S3, mô hình Embedding và tự động khởi tạo kho lưu trữ Vector (OpenSearch Serverless).
 
-#### Implementation Steps
+#### Các Bước Thực hiện
 
-1.  Log in to the **AWS Management Console** and access the **Amazon Bedrock** service.
-2.  In the left-hand menu, select **Knowledge bases**.
-3.  Click the **Create knowledge base** button in the top right corner of the screen.
+1.  Đăng nhập vào **AWS Management Console** và truy cập dịch vụ **Amazon Bedrock**.
+2.  Trong menu bên trái, chọn **Knowledge bases**.
 
-> ![Image illustrating Create Knowledge Base button on Bedrock interface](link_anh_create_kb_button)
+![Click_Knowledge_base](/images/5-Workshop/5.3-Knowledge-Base/01_Click_Knowledge_base.jpg)
 
-**Step 1: Configure Knowledge Base**
+3.  Nhấp vào nút **Create knowledge base** ở góc trên bên phải của màn hình. Chọn `Knowledge Base with vector store`
 
-On the first configuration screen:
+![Create Knowledge Base](/images/5-Workshop/5.3-Knowledge-Base/02_Create_Knowledge_base.jpg)
 
-1.  **Knowledge base name:** Enter a name for the knowledge base (E.g., `kb-workshop-<your-name>`).
-2.  **IAM permissions:** Select the option **Create and use a new service role**.
-3.  **Service role name:** Keep the default value suggested by AWS (starting with `AmazonBedrockExecutionRoleForKnowledgeBase_...`).
-4.  Click **Next**.
+**Bước 1: Cấu hình Knowledge Base**
 
-> ![Image illustrating Step 1: Enter KB name and select IAM Role](link_anh_step1_details)
+Trên màn hình cấu hình đầu tiên:
 
-**Step 2: Configure Data Source**
+1. **Knowledge base name:** Nhập tên `knowledge-base-demo`
+2. **Knowledge Base description - optional:** Nhập `Knowledge Base from AWS Overview` (Phần này bạn cần mô tả dữ liệu bạn đã upload lên S3 trước đó).
+3. **IAM permissions:** Chọn tùy chọn **Create and use a new service role**.
+4. **Service role name:** Giữ giá trị mặc định do AWS đề xuất (bắt đầu bằng `AmazonBedrockExecutionRoleForKnowledgeBase_...`).
 
-Connect to the S3 Bucket containing the documents:
+![Configure Knowledge Base](/images/5-Workshop/5.3-Knowledge-Base/03_Configure_KB.jpg)
 
-1.  **Data source name:** Enter a data source name (E.g., `s3-datasource`).
+5.  Nhấp **Next**.
+
+![Configure Knowledge Base_02](/images/5-Workshop/5.3-Knowledge-Base/04_Configure_KB_2.jpg)
+
+**Bước 2: Cấu hình Nguồn Dữ liệu**
+
+Kết nối đến S3 Bucket chứa các tài liệu:
+
+1.  **Data source name:** Nhập `knowledge-base-demo`
+
+![Configure KB Step 2](/images/5-Workshop/5.3-Knowledge-Base/05_Step_2.jpg)
+
 2.  **S3 URI:**
-    - Click the **Browse S3** button.
-    - In the pop-up window, select the bucket `rag-workshop-<your-name>` you created in the previous section.
-    - Click **Choose**.
-3.  Click **Next**.
+    - Nhấp vào nút **Browse S3**.
+    - Trong cửa sổ pop-up, chọn bucket `rag-workshop-demo` mà bạn đã tạo trong phần trước.
+    - Nhấp **Choose**.
 
-> ![Image illustrating Step 2: Select S3 Bucket as data source](link_anh_step2_datasource)
+![Configure S3 URI](/images/5-Workshop/5.3-Knowledge-Base/06_Configure_S3_URI.jpg)
 
-**Step 3: Storage & Processing**
+3. Giữ lại các cấu hình Default. Nhấp **Next**.
 
-This is the most critical step to define the AI model and vector storage location:
+![Finished Step 2](/images/5-Workshop/5.3-Knowledge-Base/07_Finished_Step_2.jpg)
+
+**Bước 3: Lưu trữ & Xử lý**
+Đây là bước quan trọng nhất để xác định mô hình AI và vị trí lưu trữ vector:
 
 1.  **Embeddings model:**
-    - Click **Select model**.
-    - Select model: **Titan Embeddings G1 - Text v2**.
-2.  **Vector database:**
-    - Select option: **Quick create a new vector store - Recommended**.
-    - _Note:_ This option allows AWS to automatically create an **Amazon OpenSearch Serverless** cluster to store data, saving you from manual infrastructure management.
-3.  Click **Next**.
 
-> ![Image illustrating Step 3: Select Titan Embeddings v2 and Quick Create Vector Store](link_anh_step3_storage)
+    - Nhấp **Select model**.
+      ![Configure Step 3](/images/5-Workshop/5.3-Knowledge-Base/08_Config_Step_3.jpg)
 
-**Step 4: Review and Create Knowledge Base**
+    - Chọn model: **Titan Embeddings G1 - Text v2**.
+      ![Configure Step 3](/images/5-Workshop/5.3-Knowledge-Base/09_Config_Step_3.jpg)
 
-1.  Review all configuration information on the Review page.
-2.  Ensure the S3 URI and Model items are correct.
-3.  Scroll to the bottom of the page and click the **Create knowledge base** button.
+2.  **Vector Store:**
+    - **Vector store creation method:** Chọn `Quick create a new vector store - Recommended`
+    - **Vector store type - new:** Chọn `Amazon OpenSearch Serverless`
+    - _Lưu ý:_ Tùy chọn này cho phép AWS tự động tạo một cluster **Amazon OpenSearch Serverless** để lưu trữ dữ liệu, giúp bạn không phải quản lý cơ sở hạ tầng thủ công.
+3.  Nhấp **Next**.
+    ![Configure Step 3](/images/5-Workshop/5.3-Knowledge-Base/10_Config_Step_3.jpg)
 
-> ![Image illustrating Step 4: Review screen and Create button](link_anh_step4_review)
+**Bước 4: Kiểm tra và Tạo Knowledge Base**
 
-**Step 5: Wait for Initialization**
+1.  Kiểm tra tất cả thông tin cấu hình trên trang Review.
+2.  Đảm bảo các mục S3 URI và Model đều chính xác.
+3.  Cuộn xuống cuối trang và nhấp vào nút **Create knowledge base**.
 
-After clicking Create, the system will begin the background infrastructure initialization process for the Vector Store.
+![Step 4](/images/5-Workshop/5.3-Knowledge-Base/11_Step_4.jpg)
 
-- **Wait time:** Approximately **2 - 5 minutes**.
-- **Note:** Please do not close the browser during this time.
-- **Success:** When the screen displays a green notification **"Knowledge base created successfully"**, you have completed this step and are ready for the next section.
+**Bước 5: Chờ Khởi tạo**
 
-> ![Image illustrating green success notification screen](link_anh_step5_success)
+Sau khi nhấp Create, hệ thống sẽ bắt đầu quá trình khởi tạo cơ sở hạ tầng nền cho Vector Store.
+
+- **Thời gian chờ:** Khoảng **2 - 5 phút**.
+- **Lưu ý:** Vui lòng không đóng trình duyệt trong thời gian này.
+- **Thành công:** Khi màn hình hiển thị thông báo màu xanh **"Knowledge base created successfully"**, bạn đã hoàn thành bước này và sẵn sàng cho phần tiếp theo.
+
+![Step 5](/images/5-Workshop/5.3-Knowledge-Base/12_Step_5.jpg)

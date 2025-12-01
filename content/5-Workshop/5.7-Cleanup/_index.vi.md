@@ -1,63 +1,55 @@
 ---
-title: "Dọn dẹp tài nguyên"
+title: "Dọn dẹp Tài nguyên"
 date: "2025-09-09"
 weight: 7
 chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-#### Goal
+#### Mục tiêu
 
-To avoid incurring unwanted costs after finishing the practice lab, we need to delete the created resources.
+Để tránh phát sinh chi phí không mong muốn sau khi hoàn thành bài thực hành, chúng ta cần xóa các tài nguyên đã tạo.
 
-> ⚠️ **WARNING:**
-> Deleting the **Knowledge Base** DOES NOT automatically delete the **Vector Store (OpenSearch Serverless)**. You must manually delete the OpenSearch Serverless Collection as this is the costliest service in this Lab.
+> ⚠️ **CẢNH BÁO:**
+> Xóa **Knowledge Base** KHÔNG tự động xóa **Vector Store (OpenSearch Serverless)**. Bạn phải xóa thủ công OpenSearch Serverless Collection vì đây là dịch vụ tốn chi phí nhất trong Lab này.
 
-#### Implementation Steps
+#### Các Bước Thực hiện
 
-**Step 1: Delete Knowledge Base**
+**Bước 1: Xóa Knowledge Base**
 
-1.  Access the **Amazon Bedrock Console** -> **Knowledge bases**.
-2.  Select the radio button next to your Knowledge Base name.
-3.  Click the **Delete** button.
-4.  A dialog box appears, enter the Knowledge Base name to confirm (or type `delete`).
-5.  Click **Delete**.
+1.  Truy cập **Amazon Bedrock Console** -> **Knowledge bases**.
+2.  Chọn nút radio bên cạnh tên Knowledge Base của bạn.
 
-> ![Image illustrating Knowledge Base deletion action](link_anh_delete_kb)
+3.  Nhấp vào nút **Delete**.
+4.  Hộp thoại xuất hiện, nhập tên Knowledge Base để xác nhận (hoặc gõ `delete`).
+5.  Nhấp **Delete**. Quá trình này mất 10-15 phút mới xóa thành công. Nên bạn thư giản nhé
 
-**Step 2: Delete Vector Store**
+![Hình minh họa thao tác xóa Knowledge Base](/images/5-Workshop/5.7-Clean-up/01.jpg)
 
-1.  Access the **Amazon OpenSearch Service**.
-2.  In the left menu, under **Serverless**, select **Collections**.
-3.  You will see a Collection named like `bedrock-knowledge-base-...`.
-4.  Select the radio button next to that Collection name.
-5.  Click the **Delete** button.
-6.  Type `confirm` or the collection name to confirm deletion.
-7.  Click **Delete**.
+**Bước 2: Xóa Vector Store**
 
-> ![Image illustrating OpenSearch Collection deletion action](link_anh_delete_opensearch)
+1.  Truy cập **Amazon OpenSearch Service**.
+2.  Trong menu bên trái, ở phần **Serverless**, chọn **Collections**.
+3.  Bạn sẽ thấy một Collection có tên dạng `bedrock-knowledge-base-...`.
+4.  Chọn nút radio bên cạnh tên Collection đó.
+5.  Nhấp vào nút **Delete**.
+6.  Gõ `confirm` hoặc tên collection để xác nhận xóa.
+7.  Nhấp **Delete**.
 
-**Step 3: Delete Data on S3**
+![Hình minh họa thao tác xóa OpenSearch Collection](/images/5-Workshop/5.7-Clean-up/02.jpg)
 
-1.  Access the **Amazon S3** service.
-2.  Select the bucket `rag-workshop-<your-name>`.
-3.  Click the **Empty** button first.
-    - Type `permanently delete` to confirm deleting all files inside.
-4.  After the bucket is empty, return to the Buckets list.
-5.  Select that bucket again and click the **Delete** button.
-6.  Enter the bucket name to confirm.
+**Bước 3: Xóa Dữ liệu trên S3**
 
-> ![Image illustrating S3 Bucket Empty and Delete actions](link_anh_delete_s3)
+1.  Truy cập dịch vụ **Amazon S3**.
+2.  Chọn bucket `rag-workshop-demo`.
+3.  Nhấp vào nút **Empty** trước tiên.
+    - Gõ `permanently delete` để xác nhận xóa tất cả các file bên trong.
+4.  Sau khi bucket rỗng, quay lại danh sách Buckets.
+5.  Chọn lại bucket đó và nhấp vào nút **Delete**.
+6.  Nhập tên bucket để xác nhận.
 
-**Step 4: Stop Application on CloudShell**
+![Hình minh họa thao tác Empty và Delete S3 Bucket](/images/5-Workshop/5.7-Clean-up/03.jpg)
 
-1.  Return to the **CloudShell** tab.
-2.  In the command line window (where Streamlit is running), press `Ctrl + C` to stop the server.
-3.  Close the CloudShell browser tab.
-4.  The CloudShell session will automatically terminate after 20 minutes of inactivity; you do not need to delete anything else here.
+#### Hoàn thành
 
-> ![Image illustrating CloudShell terminal with stopped application](link_anh_stop_cloudshell)
-
-#### Completion
-
-Congratulations on fully completing the Workshop **"Building a RAG Application with Amazon Bedrock"**. Your system has been cleaned up and is safe!
+Chúc mừng bạn đã hoàn thành đầy đủ Workshop **"Xây dựng Ứng dụng RAG với Amazon Bedrock"**. Hệ thống của bạn đã được dọn dẹp và an toàn!

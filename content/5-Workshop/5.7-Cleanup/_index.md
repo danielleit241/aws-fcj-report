@@ -1,37 +1,55 @@
 ---
-title: "Clean up"
+title: "Clean Resources"
 date: "2025-09-09"
 weight: 7
 chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-Congratulations on completing this workshop!
-In this workshop, you learned architecture patterns for accessing Amazon S3 without using the Public Internet.
+#### Target
 
-- By creating a gateway endpoint, you enabled direct communication between EC2 resources and Amazon S3, without traversing an Internet Gateway.
-- By creating an interface endpoint you extended S3 connectivity to resources running in your on-premises data center via AWS Site-to-Site VPN or Direct Connect.
+To avoid incurring unwanted costs after finishing the practice lab, we need to delete the created resources.
 
-#### clean up
+> ⚠️ **WARNING:**
+> Deleting the **Knowledge Base** DOES NOT automatically delete the **Vector Store (OpenSearch Serverless)**. You must manually delete the OpenSearch Serverless Collection as this is the costliest service in this Lab.
 
-1. Navigate to Hosted Zones on the left side of Route 53 console. Click the name of _s3.us-east-1.amazonaws.com_ zone. Click Delete and confirm deletion by typing delete.
+#### Implementation Steps
 
-![hosted zone](/images/5-Workshop/5.6-Cleanup/delete-zone.png)
+**Step 1: Delete Knowledge Base**
 
-2. Disassociate the Route 53 Resolver Rule - myS3Rule from "VPC Onprem" and Delete it.
+1.  Access the **Amazon Bedrock Console** -> **Knowledge bases**.
+2.  Select the radio button next to your Knowledge Base name.
 
-![hosted zone](/images/5-Workshop/5.6-Cleanup/vpc.png)
+3.  Click the **Delete** button.
+4.  A dialog box appears, enter the Knowledge Base name to confirm (or type `delete`).
+5.  Click **Delete**. This process takes 10-15 minutes to complete successfully, so please be patient.
 
-4. Open the CloudFormation console and delete the two CloudFormation Stacks that you created for this lab:
+![Image illustrating Knowledge Base deletion action](/images/5-Workshop/5.7-Clean-up/01.jpg)
 
-- PLOnpremSetup
-- PLCloudSetup
+**Step 2: Delete Vector Store**
 
-![delete stack](/images/5-Workshop/5.6-Cleanup/delete-stack.png)
+1.  Access the **Amazon OpenSearch Service**.
+2.  In the left menu, under **Serverless**, select **Collections**.
+3.  You will see a Collection named like `bedrock-knowledge-base-...`.
+4.  Select the radio button next to that Collection name.
+5.  Click the **Delete** button.
+6.  Type `confirm` or the collection name to confirm deletion.
+7.  Click **Delete**.
 
-5. Delete S3 buckets
+![Image illustrating OpenSearch Collection deletion action](/images/5-Workshop/5.7-Clean-up/02.jpg)
 
-- Open S3 console
-- Choose the bucket we created for the lab, click and confirm empty. Click delete and confirm delete.
+**Step 3: Delete Data on S3**
 
-![delete s3](/images/5-Workshop/5.6-Cleanup/delete-s3.png)
+1.  Access the **Amazon S3** service.
+2.  Select the bucket `rag-workshop-demo`.
+3.  Click the **Empty** button first.
+    - Type `permanently delete` to confirm deleting all files inside.
+4.  After the bucket is empty, return to the Buckets list.
+5.  Select that bucket again and click the **Delete** button.
+6.  Enter the bucket name to confirm.
+
+![Image illustrating S3 Bucket Empty and Delete actions](/images/5-Workshop/5.7-Clean-up/03.jpg)
+
+#### Completion
+
+Congratulations on fully completing the Workshop **"Building a RAG Application with Amazon Bedrock"**. Your system has been cleaned up and is safe!
