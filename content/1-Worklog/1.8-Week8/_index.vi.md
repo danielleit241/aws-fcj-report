@@ -8,48 +8,24 @@ pre: " <b> 1.8. </b> "
 
 ### Mục tiêu tuần 8:
 
-- Kết nối, làm quen với các thành viên trong First Cloud Journey.
-- Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- **Nghiên cứu Serverless:** Hiểu sâu lý thuyết về AWS Lambda, cơ chế Event-driven và tầm quan trọng của Lambda Layers.
+- **Nghiên cứu GenAI:** Tìm hiểu tổng quan về Amazon Bedrock, các mô hình Foundation Models (FM) và các use-case cơ bản.
+- **Kiến trúc API:** Nắm vững lý thuyết về Amazon API Gateway và vai trò của nó trong kiến trúc Microservices.
+- **Thực hành Lab (Weekend):** Xây dựng thành công luồng xử lý ảnh tự động: Upload S3 -> Trigger Lambda (kèm Layer xử lý ảnh) -> Resize -> Lưu S3 đích.
 
-### Các công việc cần triển khai trong tuần này:
+### Công việc thực hiện trong tuần này:
 
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP <br>                    | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Start Date | Completion Date | Reference Material                                                                                                                           |
+| :-- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **AWS Lambda Core Concepts (Research)** <br> - **Execution Model:** Tìm hiểu vòng đời của Lambda (Init, Invoke, Shutdown) và khái niệm Cold Start. <br> - **Resource Model:** Hiểu mối quan hệ giữa Memory và CPU (tăng RAM = tăng CPU power). <br> - **Billing:** Nghiên cứu cách tính phí: số lần request + thời gian chạy (GB-seconds). <br> - **Concurrency:** Phân biệt Reserved Concurrency (đảm bảo tài nguyên) và Provisioned Concurrency (giảm Cold Start).                                                                                                          | 27/10/2025 | 27/10/2025      | [AWS Lambda Docs](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)                                                                 |
+| 2   | **Amazon Bedrock & GenAI Overview (Research)** <br> - **Key Concepts:** Tìm hiểu về Foundation Models (Claude, Titan, Stable Diffusion), Tokens, và Inference parameters (Temperature, Top P). <br> - **Bedrock Features:** Nghiên cứu lý thuyết về Knowledge Bases (RAG) để train dữ liệu riêng và Agents để thực thi tác vụ. <br> - **Security:** Tìm hiểu cam kết bảo mật của Bedrock (dữ liệu khách hàng không dùng để train lại model của AWS). <br> - **Use Cases:** Đọc case study về tóm tắt văn bản và tạo ảnh.                                                      | 28/10/2025 | 28/10/2025      | [Bedrock User Guide](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)                                              |
+| 3   | **API Gateway Fundamentals (Research)** <br> - **Architecture:** Tìm hiểu vai trò của API Gateway: Authentication, Throttling, Caching. <br> - **Types:** So sánh REST API (Feature-rich) vs HTTP API (Low-cost/Low-latency) vs WebSocket API (Real-time). <br> - **Integration:** Nghiên cứu lý thuyết về Lambda Proxy Integration (cách API GW chuyển nguyên event object cho Lambda). <br> - **Endpoint Types:** Phân biệt Edge-optimized (toàn cầu), Regional (trong vùng), và Private endpoints (nội bộ VPC).                                                            | 29/10/2025 | 29/10/2025      | [API Gateway Concepts](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)                                            |
+| 4   | **S3 Event Notifications & IAM Preparation (Pre-Lab)** <br> - **Event Patterns:** Tìm hiểu cơ chế S3 Event Notifications (cụ thể là `s3:ObjectCreated:*`) để kích hoạt Lambda function. <br> - **IAM Permissions:** Soạn thảo chính sách (IAM Policy) cần thiết: Lambda cần quyền `s3:GetObject` (bucket nguồn), `s3:PutObject` (bucket đích) và `logs:CreateLogGroup`. <br> - **Library Research:** Tìm hiểu về thư viện **Pillow (PIL)** của Python để xử lý ảnh và quy trình đóng gói thư viện này vào Lambda Layer (do môi trường Lambda mặc định không có).              | 30/10/2025 | 30/10/2025      | [S3 Event Notifications](https://docs.aws.amazon.com/AmazonS3/latest/userguide/EventNotifications.html)                                      |
+| 5   | **Lab: Serverless Image Resizer (Implementation)** <br> - **Lambda Layer:** Thực hiện tạo và upload Layer chứa thư viện `Pillow` (tương thích Python 3.x runtime). <br> - **Coding:** Viết Lambda function (Python/Boto3) để lấy ảnh từ sự kiện S3, resize về thumbnail (ví dụ 128x128) và lưu sang bucket đích. <br> - **Configuration:** Cấu hình S3 Bucket Trigger để tự động chạy hàm khi có file mới upload vào folder `/raw`. <br> - **Testing & Debug:** Upload ảnh test, kiểm tra kết quả trong bucket đích và xem CloudWatch Logs để fix lỗi import hoặc permission. | 31/10/2025 | 01/11/2025      | [Serverless Image Resizing](https://aws.amazon.com/blogs/compute/resize-images-on-the-fly-with-amazon-s3-aws-lambda-and-amazon-api-gateway/) |
 
-### Kết quả đạt được tuần 8:
+### Thành tựu tuần 8:
 
-- Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản:
-
-  - Compute
-  - Storage
-  - Networking
-  - Database
-  - ...
-
-- Đã tạo và cấu hình AWS Free Tier account thành công.
-
-- Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-- Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-
-  - Access Key
-  - Secret Key
-  - Region mặc định
-  - ...
-
-- Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  - Kiểm tra thông tin tài khoản & cấu hình
-  - Lấy danh sách region
-  - Xem dịch vụ EC2
-  - Tạo và quản lý key pair
-  - Kiểm tra thông tin dịch vụ đang chạy
-  - ...
-
-- Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-- ...
+- **Nắm vững lý thuyết Serverless & AI:** Hiểu rõ bức tranh tổng thể về Serverless (Lambda, API Gateway) và xu hướng Generative AI (Bedrock) thông qua việc đọc tài liệu chuyên sâu.
+- **Hiểu sâu về Lambda Environment:** Nhận thức được tầm quan trọng của **Lambda Layers** khi làm việc với các thư viện ngoại lai như `Pillow` hay `Pandas`, tránh việc code quá nặng.
+- **Thực hành thành công Event-Driven:** Xây dựng hoàn chỉnh ứng dụng thực tế đầu tiên: hệ thống xử lý ảnh tự động (Image Processing Pipeline) không cần máy chủ.
+- **Kỹ năng IAM & Debug:** Biết cách cấp quyền tối thiểu (Least Privilege) cho Lambda và sử dụng CloudWatch Logs để truy vết lỗi trong quá trình thực thi code.

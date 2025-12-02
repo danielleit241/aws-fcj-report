@@ -13,7 +13,7 @@ pre: " <b> 1.11. </b> "
 - Xây dựng **Notification Service** toàn diện hỗ trợ đa kênh: **Email** (qua AWS SES) và **In-App** (qua SignalR), cho phép người dùng tùy chỉnh cấu hình nhận tin.
 - Thiết lập quy trình **Tự động hóa cuối kỳ (Period End Automation)** để xử lý tiền dư và chuẩn bị Backend sẵn sàng cho tích hợp **AI (OCR/Voice)**.
 
-### Các công việc cần triển khai trong tuần này:
+### Công việc thực hiện trong tuần này:
 
 | Day | Task                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Start Date | Completion Date | Reference Material                                                                                                   |
 | :-- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- | :-------------- | :------------------------------------------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ pre: " <b> 1.11. </b> "
 | 4   | **Period End Automation & In-App Alerts** <br> - Thiết lập **Job Scheduler** (Hangfire/Quartz) để tự động hóa quy trình cuối kỳ: Tính toán tiền dư, hoàn về ví chính và tạo báo cáo tổng kết. <br> - Triển khai hệ thống thông báo **In-App** thời gian thực qua **SignalR Hub**. <br> - Xây dựng API đánh dấu đã đọc (`mark-as-read`) và quản lý số lượng thông báo chưa đọc (badge count).                                                                         | 20/11/2025 | 20/11/2025      | [Day 14 Docs](https://gitlab.com/vicobi/vicobi-docs/-/blob/main/dev-plans/backend/sprint-3/day-14.md?ref_type=heads) |
 | 5   | **AI Service Integration (Backend Side)** <br> - Cập nhật Transaction Entity bổ sung các trường metadata AI (`AiExtracted`, `ConfidenceScore`, `OriginalText`). <br> - Phát triển API **Batch Transaction** (`POST /batch`) hỗ trợ xử lý hóa đơn OCR nhiều món trong một lần gọi. <br> - Cập nhật luồng xử lý để Backend nhận dữ liệu đã được người dùng review từ Client thay vì tự động tạo từ sự kiện AI.                                                         | 21/11/2025 | 21/11/2025      | [Day 15 Docs](https://gitlab.com/vicobi/vicobi-docs/-/blob/main/dev-plans/backend/sprint-3/day-15.md?ref_type=heads) |
 
-### Kết quả đạt được tuần 11:
+### Thành tựu Tuần 11:
 
 - **Report Service & Analytics Toàn diện:**
   - Đã vận hành ổn định hệ thống báo cáo với mẫu **CQRS**, cung cấp số liệu phân tích theo thời gian thực.

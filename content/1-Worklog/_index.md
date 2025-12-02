@@ -24,7 +24,7 @@ Typically, and as a standard, a worklog is carried out over about 3 months (thro
 
 **Week 7:** [Strengthen Infrastructure Architecture: Network, Storage, Database & Compute](1.7-week7/)
 
-**Week 8:** [Doing task H...](1.8-week8/)
+**Week 8:** [Serverless Architecture, Generative AI Concepts, and Automated Image Processing Lab](1.8-week8/)
 
 **Week 9:** [Building .NET Aspire Platform, Integrating AWS Cognito & Wallet Management Logic](1.9-week9/)
 

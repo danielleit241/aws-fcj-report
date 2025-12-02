@@ -13,7 +13,7 @@ pre: " <b> 1.12 </b> "
 - Tăng cường **Bảo mật hệ thống**: Rà soát xác thực/phân quyền, quản lý secrets qua biến môi trường và thiết lập HTTPS.
 - **Đóng gói và Tài liệu hóa**: Hoàn thiện Docker hóa các dịch vụ, viết tài liệu Swagger đầy đủ và sẵn sàng kịch bản triển khai lên AWS.
 
-### Các công việc cần triển khai trong tuần này:
+### Công việc thực hiện trong tuần này:
 
 | Day | Task                                                                                                                                                                                                                                                                                                                                                                                            | Start Date | Completion Date | Reference Material                                                                                                   |
 | :-- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- | :-------------- | :------------------------------------------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ pre: " <b> 1.12 </b> "
 | 4   | **Bug Fixes & Code Quality** <br> - Sửa lỗi (Bug Fixing): Tập trung xử lý triệt để các lỗi P0, P1 phát hiện trong quá trình test. <br> - Cải thiện chất lượng Code: Refactor các hàm phức tạp, thêm XML documentation và Unit tests cho logic quan trọng. <br> - Nâng cấp Logging: Tích hợp Serilog với cấu trúc log chuẩn (Structured Logging) và Correlation IDs.                             | 27/11/2025 | 27/11/2025      | [Day 19 Docs](https://gitlab.com/vicobi/vicobi-docs/-/blob/main/dev-plans/backend/sprint-4/day-19.md?ref_type=heads) |
 | 5   | **Documentation & Deployment Prep** <br> - Hoàn thiện tài liệu API: Cập nhật Swagger đầy đủ ví dụ request/response và xuất Postman Collection. <br> - Chuẩn bị triển khai: Viết Dockerfile cho từng service, file docker-compose.yml <br> - Demo & Bàn giao: Cập nhật README, sơ đồ kiến trúc và thực hiện demo toàn bộ quy trình cho team.                                                     | 28/11/2025 | 28/11/2025      | [Day 20 Docs](https://gitlab.com/vicobi/vicobi-docs/-/blob/main/dev-plans/backend/sprint-4/day-20.md?ref_type=heads) |
 
-### Kết quả đạt được tuần 12:
+### Thành tựu Tuần 12:
 
 - **Chất lượng hệ thống được đảm bảo:**
   - Đã vượt qua các bài kiểm thử tích hợp (Integration Tests) bao gồm cả các kịch bản lỗi và xử lý sự kiện bất đồng bộ.

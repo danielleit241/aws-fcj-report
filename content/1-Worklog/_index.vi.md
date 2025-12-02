@@ -24,7 +24,7 @@ Thông thường và cũng là tiêu chuẩn, một worklog được thực hi�
 
 **Tuần 7:** [Củng cố Kiến trúc Hạ tầng: Network, Storage, Database & Compute](1.7-week7/)
 
-**Tuần 8:** [Làm công việc H...](1.8-week8/)
+**Tuần 8:** [Kiến trúc Serverless, Lý thuyết GenAI và Lab Xử lý ảnh Tự động](1.8-week8/)
 
 **Tuần 9:** [Xây dựng Nền tảng .NET Aspire, Tích hợp AWS Cognito & Logic Quản lý Ví](1.9-week9/)
 

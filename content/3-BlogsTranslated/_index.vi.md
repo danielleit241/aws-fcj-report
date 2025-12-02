@@ -17,15 +17,3 @@ Bài viết giới thiệu cách **S2 Labs**, **Empact AI**, và **Kraken Roboti
 ### [Blog 3 - Khai mở toàn bộ tiềm năng của Amazon Connect](3.3-Blog3/)
 
 Bài viết chia sẻ cách khai thác tối đa tiềm năng của **Amazon Connect**, nền tảng trung tâm liên hệ dựa trên **AI và AWS**. Tác giả nhấn mạnh tầm quan trọng của việc quản trị thay đổi: xác định đúng **bên liên quan**, có **nhà tài trợ cấp lãnh đạo**, xây dựng **đại sứ thay đổi**, và đo lường **chỉ số hiệu quả thực tế**. Thành công đến từ việc hiểu rõ nhu cầu kinh doanh, đào tạo đúng đối tượng và truyền thông nội bộ tốt. Nếu được triển khai đúng cách, **Amazon Connect** giúp tối ưu vận hành, tự động hóa và nâng cao trải nghiệm khách hàng.
-
-### [Blog 4 - ...](3.4-Blog4/)
-
-Blog này giới thiệu cách bắt đầu xây dựng data lake trong lĩnh vực y tế bằng cách áp dụng kiến trúc microservices. Bạn sẽ tìm hiểu vì sao data lake quan trọng trong việc lưu trữ và phân tích dữ liệu y tế đa dạng (hồ sơ bệnh án điện tử, dữ liệu xét nghiệm, thiết bị IoT y tế…), cách microservices giúp hệ thống linh hoạt, dễ mở rộng và dễ bảo trì hơn. Bài viết cũng hướng dẫn các bước khởi tạo môi trường, tổ chức pipeline xử lý dữ liệu, và đảm bảo tuân thủ các tiêu chuẩn bảo mật & quyền riêng tư như HIPAA.
-
-### [Blog 5 - ...](3.5-Blog5/)
-
-Blog này giới thiệu cách bắt đầu xây dựng data lake trong lĩnh vực y tế bằng cách áp dụng kiến trúc microservices. Bạn sẽ tìm hiểu vì sao data lake quan trọng trong việc lưu trữ và phân tích dữ liệu y tế đa dạng (hồ sơ bệnh án điện tử, dữ liệu xét nghiệm, thiết bị IoT y tế…), cách microservices giúp hệ thống linh hoạt, dễ mở rộng và dễ bảo trì hơn. Bài viết cũng hướng dẫn các bước khởi tạo môi trường, tổ chức pipeline xử lý dữ liệu, và đảm bảo tuân thủ các tiêu chuẩn bảo mật & quyền riêng tư như HIPAA.
-
-### [Blog 6 - ...](3.6-Blog6/)
-
-Blog này giới thiệu cách bắt đầu xây dựng data lake trong lĩnh vực y tế bằng cách áp dụng kiến trúc microservices. Bạn sẽ tìm hiểu vì sao data lake quan trọng trong việc lưu trữ và phân tích dữ liệu y tế đa dạng (hồ sơ bệnh án điện tử, dữ liệu xét nghiệm, thiết bị IoT y tế…), cách microservices giúp hệ thống linh hoạt, dễ mở rộng và dễ bảo trì hơn. Bài viết cũng hướng dẫn các bước khởi tạo môi trường, tổ chức pipeline xử lý dữ liệu, và đảm bảo tuân thủ các tiêu chuẩn bảo mật & quyền riêng tư như HIPAA.

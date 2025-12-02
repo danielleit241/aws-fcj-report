@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
-## Week 6 Objectives:
+### Week 6 Objectives:
 
 - **Containerization Mastery:** Master the process of packaging and operating applications on Container platforms (Docker) and orchestrating at scale with Amazon ECS.
 - **Automation & Optimization:** Automate the software development lifecycle (CI/CD) and optimize global user experience via CDN.

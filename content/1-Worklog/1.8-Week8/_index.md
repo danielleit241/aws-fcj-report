@@ -8,48 +8,24 @@ pre: " <b> 1.8. </b> "
 
 ### Week 8 Objectives:
 
-- Connect and get acquainted with members of First Cloud Journey.
-- Understand basic AWS services, how to use the console & CLI.
+- **Master Serverless Concepts:** Deep dive into AWS Lambda theory, event-driven mechanisms, and the importance of Lambda Layers.
+- **Explore Generative AI:** Gain a theoretical overview of Amazon Bedrock, Foundation Models (FMs), and basic use cases.
+- **API Architecture:** Understand Amazon API Gateway theory and its critical role in Microservices architecture.
+- **Hands-on Lab (Weekend):** Successfully build an automated image processing pipeline: Upload to S3 -> Trigger Lambda (w/ Pillow Layer) -> Resize Image -> Save to destination S3 bucket.
 
 ### Tasks to be carried out this week:
 
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP <br>                              | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Start Date | Completion Date | Reference Material                                                                                                                           |
+| :-- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **AWS Lambda Core Concepts (Research)** <br> - **Execution Model:** Studied the Lambda lifecycle (Init, Invoke, Shutdown) and the "Cold Start" phenomenon. <br> - **Resource Model:** Understood the relationship between Memory and CPU (higher RAM = proportional CPU power). <br> - **Billing:** Researched pricing models: Request count + Compute duration (GB-seconds). <br> - **Concurrency:** Differentiated between Reserved Concurrency (guaranteed resources) and Provisioned Concurrency (eliminated cold starts).                                                                                                                                          | 27/10/2025 | 27/10/2025      | [AWS Lambda Docs](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)                                                                 |
+| 2   | **Amazon Bedrock & GenAI Overview (Research)** <br> - **Key Concepts:** Explored Foundation Models (Claude, Titan, Stable Diffusion), Tokens, and Inference parameters (Temperature, Top P). <br> - **Bedrock Features:** Researched theoretical concepts of Knowledge Bases (RAG) for custom data and Agents for task execution. <br> - **Security:** Reviewed Bedrock's data privacy commitments (customer data is not used to retrain AWS base models). <br> - **Use Cases:** Read case studies on text summarization and image generation.                                                                                                                          | 28/10/2025 | 28/10/2025      | [Bedrock User Guide](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)                                              |
+| 3   | **API Gateway Fundamentals (Research)** <br> - **Architecture:** Studied the role of API Gateway: Authentication, Throttling, and Caching. <br> - **Types:** Compared REST API (Feature-rich) vs. HTTP API (Low-cost/Low-latency) vs. WebSocket API (Real-time). <br> - **Integration:** Deep dived into **Lambda Proxy Integration** (passing the raw event object directly to Lambda). <br> - **Endpoint Types:** Differentiated between Edge-optimized (Global), Regional (Region-specific), and Private endpoints (VPC internal).                                                                                                                                   | 29/10/2025 | 29/10/2025      | [API Gateway Concepts](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)                                            |
+| 4   | **S3 Event Notifications & IAM Preparation (Pre-Lab)** <br> - **Event Patterns:** Investigated S3 Event Notifications mechanism (specifically `s3:ObjectCreated:*`) to trigger Lambda functions. <br> - **IAM Permissions:** Drafted the necessary IAM Policy: Lambda requires `s3:GetObject` (Source bucket), `s3:PutObject` (Destination bucket), and `logs:CreateLogGroup`. <br> - **Library Research:** Researched the **Pillow (PIL)** Python library for image manipulation and the process of packaging it into a Lambda Layer (since it's not in the standard runtime).                                                                                         | 30/10/2025 | 30/10/2025      | [S3 Event Notifications](https://docs.aws.amazon.com/AmazonS3/latest/userguide/EventNotifications.html)                                      |
+| 5   | **Lab: Serverless Image Resizer (Implementation)** <br> - **Lambda Layer:** Created and uploaded a Layer containing the `Pillow` library (compatible with Python 3.x runtime). <br> - **Coding:** Developed the Lambda function (Python/Boto3) to retrieve the image from the S3 event, resize it to a thumbnail (e.g., 128x128), and save it to the target bucket. <br> - **Configuration:** Configured S3 Bucket Triggers to automatically invoke the function upon file upload to the `/raw` folder. <br> - **Testing & Debug:** Uploaded test images, verified results in the destination bucket, and analyzed CloudWatch Logs to resolve import/permission errors. | 31/10/2025 | 01/11/2025      | [Serverless Image Resizing](https://aws.amazon.com/blogs/compute/resize-images-on-the-fly-with-amazon-s3-aws-lambda-and-amazon-api-gateway/) |
 
 ### Week 8 Achievements:
 
-- Understood what AWS is and mastered the basic service groups:
-
-  - Compute
-  - Storage
-  - Networking
-  - Database
-  - ...
-
-- Successfully created and configured an AWS Free Tier account.
-
-- Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-- Installed and configured AWS CLI on the computer, including:
-
-  - Access Key
-  - Secret Key
-  - Default Region
-  - ...
-
-- Used AWS CLI to perform basic operations such as:
-
-  - Check account & configuration information
-  - Retrieve the list of regions
-  - View EC2 service
-  - Create and manage key pairs
-  - Check information about running services
-  - ...
-
-- Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-- ...
+- **Solidified Serverless & AI Theory:** Gained a comprehensive understanding of the Serverless ecosystem (Lambda, API Gateway) and Generative AI trends (Bedrock) through deep documentation review.
+- **Mastered Lambda Environment:** Recognized the critical importance of **Lambda Layers** when working with external dependencies like `Pillow` or `Pandas`, optimizing code efficiency.
+- **Implemented Event-Driven Architecture:** Successfully built a functional, real-world application: a serverless Image Processing Pipeline.
+- **IAM & Debugging Skills:** Applied "Least Privilege" principles for Lambda security and utilized CloudWatch Logs effectively for troubleshooting execution errors.

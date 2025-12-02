@@ -16,14 +16,16 @@ The application is built with a microservices architecture on .NET and FastAPI p
 
 ### 2. Problem Statement
 
-#### What’s the Problem?
+#### Current Problem
 
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+There are already many financial management applications on the market, but most still require users to manually enter data — a time-consuming task prone to errors that causes users to quickly give up. Existing applications only focus on spending statistics without truly helping users automate their personal financial management process.
 
-**Solution**  
+#### Solution
+
 The solution uses AWS Cloud combined with microservices architecture to build an automated personal financial management platform, integrating AI in voice processing and bill recognition. The system is deployed on AWS ECS Fargate for backend services (.NET), FastAPI for AI processing, and Next.js for frontend. Compared to popular financial platforms like Money Lover or Misa Money Keeper, this application focuses on complete automation of financial data entry through detailed Vietnamese AI voice-to-text and bill scanning, helping reduce manual operations and errors. The system is suitable for individual users and small groups, and can be expanded when needed for enterprise scale or digital banking applications.
 
-**Benefits and Return on Investment (ROI)**  
+#### Benefits and Return on Investment (ROI)
+
 The solution brings many practical benefits both technically and in business value:
 
 - Data Entry Automation: Reduces over 70% manual operations through AI voice and bill recognition.
@@ -48,7 +50,8 @@ The API Gateway routes requests to an **Application Load Balancer (ALB)** via **
 - **Backend Service**: Handles the core business logic of the system.
 - **AI Service (FastAPI)**: Handles invoice processing, voice recognition, and other AI tasks.
 
-The **AI Service** can access files from **Amazon S3** for data processing, then return the results to the **Backend Service** through internal APIs.
+When users upload invoices or record audio, files are temporarily stored in **Amazon S3**.  
+The **AI Service** can access files from **Amazon S3** for data processing, then return the results to the **Backend Service** through message broker.
 
 Container images are stored in **Amazon ECR**, and the deployment process is fully automated using **GitLab CI/CD pipelines** — including build, push to ECR, and ECS task definition updates.
 
@@ -58,59 +61,59 @@ All logs, metrics, and alerts from ECS, API Gateway, and ALB are collected in **
 
 _AWS Services Used_
 
-- _Amazon Route 53_: Domain name and DNS management.
+- _Amazon Route 53_: Manages DNS and domain access.
 - _AWS WAF_: Protects the system from common web attacks.
-- _Amazon CloudFront_: Global content delivery and frontend acceleration.
-- _Amazon S3_: Stores static website content and user files (invoices, audio files).
-- _Amazon Cognito_: User authentication and access management.
-- _Amazon API Gateway_: Entry point for frontend requests, routing traffic to backend services.
-- _AWS PrivateLink_: Provides secure, private connectivity between API Gateway and ALB within the VPC.
-- _Application Load Balancer (ALB)_: Distributes traffic across backend containers on ECS.
-- _Amazon ECS (Fargate)_: Runs containerized backend and FastAPI (AI) services.
-- _Amazon ECR_: Container image registry for ECS deployment.
-- _Amazon CloudWatch_: Centralized logging, monitoring, and alerting.
-- _Amazon SNS_: Sends alerts and notifications during incidents.
-- _GitLab CI/CD_: Automates the container build, push, and deploy pipeline to ECS.
+- _Amazon CloudFront_: Distributes static content globally and accelerates frontend access.
+- _Amazon S3_: Stores static website and user files (invoices, recordings).
+- _Amazon Cognito_: User authentication and management.
+- _Amazon API Gateway_: System gateway, routes requests from frontend to backend.
+- _AWS PrivateLink_: Creates private connection between API Gateway and ALB within VPC for enhanced security.
+- _Application Load Balancer (ALB)_: Load balances between backend containers on ECS.
+- _Amazon ECS (Fargate)_: Runs Backend and FastAPI (AI) microservices.
+- _Amazon ECR_: Container image repository for ECS.
+- _Amazon CloudWatch_: Monitors logs, performance, and system alerts.
+- _Amazon SNS_: Sends notifications or alerts during incidents.
+- _GitLab CI/CD_: Automates pipeline to build, push, and deploy containers to ECS.
 
 ### 4. Technical Deployment
 
-_Implementation Phases_
+#### Implementation Phases
 
-1. _Research and Architecture Design_: Study microservices models and design the overall architecture on AWS (including CloudFront, ECS Fargate, RDS, S3, API Gateway, Cognito) — (Month 1 - 2).
-2. _Cost Estimation and Optimization_: Use AWS Pricing Calculator to estimate cost and optimize service selection for affordability and ease of deployment — (Month 2 - 3).
-3. _Development, Testing, and Deployment_: Build frontend (Next.js), backend (.NET), and AI service (FastAPI); perform microservice integration testing; deploy the system to AWS via ECS Fargate; and set up monitoring with CloudWatch — (Month 3 - 4).
+1. _Research and Architecture Design_: Study microservices models and design the overall architecture on AWS (including CloudFront, ECS Fargate, RDS, S3, API Gateway, Cognito) — (Month 1).
+2. _Cost Calculation and Solution Adjustment_: Use AWS Pricing Calculator to estimate costs, optimize service selection to ensure low cost and easy deployment for beginners — (Month 2–3).
+3. _Development, Testing, and Deployment_: Build frontend (Next.js), backend (.NET), and AI service (FastAPI); test microservice integration, then deploy the entire system to AWS using ECS Fargate and set up monitoring via CloudWatch — (Month 3–4).
 
-_Technical Requirements_
+#### Technical Requirements
 
 - _Frontend_:
-  The **Next.js** web application is hosted on **Amazon S3** and distributed via **CloudFront**, communicating securely with the backend through **API Gateway**.
-  User authentication and session management are handled by **Amazon Cognito**, which provides tokens for secured API calls.
+  The **Next.js** web application is stored in **Amazon S3** and distributed via **CloudFront**, communicating with the backend through **API Gateway**.
+  Users log in through **Amazon Cognito**, receiving tokens to call secured APIs.
 - _Backend_:
-  Developed in **.NET** (or a similar framework) and deployed on **ECS Fargate**.
-  Handles business operations, user interactions, and service orchestration.
-  Container images are stored in **ECR** and automatically deployed via **GitLab CI/CD**.
-  Load balancing between backend containers is managed by **ALB**.
+  Written in **.NET** or similar framework, deployed on **ECS Fargate**.
+  Services handle user business logic, transactions, and frontend requests.
+  Container images are stored in **ECR**, updated via CI/CD pipeline from **GitLab**.
+  **ALB** is used to load balance between backend containers.
 - _AI Service_:
-  Developed in **FastAPI**, responsible for processing invoice images and voice inputs.
-  Accesses raw data from **S3**, performs AI inference, and returns results to the **Backend Service** via internal APIs.
+  Written in **FastAPI**, processes invoice images and voice, connects to **S3** to read data.
+  Results are returned to **Backend Service** through internal APIs.
 - _Cloud Infrastructure_:
-  Runs inside a **multi-AZ Amazon VPC**, using **Application Load Balancer** for traffic distribution and **CloudWatch** for observability.
-  Containers are stored in **ECR** and deployed through **ECS Fargate**.
-  The deployment pipeline is automated using **GitLab CI/CD**.
+  Uses **Amazon VPC** (multi-AZ), **Application Load Balancer**, and **CloudWatch** for monitoring.
+  Container images are stored on **ECR** and deployed via **ECS Fargate**.
+  CI/CD is performed through **GitLab CI/CD** to automate build and deploy.
 - _Security_:
-  User authentication managed by **Amazon Cognito**.
-  Access permissions defined through **IAM Roles** for ECS, S3, CloudWatch, and API Gateway.
-  **Security Groups** are tightly configured between ECS, ALB, and other services.
-  **AWS WAF** provides web-layer protection against common exploits.
+  User access management using **Amazon Cognito**.
+  Uses **IAM Roles** for ECS, S3, CloudWatch, and API Gateway to limit access permissions.
+  **Security Groups** are tightly configured between ECS, ALB, and other services to ensure network security.
+  **AWS WAF** is configured to protect the frontend layer from common web attacks.
 
 ### 5. Timeline & Milestones
 
-- **Pre-internship (Month 0)**: 1 month for planning.
-- **Internship (Month 1–4)**:
+- _Pre-internship (Month 0)_: 1 month for planning.
+- _Internship (Month 1–4)_:
   - Month 1: Learn AWS and upgrade programming skills.
   - Month 2: Design and adjust architecture.
   - Month 3-4: Implement, test, and deploy.
-- **Post-deployment**: Research mobile development and deploy after month 5.
+- _Post-deployment_: Research mobile development and deploy after month 5.
 
 ### 6. Budget Estimation
 
@@ -118,7 +121,7 @@ You can review the detailed cost estimation by downloading the following files:
 _📊 <a href="/files/2-Proposal/pricing.csv" download>CSV Pricing File</a>_
 _💾 <a href="/files/2-Proposal/pricing.json" download>JSON Pricing File</a>_
 
-| Service                   |                            Monthly Cost |
+| Service                   |                                    Cost |
 | ------------------------- | --------------------------------------: |
 | AWS Fargate (ECS)         |                          $17.30 / month |
 | Application Load Balancer |                          $18.98 / month |
@@ -136,7 +139,7 @@ _💾 <a href="/files/2-Proposal/pricing.json" download>JSON Pricing File</a>_
 
 ### 7. Risk Assessment
 
-**Risk Matrix**
+_Risk Matrix_
 
 - AI model misrecognition (voice/bill): Medium impact, medium probability.
 - AWS connection loss or regional service errors: High impact, low probability.
@@ -144,7 +147,7 @@ _💾 <a href="/files/2-Proposal/pricing.json" download>JSON Pricing File</a>_
 - Data synchronization errors between microservices: Medium impact, medium probability.
 - User information leakage (Cognito/Database): High impact, low probability.
 
-**Mitigation Strategies**
+_Mitigation Strategies_
 
 - **AI**: Improve OCR and voice-to-text models through additional training, regular testing with real data.
 - **AWS Region**: Set up multi-AZ deployment and regular RDS database backup.
@@ -152,13 +155,13 @@ _💾 <a href="/files/2-Proposal/pricing.json" download>JSON Pricing File</a>_
 - **Microservices**: Use **SQS/RabbitMQ** to ensure asynchronous processing and retry on errors.
 - **Security**: Data encryption (AES-256, HTTPS), IAM control following "Least Privilege" principle.
 
-**Contingency Plans**
+_Contingency Plans_
 
 - If AWS encounters issues: Temporarily switch to local transaction data storage and sync after recovery.
 - Restore infrastructure using **AWS CloudFormation** or pre-saved **IaC (Infrastructure as Code)**.
 - Keep regular database copies (RDS snapshots) for data loss recovery.
 
-### 8. Expected results of the project
+### 8. Expected Results of the Project
 
 - **Automated financial data entry:** The application helps users avoid manual entry, just take a photo of the invoice or record a voice for the system to automatically classify spending.
 - **Intuitive financial management:** Users can view spending charts, monthly reports, and receive savings suggestions based on consumer behavior.
@@ -166,7 +169,7 @@ _💾 <a href="/files/2-Proposal/pricing.json" download>JSON Pricing File</a>_
 - **Stable, scalable system:** Microservices architecture makes it easy to add new features such as spending reminders, AI predictive analysis, or expand to a mobile app.
 - **Improving development team skills:** Project members have practical access to DevOps processes, CI/CD implementation, and cloud-based application optimization.
 
-### 9. Project limitations
+### 9. Project Limitations
 
 - **Vietnamese AI model is still limited:** The ability to recognize regional voices or handwritten invoices has not yet achieved high accuracy.
 - **No separate mobile application:** The MVP version only supports the web platform, there is no native mobile app.

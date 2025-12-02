@@ -14,7 +14,7 @@ pre: " <b> 1.3. </b> "
 - Nắm vững các **dịch vụ cơ sở dữ liệu AWS**: RDS, Aurora, Redshift, ElastiCache và các khái niệm cơ bản SQL, NoSQL, OLTP, OLAP.
 - Triển khai **Amazon RDS** với Multi-AZ, subnet groups, backup/restore để đảm bảo tính sẵn sàng và khả năng phục hồi.
 
-### Các công việc cần triển khai trong tuần này:
+### Công việc thực hiện trong tuần này:
 
 | Day | Task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Start Date | Completion Date | Reference Material                                                                 |
 | :-- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- | :-------------- | :--------------------------------------------------------------------------------- |
@@ -24,7 +24,7 @@ pre: " <b> 1.3. </b> "
 | 4   | **AWS Database Services Fundamentals** <br> - **Database Concepts:** Phân biệt các mô hình cơ sở dữ liệu: Quan hệ (RDBMS) vs Phi quan hệ (NoSQL), OLTP vs OLAP. <br> - **Managed RDBMS:** Nghiên cứu **Amazon RDS** (Multi-AZ, Read Replicas) và **Amazon Aurora** (Cloud-native, Serverless). <br> - **Specialized DBs:** Tìm hiểu **Amazon Redshift** cho kho dữ liệu (Data Warehousing) và **Amazon ElastiCache** cho bộ nhớ đệm (Caching).                                                                                                                                | 25/09/2025 | 25/09/2025      | [Module 06](https://github.com/danielleit241/aws-fcj-learning/tree/main/Module-06) |
 | 5   | **Hands-on Lab: Deploying & Managing Amazon RDS** <br> - **Infrastructure Setup:** Thiết lập mạng VPC, Subnet Groups và Security Groups tách biệt cho tầng Database (Lab 05). <br> - **Deployment:** Khởi tạo **Amazon RDS** Instance (Multi-AZ) và kết nối an toàn từ Web Server (EC2). <br> - **Operations:** Thực hành quy trình Backup & Restore, quản lý Snapshots và khôi phục dữ liệu theo thời điểm (Point-in-Time Recovery).                                                                                                                                         | 26/09/2025 | 26/09/2025      | [Module 06](https://github.com/danielleit241/aws-fcj-learning/tree/main/Module-06) |
 
-### Kết quả đạt được tuần 3:
+### Thành tựu Tuần 3:
 
 - **Dịch vụ bảo mật:**
 
