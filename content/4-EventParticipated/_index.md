@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship, I participated in three events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with gifts and wonderful moments.
+During my internship, I participated in six events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with gifts and wonderful moments.
 
 ### [Event 1](4.1-Event1/)
 
