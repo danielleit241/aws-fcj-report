@@ -8,6 +8,8 @@ pre: " <b> 2. </b> "
 
 # Personal Finance Management App (Vicobi)
 
+### You can read the full proposal here: <a href="/files/2-Proposal/Vicobi_Proposal.pdf" download>Vicobi Proposal</a>
+
 ### 1. Executive Summary
 
 The **Vicobi** (Personal Finance Management App) project aims to provide an intelligent, modern, and highly automated personal financial management platform. Vicobi simplifies financial management through 4 main pillars:

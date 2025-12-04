@@ -8,6 +8,8 @@ pre: " <b> 2. </b> "
 
 # Ứng dụng quản lý tài chính cá nhân (Vicobi)
 
+### Bạn có thể đọc toàn bộ proposal ở đây: <a href="/files/2-Proposal/Vicobi_Proposal.pdf" download>Vicobi Proposal</a>
+
 ### 1. Tóm tắt điều hành
 
 Dự án **Vicobi** (Personal Finance Management App) hướng đến việc cung cấp một nền tảng quản lý tài chính cá nhân thông minh, hiện đại và mang tính tự động hóa cao. Vicobi đơn giản hóa việc quản lý tài chính qua 4 trụ cột chính:
