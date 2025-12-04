@@ -57,4 +57,4 @@ In the search bar, access the [Amazon Bedrock](https://us-east-1.console.aws.ama
 - Click **Submit**.
 - Wait 1 minute, return to the chat box, Click **Run** on the `Hello` message again to confirm success.
 
-![Image illustrating Use Case information form](/images/5-Workshop/5.2-Prerequisite/)
+![Image illustrating Use Case information form](/images/5-Workshop/5.2-Prerequisite/04_Use_case.jpg)

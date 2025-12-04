@@ -20,7 +20,6 @@ Chúng ta sẽ thực hiện một bài kiểm tra nhanh (Test Run) để đảm
 
 ![Truy cập vào Amazon Bedrock](/images/5-Workshop/5.2-Prerequisite/00_Amazon_Bedrock.jpg)
 
-
 **Bước 1. Truy cập Chat Playground**
 
 - Tại menu bên trái Bedrock Console, tìm mục **Playgrounds**.
@@ -43,11 +42,11 @@ Chúng ta sẽ thực hiện một bài kiểm tra nhanh (Test Run) để đảm
 - Trong khung chat: Nhập `Hello`.
 - Click **Run**.
 - **Quan sát kết quả:**
+
   - Nếu AI trả lời: **Thành công** (Chuyển ngay sang phần 5.2.2).
-  ![Ảnh minh họa giao diện chat và thông báo lỗi nếu có](/images/5-Workshop/5.2-Prerequisite/03_Send_Activation_Message.jpg)
+    ![Ảnh minh họa giao diện chat và thông báo lỗi nếu có](/images/5-Workshop/5.2-Prerequisite/03_Send_Activation_Message.jpg)
 
   - Nếu hiện lỗi màu đỏ hoặc popup "Submit use case details": **Cần khai báo thông tin** (Làm tiếp bước 4 bên dưới).
-
 
 **Bước 4. Khai báo Use Case (Chỉ thực hiện nếu gặp lỗi ở bước 3)**
 
@@ -59,4 +58,4 @@ Chúng ta sẽ thực hiện một bài kiểm tra nhanh (Test Run) để đảm
 - Click **Submit**.
 - Đợi 1 phút, quay lại khung chat, Click **Run** lại tin nhắn `Hello` để xác nhận thành công.
 
-![Ảnh minh họa form điền thông tin Use Case](link_anh_form_use_case_o_day)
+![Ảnh minh họa form điền thông tin Use Case](/images/5-Workshop/5.2-Prerequisite/04_Use_case.jpg)
