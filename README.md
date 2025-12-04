@@ -4,9 +4,9 @@ Chào mừng bạn đến với báo cáo thực tập của mình tại Amazon 
 
 ## 📋 Giới thiệu
 
-Xin chào! Mình là **Le Vu Phuong Hoa**, hiện đang là sinh viên ngành Công nghệ Thông tin tại Đại học FPT TP.HCM. Website này là nơi mình ghi lại hành trình thực tập 3 tháng đầy thú vị tại AWS Vietnam với vai trò FCJ Cloud Intern.
+Xin chào! Mình là **Le Vu Phuong Hoa**, hiện đang là sinh viên ngành Công nghệ Thông tin tại Đại học FPT TP.HCM. Website này là nơi mình ghi lại hành trình thực tập 4 tháng đầy thú vị tại AWS Vietnam với vai trò FCJ Cloud Intern.
 
-**Thời gian thực tập:** Từ 12/08/2025 đến 12/11/2025
+**Thời gian thực tập:** Từ 12/08/2025 đến 12/12/2025
 
 ## 🚀 Xem trực tiếp
 
