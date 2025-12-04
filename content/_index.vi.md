@@ -27,7 +27,7 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 12/08/2025 đến ngày 12/11/2025
 
-![Ảnh đại diện của bạn](/images/avatar_new.png)
+<img src="/images/Phuong_Hoa.png" alt="Ảnh đại diện của bạn" width="450"/>
 
 ### Nội dung báo cáo
 
