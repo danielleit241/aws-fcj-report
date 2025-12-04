@@ -24,7 +24,7 @@ Trong phần chuẩn bị này, chúng ta sẽ tương tác với các thành ph
 - **Amazon Bedrock (Model Access & Playground):** Nơi quản lý quyền truy cập các mô hình nền tảng (Foundation Models) và công cụ chat để kiểm tra nhanh khả năng phản hồi của AI.
 - **Amazon S3 (Simple Storage Service):** Dịch vụ lưu trữ đối tượng, nơi chúng ta sẽ tạo Bucket để chứa các file tài liệu gốc (PDF, Word, Text).
 
-#### Các bước triển khai
+#### Các Bước Thực hiện
 
 1. [Kiểm tra truy cập Model](5.2.1-Model-Access/)
 2. [Chuẩn bị dữ liệu nguồn](5.2.2-Prepare-Data/)

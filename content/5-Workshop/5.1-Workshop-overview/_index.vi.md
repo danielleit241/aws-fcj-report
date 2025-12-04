@@ -20,7 +20,7 @@ Mục tiêu chính là thiết lập một quy trình xử lý dữ liệu hoàn
 
 ![overview](/images/5-Workshop/5.1-Workshop-overview/overview_diagram.png)
 
-#### Nội dung
+#### Các Bước Thực hiện
 
 1. [Giải thích RAG](5.1.1-WhatIsRag/)
 2. [Giới thiệu các dịch vụ](5.1.2-Services/)

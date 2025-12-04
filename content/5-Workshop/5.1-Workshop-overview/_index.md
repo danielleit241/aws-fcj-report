@@ -20,7 +20,7 @@ The main objective is to establish a fully automated and serverless data process
 
 ![overview](/images/5-Workshop/5.1-Workshop-overview/overview_diagram.png)
 
-#### Contents
+#### Implementation Steps
 
 1. [RAG Explanation](5.1.1-WhatIsRag/)
 2. [Service Introduction](5.1.2-Services/)
