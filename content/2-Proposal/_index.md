@@ -168,12 +168,12 @@ _(Based on On-Demand pricing in Singapore region - ap-southeast-1)_
 
 #### Implementation Team:
 
-| Name                     | Role                        | Email                     |
-| :----------------------- | :-------------------------- | :------------------------ |
-| **Le Vu Phuong Hoa**     | Backend Developer (Leader)  | hoalvpse181951@fpt.edu.vn |
-| **Nguyen Van Anh Duy**   | AI Developer (Member)       | duynvase181823@fpt.edu.vn |
-| **Uong Tuan Vu**         | Frontend Developer (Member) | vuutse180241@fpt.edu.vn   |
-| **Tran Nguyen Bao Minh** | AI Developer (Member)       | baominhbrthcs@gmail.com   |
+| Name                    | Role                        | Email                     |
+| :---------------------- | :-------------------------- | :------------------------ |
+| **Le Vu Phuong Hoa**    | Backend Developer (Leader)  | hoalvpse181951@fpt.edu.vn |
+| **Nguyen Van Anh Duy**  | AI Developer (Member)       | duynvase181823@fpt.edu.vn |
+| **Uong Tuan Vu**        | Frontend Developer (Member) | vuutse180241@fpt.edu.vn   |
+| **Tran Huynh Bao Minh** | AI Developer (Member)       | baominhbrthcs@gmail.com   |
 
 **Mentor Support:**
 

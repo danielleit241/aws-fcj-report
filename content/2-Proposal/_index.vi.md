@@ -169,12 +169,12 @@ _(Dựa trên giá On-Demand khu vực Singapore - ap-southeast-1)_
 
 #### Đội ngũ thực hiện (Team):
 
-| Họ tên                   | Vai trò                     | Email                     |
-| :----------------------- | :-------------------------- | :------------------------ |
-| **Lê Vũ Phương Hòa**     | Backend Developer (Leader)  | hoalvpse181951@fpt.edu.vn |
-| **Nguyễn Văn Anh Duy**   | AI Developer (Member)       | duynvase181823@fpt.edu.vn |
-| **Uông Tuấn Vũ**         | Frontend Developer (Member) | vuutse180241@fpt.edu.vn   |
-| **Trần Nguyễn Bảo Minh** | AI Developer (Member)       | baominhbrthcs@gmail.com   |
+| Họ tên                  | Vai trò                     | Email                     |
+| :---------------------- | :-------------------------- | :------------------------ |
+| **Lê Vũ Phương Hòa**    | Backend Developer (Leader)  | hoalvpse181951@fpt.edu.vn |
+| **Nguyễn Văn Anh Duy**  | AI Developer (Member)       | duynvase181823@fpt.edu.vn |
+| **Uông Tuấn Vũ**        | Frontend Developer (Member) | vuutse180241@fpt.edu.vn   |
+| **Trần Huỳnh Bảo Minh** | AI Developer (Member)       | baominhbrthcs@gmail.com   |
 
 **Mentor Support:**
 

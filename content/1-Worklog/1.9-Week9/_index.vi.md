@@ -23,7 +23,7 @@ pre: " <b> 1.9. </b> "
 | 4   | **Wallet Service - Phần 2: Money Jar, Goals & Budget** <br> - Hoàn thành **CRUD** cho Money Jar, bao gồm logic tính toán lại `AvailableBalance` khi update `AllocatedAmount`. <br> - Tích hợp **Goals Tracking** (tính `ProgressPercent`) và logic phát sự kiện `GoalAchieved`. <br> - Triển khai **Jar Operations**: **Deposit**, **Withdraw**, **Transfer** giữa các hũ, và **Reconcile Jar Balance**. <br> - Triển khai **Budget Threshold & Over-Budget Logic** (phát events cảnh báo) và **Jar Expiry Processing Service** (xử lý Income Jar auto-reset, Expense Jar Grace Period/Auto-Return). | 06/11/2025 | 06/11/2025      | [Day 4 Docs](https://gitlab.com/vicobi/vicobi-docs/-/blob/main/dev-plans/backend/sprint-1/day-4.md?ref_type=heads) |
 | 5   | **Tích hợp End-to-End & Thử nghiệm** <br> - Thiết lập **API Gateway** (Routing, CORS, Rate Limiting). <br> - Cấu hình giao tiếp **Service-to-Service** với **HTTP Client Factory** và **Polly** (Retry Policy, Circuit Breaker). <br> - Thực hiện **Integration Testing** cho luồng End-to-End: New User Onboarding, Jar Creation, Wallet/Jar Operations (Deposit/Withdraw/Transfer/Reconcile), và **Goal Achievement**. <br> - Thử nghiệm **Security** (JWT Expiration, Authorization) và **Concurrency** (Balance Updates).                                                                        | 07/11/2025 | 07/11/2025      | [Day 5 Docs](https://gitlab.com/vicobi/vicobi-docs/-/blob/main/dev-plans/backend/sprint-1/day-5.md?ref_type=heads) |
 
-### ### Thành tựu Tuần 9:
+### Thành tựu Tuần 9:
 
 - **Kiến trúc Nền tảng Microservice Đã Thiết lập:**
   - Sử dụng **.NET Aspire** để định hình kiến trúc Microservice cho 6 dịch vụ.
